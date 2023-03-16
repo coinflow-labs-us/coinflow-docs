@@ -1,0 +1,6 @@
+generated
+build
+apps/ui
+target
+blockchain/near/frontend
+node_modules/

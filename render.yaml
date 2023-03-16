@@ -1,0 +1,45 @@
+services:
+  - type: web
+      name: coinflow-docs
+      env: static
+      branch: main
+      rootDir: docusaurus
+      buildCommand: npm ci && npm run build
+      staticPublishPath: build
+      buildFilter:
+        paths:
+          - docusaurus/**/*
+      routes:
+        - type: rewrite
+          source: /*
+          destination: /index.html
+
+  - type: web
+    name: solana-react-checkout
+    env: static
+    branch: main
+    rootDir: examples/react/solana/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/solana/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+      name: solana-react-offramp
+      env: static
+      branch: main
+      rootDir: examples/react/solana/offramp
+      buildCommand: npm ci && npm run build
+      staticPublishPath: build
+      buildFilter:
+        paths:
+          - examples/react/solana/offramp/**/*
+      routes:
+        - type: rewrite
+          source: /*
+          destination: /index.html
