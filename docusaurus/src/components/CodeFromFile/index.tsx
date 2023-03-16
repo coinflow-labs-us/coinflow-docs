@@ -12,7 +12,7 @@ export default function CodeFromFile({language, blockchain, product, file}: {lan
 
   const filePath = useMemo(() => {
     return `code/examples/${language}/${blockchain}/${product}/${file}`
-  }, []);
+  }, [language, blockchain, product, file]);
 
   const languageExt =  useMemo(() => {
     return 'ts'; // TODO parse file extension
@@ -20,7 +20,7 @@ export default function CodeFromFile({language, blockchain, product, file}: {lan
 
   const url = useMemo(() => {
     return `${siteConfig.baseUrl}${filePath}`;
-  }, []);
+  }, [siteConfig, filePath]);
 
   useEffect(() => {
     fetch(url)
