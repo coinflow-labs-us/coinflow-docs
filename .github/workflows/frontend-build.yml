@@ -1,0 +1,31 @@
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: true
+        type: string
+
+jobs:
+  frontend-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: ${{inputs.working-directory}}/package-lock.json
+
+      - name: Install Dependencies
+        run: npm i
+        working-directory: ${{inputs.working-directory}}
+
+      - name: Lint
+        run: npm run lint
+        working-directory: ${{inputs.working-directory}}
+
+      - name: Build
+        run: npm run build
+        working-directory: ${{inputs.working-directory}}
