@@ -21,5 +21,5 @@ export function useQueryParam<T>(
     if (!value) setValue(initialValue);
   }, [initialValue, setValue, value]);
 
-  return [value ? value : initialValue, setValue];
+  return [value || initialValue, setValue];
 }
