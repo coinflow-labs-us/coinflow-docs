@@ -1,13 +1,13 @@
-name: Docusaurus
+name: React Solana Offramp
 
 on:
   push:
     branches: [ main ]
     paths:
-      - docusaurus/**
+      - examples/react/solana/offramp/**
   pull_request:
     paths:
-      - docusaurus/**
+      - examples/react/solana/offramp/**
 
   workflow_dispatch:
 
@@ -15,4 +15,4 @@ jobs:
   docusaurus:
     uses: ./.github/workflows/frontend-build.yml
     with:
-      working-directory: ./docusaurus
+      working-directory: ./examples/react/solana/offramp/
