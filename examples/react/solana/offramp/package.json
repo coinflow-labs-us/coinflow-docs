@@ -19,6 +19,7 @@
     "react-router-dom": "6.9.0"
   },
   "scripts": {
+    "lint": "eslint .",
     "build": "react-app-rewired build",
     "start": "PORT=3004 react-app-rewired start",
     "dev": "npm run start"
