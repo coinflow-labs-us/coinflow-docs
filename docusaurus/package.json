@@ -15,7 +15,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "clean-codegen": "rimraf static/code/examples",
-    "codegen": "npm run clean-codegen && copyfiles '../examples/**/*.{tsx,js,jsx,json}' './static/code/examples' --parents --exclude '../examples/**/build/**/*' --exclude '../examples/**/node_modules/**/*' --exclude '../examples/**/public/**/*' --exclude '../examples/**/package-lock.json'"
+    "codegen": "npm run clean-codegen && copyfiles \"../examples/**/*.{tsx,js,jsx,json}\" \"./static/code/examples\" --parents --exclude \"../examples/**/build/**/*\" --exclude \"../examples/**/node_modules/**/*\" --exclude \"../examples/**/public/**/*\" --exclude \"../examples/**/package-lock.json\""
   },
   "dependencies": {
     "@docusaurus/core": "2.3.1",
