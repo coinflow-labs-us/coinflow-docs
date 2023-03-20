@@ -4,7 +4,10 @@ import CodeFromFile, {
   Languages,
   Product,
 } from '@site/src/components/CodeFromFile';
-import {FiltersWrapper} from '@site/src/components/IntegrationBuilder/Select/styledComponents';
+import {
+  FiltersWrapper,
+  SplitView,
+} from '@site/src/components/IntegrationBuilder/Select/styledComponents';
 import Select from '@site/src/components/Select';
 
 const languageOptions: Array<{value: Languages; label: string}> = [
@@ -47,12 +50,25 @@ const IntegrationBuilder = () => {
           />
         </div>
       </FiltersWrapper>
-      <CodeFromFile
-        language={languageValue}
-        blockchain={chainValue}
-        product={productValue}
-        file={'src/App.tsx'}
-      />
+      <SplitView>
+        <div className="split-left">
+          <h2>Installing</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+            at atque, aut doloremque esse eveniet exercitationem illo laboriosam
+            magnam molestias necessitatibus obcaecati provident sapiente sequi
+            tempora ut veniam voluptatem voluptatibus.
+          </p>
+        </div>
+        <div className="split-right">
+          <CodeFromFile
+            language={languageValue}
+            blockchain={chainValue}
+            product={productValue}
+            file={'src/App.tsx'}
+          />
+        </div>
+      </SplitView>
     </>
   );
 };
