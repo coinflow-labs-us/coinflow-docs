@@ -4,7 +4,8 @@ import CodeFromFile, {
   Languages,
   Product,
 } from '@site/src/components/CodeFromFile';
-import Select from 'react-select';
+import {FiltersWrapper} from '@site/src/components/IntegrationBuilder/Select/styledComponents';
+import Select from '@site/src/components/Select';
 
 const languageOptions: Array<{value: Languages; label: string}> = [
   {value: 'react', label: 'React'},
@@ -26,16 +27,14 @@ const IntegrationBuilder = () => {
 
   return (
     <>
-      <div
-        style={{display: 'flex', flexDirection: 'row', marginBottom: '1rem'}}
-      >
-        <div style={{marginRight: '1rem'}}>
+      <FiltersWrapper>
+        <div>
           <Select
             onChange={newValue => setLanguageValue(newValue.value)}
             options={languageOptions}
           />
         </div>
-        <div style={{marginRight: '1rem'}}>
+        <div>
           <Select
             onChange={newValue => setChainValue(newValue.value)}
             options={chainOptions}
@@ -47,7 +46,7 @@ const IntegrationBuilder = () => {
             options={productOptions}
           />
         </div>
-      </div>
+      </FiltersWrapper>
       <CodeFromFile
         language={languageValue}
         blockchain={chainValue}

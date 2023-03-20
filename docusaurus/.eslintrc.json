@@ -60,7 +60,8 @@
         "node/no-missing-require": "off",
         "node/shebang": "off",
         "no-dupe-class-members": "off",
-        "require-atomic-updates": "off"
+        "require-atomic-updates": "off",
+        "import/no-named-default": "off"
       },
       "parserOptions": {
         "ecmaVersion": 2018,
