@@ -38,5 +38,9 @@ export default function CodeFromFile({
       .then(data => setCode(data));
   }, [filePath, siteConfig.baseUrl]);
 
-  return <CodeBlock language={languageExt}>{code}</CodeBlock>;
+  return (
+    <CodeBlock language={languageExt} showLineNumbers metastring="{1,4-6,11}">
+      {code}
+    </CodeBlock>
+  );
 }
