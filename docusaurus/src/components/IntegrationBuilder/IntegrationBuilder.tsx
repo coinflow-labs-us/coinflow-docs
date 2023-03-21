@@ -9,6 +9,7 @@ import {
   SplitView,
 } from '@site/src/components/IntegrationBuilder/Select/styledComponents';
 import Select from '@site/src/components/Select';
+import FileList from '@site/src/components/IntegrationBuilder/FileList/FileList';
 
 const languageOptions: Array<{value: Languages; label: string}> = [
   {value: 'react', label: 'React'},
@@ -27,6 +28,7 @@ const IntegrationBuilder = () => {
   const [languageValue, setLanguageValue] = useState<Languages>();
   const [chainValue, setChainValue] = useState<Blockchains>();
   const [productValue, setProductValue] = useState<Product>();
+  const [fileValue, setFileValue] = useState();
 
   return (
     <>
@@ -61,11 +63,16 @@ const IntegrationBuilder = () => {
           </p>
         </div>
         <div className="split-right">
+          <FileList
+            options={['src/App.tsx', 'src/wallet/Wallet.tsx', 'src/index.tsx']}
+            value={fileValue}
+            onChange={value => setFileValue(value)}
+          />
           <CodeFromFile
             language={languageValue}
             blockchain={chainValue}
             product={productValue}
-            file={'src/App.tsx'}
+            file={fileValue}
           />
         </div>
       </SplitView>
