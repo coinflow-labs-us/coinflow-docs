@@ -25,8 +25,8 @@ export default function CodeFromFile({
   }, [language, blockchain, product, file]);
 
   const languageExt = useMemo(() => {
-    return 'ts'; // TODO parse file extension
-  }, []);
+    return file?.slice(file.lastIndexOf('.') + 1);
+  }, [file]);
 
   const url = useMemo(() => {
     return `${siteConfig.baseUrl}${filePath}`;
