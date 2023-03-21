@@ -92,12 +92,14 @@ const IntegrationBuilder = () => {
             value={fileValue}
             onChange={value => setFileValue(value)}
           />
-          <CodeFromFile
-            language={languageValue}
-            blockchain={chainValue}
-            product={productValue}
-            file={fileValue}
-          />
+          <div className="scrollable-code">
+            <CodeFromFile
+              language={languageValue}
+              blockchain={chainValue}
+              product={productValue}
+              file={fileValue}
+            />
+          </div>
         </div>
       </SplitView>
     </>

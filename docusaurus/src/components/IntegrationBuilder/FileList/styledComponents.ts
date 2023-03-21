@@ -6,12 +6,13 @@ const activeMixin = css`
 `;
 
 export const FileItem = styled.button`
+  flex: 1 0 70px;
   height: 40px;
   padding: 0 10px;
-  min-width: 70px;
   border-radius: 20px;
   border: none;
   font-size: 16px;
+  white-space: nowrap;
   font-weight: bold;
   margin-right: 10px;
   transition: 0.1s ease;
@@ -28,6 +29,7 @@ export const FileItem = styled.button`
 `;
 
 export const FileContainer = styled.div`
+  overflow-x: auto;
   padding: 5px 10px;
   display: flex;
   align-items: center;

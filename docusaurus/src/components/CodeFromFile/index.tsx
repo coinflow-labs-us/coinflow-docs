@@ -39,7 +39,12 @@ export default function CodeFromFile({
   }, [filePath, siteConfig.baseUrl]);
 
   return (
-    <CodeBlock language={languageExt} showLineNumbers metastring="{1,4-6,11}">
+    <CodeBlock
+      className="code-block"
+      language={languageExt}
+      showLineNumbers
+      metastring="{1,4-6,11}"
+    >
       {code}
     </CodeBlock>
   );
