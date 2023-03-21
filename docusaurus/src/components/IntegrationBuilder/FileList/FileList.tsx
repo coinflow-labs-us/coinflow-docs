@@ -10,7 +10,11 @@ const FileList = props => {
   return (
     <FileContainer>
       {options.map(option => (
-        <FileItem isActive={value === option} onClick={() => onChange(option)}>
+        <FileItem
+          key={option}
+          isActive={value === option}
+          onClick={() => onChange(option)}
+        >
           {option.slice(option.lastIndexOf('/') + 1)}
         </FileItem>
       ))}

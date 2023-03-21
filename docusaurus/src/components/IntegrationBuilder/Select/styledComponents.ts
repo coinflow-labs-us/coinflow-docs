@@ -15,26 +15,29 @@ export const SplitView = styled.div`
   display: flex;
   flex-direction: row;
 
+  .split-left,
+  .split-right {
+    height: calc(100vh - 60px - 4rem);
+  }
+
   .split-left {
     width: 40%;
-    height: calc(100vh - 60px - 4rem);
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .split-right {
     width: 60%;
-    height: calc(100vh - 60px - 4rem);
-    overflow-y: scroll;
+  }
+
+  .scrollable-code {
+    overflow-y: auto;
+    height: calc(100% - 50px);
   }
 
   @media ${devices.xs} {
     flex-direction: column;
 
-    .split-left {
-      width: 100%;
-      height: initial;
-    }
-
+    .split-left,
     .split-right {
       width: 100%;
       height: initial;
