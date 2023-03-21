@@ -57,7 +57,31 @@ const IntegrationBuilder = () => {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
             at atque, aut doloremque esse eveniet exercitationem illo laboriosam
             magnam molestias necessitatibus obcaecati provident sapiente sequi
-            tempora ut veniam voluptatem voluptatibus.
+            tempora ut veniam voluptatem voluptatibus. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Ad hic ipsam non tempora unde!
+            At consequatur, cupiditate excepturi magnam magni nam nostrum
+            reiciendis sint. Aperiam et labore quas qui sint. Lorem ipsum dolor
+            sit amet, consectetur adipisicing elit. Accusantium ad atque
+            consectetur corporis doloribus enim facere harum illum incidunt
+            ipsa, laborum nihil odio odit praesentium quos temporibus totam,
+            ullam voluptatibus? Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Aliquid beatae culpa ducimus earum esse
+            exercitationem expedita in, iste laboriosam magni provident quod rem
+            sapiente sed vel voluptate voluptatibus. Esse, hic. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Accusamus alias,
+            asperiores aspernatur blanditiis, consectetur debitis dignissimos
+            facere fugiat ipsa iure maiores numquam officia quam quibusdam, quo
+            rem sed tempore? Quibusdam. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Dignissimos dolores et exercitationem id, impedit
+            ipsam iure minus molestias mollitia nam nostrum quae qui quod
+            reiciendis repellat repudiandae sed voluptas voluptate! Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Aspernatur culpa dolor
+            ducimus, eos esse veritatis! Eius facere fugiat magni neque nobis
+            nostrum quidem quos recusandae, sint tenetur? Explicabo, illum,
+            magnam. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Ab, cum dicta eos, est, expedita fugiat illo illum magnam molestias
+            nostrum odio veniam! Alias atque ex ipsam molestias quisquam tempora
+            tempore.
           </p>
         </div>
         <div className="split-right">

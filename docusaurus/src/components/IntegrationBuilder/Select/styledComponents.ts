@@ -17,10 +17,14 @@ export const SplitView = styled.div`
 
   .split-left {
     width: 40%;
+    height: calc(100vh - 60px - 4rem);
+    overflow-y: scroll;
   }
 
   .split-right {
     width: 60%;
+    height: calc(100vh - 60px - 4rem);
+    overflow-y: scroll;
   }
 
   @media ${devices.xs} {
@@ -28,10 +32,12 @@ export const SplitView = styled.div`
 
     .split-left {
       width: 100%;
+      height: initial;
     }
 
     .split-right {
       width: 100%;
+      height: initial;
     }
   }
 `;
