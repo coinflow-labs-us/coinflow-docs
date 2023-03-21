@@ -34,6 +34,10 @@ export const SplitView = styled.div`
     height: calc(100% - 50px);
   }
 
+  .code-block {
+    border-radius: 0;
+  }
+
   @media ${devices.xs} {
     flex-direction: column;
 
