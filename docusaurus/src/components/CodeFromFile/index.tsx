@@ -1,10 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-
-export type Languages = 'react' | 'vue';
-export type Blockchains = 'solana' | 'polygon';
-export type Product = 'offramp' | 'checkout';
+import {Languages, Product, Blockchains} from '@site/src/types';
 
 export default function CodeFromFile({
   language,
