@@ -1,8 +1,7 @@
 import React from 'react';
-import {MDXProvider} from '@mdx-js/react';
 
 const BaseBlock = props => {
-  return <MDXProvider>{props.children}</MDXProvider>;
+  return <div style={{color: 'red'}}>{props.children}</div>;
 };
 
 export default BaseBlock;
