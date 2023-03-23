@@ -18,7 +18,11 @@ const CodeFromFile = ({
   const {siteConfig} = useDocusaurusContext();
   const [code, setCode] = useState<string>('');
 
-  const {filePath: activeFilePath, highlight} = useContext(ContentBlockContext);
+  const {
+    filePath: activeFilePath,
+    highlight,
+    setIsFileLoading,
+  } = useContext(ContentBlockContext);
 
   const filePath = useMemo(() => {
     return `code/examples/${language}/${blockchain}/${product}/${file}`;
@@ -35,7 +39,10 @@ const CodeFromFile = ({
   useEffect(() => {
     fetch(url)
       .then(response => response.text())
-      .then(data => setCode(data));
+      .then(data => setCode(data))
+      .finally(() => {
+        setIsFileLoading(false);
+      });
   }, [filePath, siteConfig.baseUrl]);
 
   return (

@@ -1,4 +1,10 @@
-import React, {useState, useCallback, useEffect, useContext} from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useContext,
+  useRef,
+} from 'react';
 import CodeFromFile from '@site/src/components/CodeFromFile';
 import {Blockchains, Languages, Product} from '@site/src/types';
 import {
@@ -10,6 +16,8 @@ import FileList from '@site/src/components/IntegrationBuilder/FileList/FileList'
 import ContentFromFile from '@site/src/components/ContentFromFile';
 import CodeNotFound from '@site/src/components/CodeFromFile/CodeNotFound';
 import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
+
+const CODE_LINE_HEIGHT = 22.04;
 
 const languageOptions: Array<{value: Languages; label: string}> = [
   {value: 'react', label: 'React'},
@@ -25,6 +33,7 @@ const productOptions: Array<{value: Product; label: string}> = [
 ];
 
 const IntegrationBuilder = () => {
+  const scrollRef = useRef(null);
   const [languageValue, setLanguageValue] = useState<Languages>(
     languageOptions[0].value
   );
@@ -38,7 +47,8 @@ const IntegrationBuilder = () => {
 
   const [filePaths, setFilePaths] = useState<string[]>([]);
 
-  const {filePath} = useContext(ContentBlockContext);
+  const {filePath, highlight, isFileLoading, setFilePath} =
+    useContext(ContentBlockContext);
 
   const loadConfig = useCallback(async () => {
     try {
@@ -47,10 +57,21 @@ const IntegrationBuilder = () => {
       );
       setFilePaths(result.files);
       setFileValue(result.files[0]);
+      setFilePath(result.files[0]);
     } catch (error) {
       setFilePaths([]);
     }
   }, [languageValue, chainValue, productValue]);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: CODE_LINE_HEIGHT * (parseInt(highlight) - 1),
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   useEffect(() => {
     loadConfig();
@@ -59,6 +80,10 @@ const IntegrationBuilder = () => {
   useEffect(() => {
     setFileValue(filePath);
   }, [filePath]);
+
+  useEffect(() => {
+    if (!isFileLoading) handleScroll();
+  }, [highlight, isFileLoading]);
 
   return (
     <>
@@ -102,7 +127,7 @@ const IntegrationBuilder = () => {
               value={fileValue}
               onChange={value => setFileValue(value)}
             />
-            <div className="scrollable-code">
+            <div ref={scrollRef} className="scrollable-code">
               <CodeFromFile
                 language={languageValue}
                 blockchain={chainValue}

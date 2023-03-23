@@ -15,8 +15,14 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const ContentBlock: FC<IProps> = props => {
-  const {setFilePath, setHighlight, activeId, setActiveId} =
-    useContext(ContentBlockContext);
+  const {
+    filePath,
+    setFilePath,
+    setHighlight,
+    activeId,
+    setActiveId,
+    setIsFileLoading,
+  } = useContext(ContentBlockContext);
   const [id, setId] = useState();
 
   useEffect(() => {
@@ -27,6 +33,7 @@ const ContentBlock: FC<IProps> = props => {
     <ContentBlockContainer
       onClick={() => {
         if (props.filePath) {
+          if (props.filePath !== filePath) setIsFileLoading(true);
           setFilePath(props.filePath);
 
           if (props.highlight) setHighlight(props.highlight);
