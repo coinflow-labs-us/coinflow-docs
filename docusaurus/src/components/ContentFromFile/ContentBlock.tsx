@@ -1,6 +1,13 @@
-import React, {FC, HTMLAttributes, useContext} from 'react';
+import React, {
+  FC,
+  HTMLAttributes,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import {ContentBlockContainer} from './styledComponents';
 import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
+import {v4 as uuidv4} from 'uuid';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
   filePath?: string;
@@ -8,7 +15,13 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const ContentBlock: FC<IProps> = props => {
-  const {setFilePath, setHighlight} = useContext(ContentBlockContext);
+  const {setFilePath, setHighlight, activeId, setActiveId} =
+    useContext(ContentBlockContext);
+  const [id, setId] = useState();
+
+  useEffect(() => {
+    setId(uuidv4());
+  }, []);
 
   return (
     <ContentBlockContainer
@@ -18,7 +31,10 @@ const ContentBlock: FC<IProps> = props => {
 
           if (props.highlight) setHighlight(props.highlight);
         }
+
+        setActiveId(id);
       }}
+      isActive={activeId === id}
     >
       {props.children}
     </ContentBlockContainer>

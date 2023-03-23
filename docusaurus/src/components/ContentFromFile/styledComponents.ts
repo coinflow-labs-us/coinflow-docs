@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const RetryButton = styled.button`
   background-color: #ffffff;
@@ -19,10 +19,19 @@ export const RetryButton = styled.button`
 export const ContentBlockContainer = styled.div`
   border-left: 6px solid transparent;
   padding: 1rem;
-
-  //onClick Color #1c64f2
+  cursor: pointer;
 
   :hover {
-    border-left: 6px solid #233876;
+    border-left-color: #233876;
   }
+
+  :active {
+    border-left-color: #1c64f2;
+  }
+
+  ${props =>
+    props.isActive &&
+    css`
+      border-left-color: #1c64f2 !important;
+    `};
 `;
