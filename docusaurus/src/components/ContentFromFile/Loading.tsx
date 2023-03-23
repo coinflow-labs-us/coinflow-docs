@@ -1,11 +1,11 @@
-import NotFound from './NotFound';
+import ContentNotFound from './ContentNotFound';
 import {RetryButton} from './styledComponents';
 import React from 'react';
 
 const Loading = props => {
   if (props.error) {
     if (props.error.code === 'MODULE_NOT_FOUND') {
-      return <NotFound />;
+      return <ContentNotFound />;
     }
 
     return (

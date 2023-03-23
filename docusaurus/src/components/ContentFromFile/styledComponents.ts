@@ -15,3 +15,14 @@ export const RetryButton = styled.button`
     color: #ffffff;
   }
 `;
+
+export const ContentBlockContainer = styled.div`
+  border-left: 6px solid transparent;
+  padding: 1rem;
+
+  //onClick Color #1c64f2
+
+  :hover {
+    border-left: 6px solid #233876;
+  }
+`;

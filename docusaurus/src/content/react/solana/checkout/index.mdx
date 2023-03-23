@@ -1,21 +1,21 @@
-import BaseBlock from '../../../../components/ContentFromFile/ContentBlock';
+ import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
 
-# Checkout Content
+<ContentBlock filePath="src/App.tsx" highlight="1,4-6,11">
+
+  # Checkout Content
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, optio, velit. Ab adipisci alias distinctio ea eligendi explicabo fuga in laudantium, minus placeat qui quia repellendus sit voluptate voluptatem! Modi?
 
-<div style={{color: 'red'}}>
-    **Bold still doesn't work**
-</div>
+</ContentBlock>
 
-<div style={{color: 'red'}}>
+<ContentBlock filePath="src/wallet/Wallet.tsx" highlight="5-10">
 
-**Bold now works**
+**Content for Wallet**
 
-</div>
+</ContentBlock>
 
-<BaseBlock>
+<ContentBlock filePath="src/App.tsx" highlight="1,3,7,12,21">
 
-**Bold now works**
+  **Content for App again**
 
-</BaseBlock>
+</ContentBlock>

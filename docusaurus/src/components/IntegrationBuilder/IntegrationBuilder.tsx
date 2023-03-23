@@ -1,4 +1,4 @@
-import React, {useState, lazy, Suspense} from 'react';
+import React, {useState, useCallback, useEffect, useContext} from 'react';
 import CodeFromFile from '@site/src/components/CodeFromFile';
 import {Blockchains, Languages, Product} from '@site/src/types';
 import {
@@ -8,6 +8,8 @@ import {
 import Select from '@site/src/components/Select';
 import FileList from '@site/src/components/IntegrationBuilder/FileList/FileList';
 import ContentFromFile from '@site/src/components/ContentFromFile';
+import CodeNotFound from '@site/src/components/CodeFromFile/CodeNotFound';
+import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
 
 const languageOptions: Array<{value: Languages; label: string}> = [
   {value: 'react', label: 'React'},
@@ -32,7 +34,31 @@ const IntegrationBuilder = () => {
   const [productValue, setProductValue] = useState<Product>(
     productOptions[0].value
   );
-  const [fileValue, setFileValue] = useState();
+  const [fileValue, setFileValue] = useState<string>();
+
+  const [filePaths, setFilePaths] = useState<string[]>([]);
+
+  const {filePath} = useContext(ContentBlockContext);
+
+  const loadConfig = useCallback(async () => {
+    try {
+      const result = await import(
+        `@site/src/content/${languageValue}/${chainValue}/${productValue}/config.ts`
+      );
+      setFilePaths(result.files);
+      setFileValue(result.files[0]);
+    } catch (error) {
+      setFilePaths([]);
+    }
+  }, [languageValue, chainValue, productValue]);
+
+  useEffect(() => {
+    loadConfig();
+  }, [loadConfig]);
+
+  useEffect(() => {
+    setFileValue(filePath);
+  }, [filePath]);
 
   return (
     <>
@@ -67,21 +93,25 @@ const IntegrationBuilder = () => {
             product={productValue}
           />
         </div>
-        <div className="split-right">
-          <FileList
-            options={['src/App.tsx', 'src/wallet/Wallet.tsx', 'src/index.tsx']}
-            value={fileValue}
-            onChange={value => setFileValue(value)}
-          />
-          <div className="scrollable-code">
-            <CodeFromFile
-              language={languageValue}
-              blockchain={chainValue}
-              product={productValue}
-              file={fileValue}
+        {filePaths.length === 0 ? (
+          <CodeNotFound />
+        ) : (
+          <div className="split-right">
+            <FileList
+              options={filePaths}
+              value={fileValue}
+              onChange={value => setFileValue(value)}
             />
+            <div className="scrollable-code">
+              <CodeFromFile
+                language={languageValue}
+                blockchain={chainValue}
+                product={productValue}
+                file={fileValue}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </SplitView>
     </>
   );

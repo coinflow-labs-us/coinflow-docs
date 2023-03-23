@@ -1,7 +1,7 @@
 import {Blockchains, Languages, Product} from '@site/src/types';
-import React, {ComponentType, Suspense, useMemo} from 'react';
+import React, {ComponentType, useMemo} from 'react';
 import Loadable from 'react-loadable';
-import NotFound from './NotFound';
+import ContentNotFound from './ContentNotFound';
 import Loading from './Loading';
 
 const ContentFromFile = ({
@@ -14,7 +14,7 @@ const ContentFromFile = ({
   product: Product;
 }) => {
   const Content = useMemo(() => {
-    let Component: ComponentType = NotFound;
+    let Component: ComponentType = ContentNotFound;
 
     if (language && blockchain && product) {
       Component = Loadable({
