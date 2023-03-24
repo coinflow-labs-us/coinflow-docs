@@ -5,9 +5,11 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import {ContentBlockContainer} from './styledComponents';
-import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
+import {ContentBlockContainer, SourceLink} from './styledComponents';
+import ContentBlockContext from '@site/src/context/ContentBlockContext';
 import {v4 as uuidv4} from 'uuid';
+import GitHubIcon from '@site/src/components/Icons/GitHubIcon';
+import {GITHUB_EXAMPLES_LINK} from '@site/src/utils/constants';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
   filePath?: string;
@@ -22,6 +24,10 @@ const ContentBlock: FC<IProps> = props => {
     activeId,
     setActiveId,
     setIsFileLoading,
+    languageValue,
+    chainValue,
+    productValue,
+    highlight,
   } = useContext(ContentBlockContext);
   const [id, setId] = useState();
 
@@ -29,9 +35,13 @@ const ContentBlock: FC<IProps> = props => {
     setId(uuidv4());
   }, []);
 
+  const highlightParam = highlight ? '#L' + parseInt(highlight) : '';
+
   return (
     <ContentBlockContainer
       onClick={() => {
+        setHighlight(undefined);
+
         if (props.filePath) {
           if (props.filePath !== filePath) setIsFileLoading(true);
           setFilePath(props.filePath);
@@ -43,7 +53,16 @@ const ContentBlock: FC<IProps> = props => {
       }}
       isActive={activeId === id}
     >
-      {props.children}
+      <div>{props.children}</div>
+      <div className="source-link-container">
+        <SourceLink
+          href={`${GITHUB_EXAMPLES_LINK}${languageValue}/${chainValue}/${productValue}/${filePath}${highlightParam}`}
+          target="_blank"
+        >
+          <span>Source</span>
+          <GitHubIcon />
+        </SourceLink>
+      </div>
     </ContentBlockContainer>
   );
 };

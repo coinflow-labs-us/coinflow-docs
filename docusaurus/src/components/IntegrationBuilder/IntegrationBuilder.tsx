@@ -6,7 +6,6 @@ import React, {
   useRef,
 } from 'react';
 import CodeFromFile from '@site/src/components/CodeFromFile';
-import {Blockchains, Languages, Product} from '@site/src/types';
 import {
   FiltersWrapper,
   SplitView,
@@ -15,40 +14,33 @@ import Select from '@site/src/components/Select';
 import FileList from '@site/src/components/IntegrationBuilder/FileList/FileList';
 import ContentFromFile from '@site/src/components/ContentFromFile';
 import CodeNotFound from '@site/src/components/CodeFromFile/CodeNotFound';
-import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
-
-const CODE_LINE_HEIGHT = 22.04;
-
-const languageOptions: Array<{value: Languages; label: string}> = [
-  {value: 'react', label: 'React'},
-  {value: 'vue', label: 'Vue'},
-];
-const chainOptions: Array<{value: Blockchains; label: string}> = [
-  {value: 'solana', label: 'Solana'},
-  {value: 'polygon', label: 'Polygon'},
-];
-const productOptions: Array<{value: Product; label: string}> = [
-  {value: 'checkout', label: 'Checkout'},
-  {value: 'offramp', label: 'Offramp'},
-];
+import ContentBlockContext from '@site/src/context/ContentBlockContext';
+import {
+  CHAIN_OPTIONS,
+  CODE_LINE_HEIGHT,
+  LANGUAGE_OPTIONS,
+  PRODUCT_OPTIONS,
+} from '@site/src/utils/constants';
 
 const IntegrationBuilder = () => {
   const scrollRef = useRef(null);
-  const [languageValue, setLanguageValue] = useState<Languages>(
-    languageOptions[0].value
-  );
-  const [chainValue, setChainValue] = useState<Blockchains>(
-    chainOptions[0].value
-  );
-  const [productValue, setProductValue] = useState<Product>(
-    productOptions[0].value
-  );
+
   const [fileValue, setFileValue] = useState<string>();
 
   const [filePaths, setFilePaths] = useState<string[]>([]);
 
-  const {filePath, highlight, isFileLoading, setFilePath} =
-    useContext(ContentBlockContext);
+  const {
+    filePath,
+    highlight,
+    isFileLoading,
+    setFilePath,
+    languageValue,
+    setLanguageValue,
+    chainValue,
+    setChainValue,
+    productValue,
+    setProductValue,
+  } = useContext(ContentBlockContext);
 
   const loadConfig = useCallback(async () => {
     try {
@@ -90,23 +82,23 @@ const IntegrationBuilder = () => {
       <FiltersWrapper>
         <div>
           <Select
-            defaultValue={languageOptions[0]}
+            defaultValue={LANGUAGE_OPTIONS[0]}
             onChange={newValue => setLanguageValue(newValue.value)}
-            options={languageOptions}
+            options={LANGUAGE_OPTIONS}
           />
         </div>
         <div>
           <Select
-            defaultValue={chainOptions[0]}
+            defaultValue={CHAIN_OPTIONS[0]}
             onChange={newValue => setChainValue(newValue.value)}
-            options={chainOptions}
+            options={CHAIN_OPTIONS}
           />
         </div>
         <div>
           <Select
-            defaultValue={productOptions[0]}
+            defaultValue={PRODUCT_OPTIONS[0]}
             onChange={newValue => setProductValue(newValue.value)}
-            options={productOptions}
+            options={PRODUCT_OPTIONS}
           />
         </div>
       </FiltersWrapper>
