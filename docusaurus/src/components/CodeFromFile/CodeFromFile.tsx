@@ -37,12 +37,17 @@ const CodeFromFile = ({
   }, [siteConfig, filePath]);
 
   useEffect(() => {
-    fetch(url)
+    const controller = new AbortController();
+    fetch(url, {signal: controller.signal})
       .then(response => response.text())
       .then(data => setCode(data))
+      .catch(() => {})
       .finally(() => {
         setIsFileLoading(false);
       });
+    return () => {
+      controller.abort();
+    };
   }, [filePath, siteConfig.baseUrl]);
 
   return (
