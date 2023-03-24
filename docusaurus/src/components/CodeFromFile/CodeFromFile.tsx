@@ -3,6 +3,8 @@ import CodeBlock from '@theme/CodeBlock';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {Languages, Product, Blockchains} from '@site/src/types';
 import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
+import mime from 'mime';
+import CodeNotFound from '@site/src/components/CodeFromFile/CodeNotFound';
 
 const CodeFromFile = ({
   language,
@@ -17,6 +19,7 @@ const CodeFromFile = ({
 }) => {
   const {siteConfig} = useDocusaurusContext();
   const [code, setCode] = useState<string>('');
+  const [error, setError] = useState(false);
 
   const {
     filePath: activeFilePath,
@@ -37,15 +40,35 @@ const CodeFromFile = ({
   }, [siteConfig, filePath]);
 
   useEffect(() => {
-    fetch(url)
-      .then(response => response.text())
+    const controller = new AbortController();
+
+    setError(false);
+
+    fetch(url, {
+      signal: controller.signal,
+      headers: {
+        Accept: mime.getType(languageExt) || 'text/javascript',
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        }
+        setError(true);
+      })
       .then(data => setCode(data))
       .finally(() => {
         setIsFileLoading(false);
       });
+
+    return () => {
+      controller.abort();
+    };
   }, [filePath, siteConfig.baseUrl]);
 
-  return (
+  return error ? (
+    <CodeNotFound />
+  ) : (
     <CodeBlock
       className="code-block"
       language={languageExt}
