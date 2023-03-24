@@ -34,4 +34,19 @@ export const ContentBlockContainer = styled.div`
     css`
       border-left-color: #1c64f2 !important;
     `};
+
+  .source-link-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
+
+export const SourceLink = styled.a`
+  color: #3cad6e;
+  display: flex;
+  align-items: center;
+
+  svg {
+    transform: scale(0.8);
+  }
 `;

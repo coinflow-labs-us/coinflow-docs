@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useMemo, useState} from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {Languages, Product, Blockchains} from '@site/src/types';
-import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
+import ContentBlockContext from '@site/src/context/ContentBlockContext';
 import mime from 'mime';
 import CodeNotFound from '@site/src/components/CodeFromFile/CodeNotFound';
 
