@@ -6,7 +6,6 @@ import React, {
   useRef,
 } from 'react';
 import CodeFromFile from '@site/src/components/CodeFromFile';
-import {Blockchains, Languages, Product} from '@site/src/types';
 import {
   FiltersWrapper,
   SplitView,

@@ -40,6 +40,8 @@ const ContentBlock: FC<IProps> = props => {
   return (
     <ContentBlockContainer
       onClick={() => {
+        setHighlight(undefined);
+
         if (props.filePath) {
           if (props.filePath !== filePath) setIsFileLoading(true);
           setFilePath(props.filePath);
