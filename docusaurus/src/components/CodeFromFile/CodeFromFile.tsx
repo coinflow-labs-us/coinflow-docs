@@ -57,6 +57,7 @@ const CodeFromFile = ({
         setError(true);
       })
       .then(data => setCode(data))
+      .catch(() => {})
       .finally(() => {
         setIsFileLoading(false);
       });
