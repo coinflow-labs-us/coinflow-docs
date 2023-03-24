@@ -1,4 +1,10 @@
-import React, {useState, lazy, Suspense} from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useContext,
+  useRef,
+} from 'react';
 import CodeFromFile from '@site/src/components/CodeFromFile';
 import {Blockchains, Languages, Product} from '@site/src/types';
 import {
@@ -8,6 +14,10 @@ import {
 import Select from '@site/src/components/Select';
 import FileList from '@site/src/components/IntegrationBuilder/FileList/FileList';
 import ContentFromFile from '@site/src/components/ContentFromFile';
+import CodeNotFound from '@site/src/components/CodeFromFile/CodeNotFound';
+import {ContentBlockContext} from '@site/src/context/ContentBlockContext/ContentBlockContext';
+
+const CODE_LINE_HEIGHT = 22.04;
 
 const languageOptions: Array<{value: Languages; label: string}> = [
   {value: 'react', label: 'React'},
@@ -23,6 +33,7 @@ const productOptions: Array<{value: Product; label: string}> = [
 ];
 
 const IntegrationBuilder = () => {
+  const scrollRef = useRef(null);
   const [languageValue, setLanguageValue] = useState<Languages>(
     languageOptions[0].value
   );
@@ -32,7 +43,47 @@ const IntegrationBuilder = () => {
   const [productValue, setProductValue] = useState<Product>(
     productOptions[0].value
   );
-  const [fileValue, setFileValue] = useState();
+  const [fileValue, setFileValue] = useState<string>();
+
+  const [filePaths, setFilePaths] = useState<string[]>([]);
+
+  const {filePath, highlight, isFileLoading, setFilePath} =
+    useContext(ContentBlockContext);
+
+  const loadConfig = useCallback(async () => {
+    try {
+      const result = await import(
+        `@site/src/content/${languageValue}/${chainValue}/${productValue}/config.ts`
+      );
+      setFilePaths(result.files);
+      setFileValue(result.files[0]);
+      setFilePath(result.files[0]);
+    } catch (error) {
+      setFilePaths([]);
+    }
+  }, [languageValue, chainValue, productValue]);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: CODE_LINE_HEIGHT * (parseInt(highlight) - 1),
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  useEffect(() => {
+    loadConfig();
+  }, [loadConfig]);
+
+  useEffect(() => {
+    setFileValue(filePath);
+  }, [filePath]);
+
+  useEffect(() => {
+    if (!isFileLoading) handleScroll();
+  }, [highlight, isFileLoading]);
 
   return (
     <>
@@ -67,21 +118,25 @@ const IntegrationBuilder = () => {
             product={productValue}
           />
         </div>
-        <div className="split-right">
-          <FileList
-            options={['src/App.tsx', 'src/wallet/Wallet.tsx', 'src/index.tsx']}
-            value={fileValue}
-            onChange={value => setFileValue(value)}
-          />
-          <div className="scrollable-code">
-            <CodeFromFile
-              language={languageValue}
-              blockchain={chainValue}
-              product={productValue}
-              file={fileValue}
+        {filePaths.length === 0 ? (
+          <CodeNotFound />
+        ) : (
+          <div className="split-right">
+            <FileList
+              options={filePaths}
+              value={fileValue}
+              onChange={value => setFileValue(value)}
             />
+            <div ref={scrollRef} className="scrollable-code">
+              <CodeFromFile
+                language={languageValue}
+                blockchain={chainValue}
+                product={productValue}
+                file={fileValue}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </SplitView>
     </>
   );
