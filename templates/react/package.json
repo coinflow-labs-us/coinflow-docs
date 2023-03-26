@@ -1,19 +1,12 @@
 {
-  "name": "Coinflow-React-Solana-Checkout",
+  "name": "example-merchant",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@coinflowlabs/react": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0",
-    "@solana/spl-token": "^0.3.7",
-    "@solana/web3.js": "^1.74.0",
-    "@solana-mobile/wallet-adapter-mobile": "^2.0.0",
-    "@solana/wallet-adapter-base": "^0.9.21",
-    "@solana/wallet-adapter-react": "^0.15.32",
-    "@solana/wallet-adapter-react-ui": "^0.9.31",
-    "@solana/wallet-adapter-wallets": "^0.19.16"
+    "react-router-dom": "^6.9.0"
   },
   "scripts": {
     "lint": "eslint .",

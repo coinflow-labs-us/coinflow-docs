@@ -1,23 +1,30 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/docusaurus"
+    directory: "docusaurus"
     versioning-strategy: increase
     schedule:
       interval: daily
       time: "04:00"
       timezone: America/Chicago
   - package-ecosystem: "npm"
-      directory: "/examples/react/solana/checkout"
-      versioning-strategy: increase
-      schedule:
-        interval: daily
-        time: "04:00"
-        timezone: America/Chicago
+    directory: "examples/react/solana/checkout"
+    versioning-strategy: increase
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: America/Chicago
   - package-ecosystem: "npm"
-      directory: "/examples/react/solana/offramp"
-      versioning-strategy: increase
-      schedule:
-        interval: daily
-        time: "04:00"
-        timezone: America/Chicago
+    directory: "examples/react/solana/withdraw"
+    versioning-strategy: increase
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: America/Chicago
+  - package-ecosystem: "npm"
+    directory: "templates/react"
+    versioning-strategy: increase
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: America/Chicago

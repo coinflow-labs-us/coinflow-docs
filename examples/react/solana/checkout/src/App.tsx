@@ -1,58 +1,99 @@
-import React, {ReactNode} from 'react';
-import './App.css';
-import {useWallet, WalletContextProvider} from './wallet/Wallet';
-import {BrowserRouter} from 'react-router-dom';
-import ShopCoinflowContextProvider from './context/ShopCoinflowContext';
-import {CoinflowForm} from './CoinflowForm';
-import {DirectPurchaseForm} from './DirectPurchaseForm';
-import {Button} from 'antd';
+import React, {useEffect, useState} from 'react';
+import {Wallet} from './Wallet';
+import {WalletMultiButton} from '@solana/wallet-adapter-react-ui';
+import {CoinflowEnvs, CoinflowPurchase} from '@coinflowlabs/react';
+import {useConnection, useWallet} from '@solana/wallet-adapter-react';
+import {PublicKey, Transaction} from '@solana/web3.js';
+import {
+  createTransferCheckedInstruction,
+  getAssociatedTokenAddressSync,
+} from '@solana/spl-token';
 
 function App() {
   return (
-    <ContextWrapper>
-      <InputPanel />
-    </ContextWrapper>
-  );
-}
-
-function InputPanel() {
-  const {publicKey} = useWallet();
-
-  return (
-    <ShopCoinflowContextProvider>
-      <div className={'w-full h-full flex flex-center'}>
-        <DirectPurchaseForm />
-        {!publicKey ? <LoginForm /> : <CoinflowForm />}
+    <Wallet>
+      <div className="App">
+        <WalletMultiButton />
+        <div
+          style={{
+            height: '100vh',
+          }}
+        >
+          <CoinflowContent />
+        </div>
       </div>
-    </ShopCoinflowContextProvider>
+    </Wallet>
   );
 }
 
-function LoginForm() {
-  const {connect} = useWallet();
-  return (
-    <div className={'flex flex-col items-center justify-center w-4/5'}>
-      <Button
-        type="primary"
-        onClick={connect}
-        size={'large'}
-        style={{background: '#73c2fb'}}
-      >
-        Login to Purchase
-      </Button>
-    </div>
+function CoinflowContent() {
+  const {connection} = useConnection();
+  const wallet = useWallet();
+  const [transaction, setTransaction] = useState<Transaction | undefined>(
+    undefined
   );
-}
 
-function ContextWrapper({children}: {children: ReactNode}) {
+  const amount = 1;
+
+  useEffect(() => {
+    async function createTx() {
+      if (!wallet.publicKey) return;
+
+      const usdcMint = new PublicKey(
+        '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU'
+      );
+      const decimals = 6;
+
+      const senderAta = getAssociatedTokenAddressSync(
+        usdcMint,
+        wallet.publicKey,
+        true
+      );
+
+      const receiver = new PublicKey(
+        '63zH5fKvSubyforhkAJEWwaeEUoLe8R864bETRLMrX1t'
+      );
+      const receiverAta = getAssociatedTokenAddressSync(
+        usdcMint,
+        receiver,
+        true
+      );
+
+      const transferAmount = Number(amount) * Math.pow(10, decimals);
+      const transferIx = createTransferCheckedInstruction(
+        senderAta,
+        usdcMint,
+        receiverAta,
+        wallet.publicKey,
+        transferAmount,
+        decimals
+      );
+      const tx = new Transaction();
+      tx.add(transferIx);
+      tx.feePayer = wallet.publicKey;
+      const {blockhash} = await connection.getLatestBlockhash('finalized');
+      tx.recentBlockhash = blockhash;
+      setTransaction(tx);
+    }
+
+    createTx();
+  }, [amount, wallet.publicKey]);
+
   return (
-    <div
-      className={'flex flex-col items-center justify-center h-screen w-screen'}
-    >
-      <WalletContextProvider>
-        <BrowserRouter>{children}</BrowserRouter>
-      </WalletContextProvider>
-    </div>
+    <CoinflowPurchase
+      wallet={wallet}
+      merchantId={process.env.REACT_APP_MERCHANT_ID as string}
+      env={process.env.REACT_APP_ENV as CoinflowEnvs}
+      connection={connection}
+      onSuccess={() => {
+        console.log('Purchase Success');
+      }}
+      transaction={transaction}
+      amount={amount}
+      blockchain={'solana'}
+      webhookInfo={{item: 'sword'}}
+      email={'user-email@email.com'}
+    />
   );
 }
 
