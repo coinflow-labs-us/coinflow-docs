@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const webpack = require('webpack');
 
 module.exports = function override(config) {
@@ -11,6 +10,7 @@ module.exports = function override(config) {
     https: require.resolve('https-browserify'),
     os: require.resolve('os-browserify'),
     url: require.resolve('url'),
+    events: require.resolve('events'),
   });
   config.resolve.fallback = fallback;
   config.plugins = (config.plugins || []).concat([

@@ -1,5 +1,0 @@
-build/
-node_modules/
-.env
-.idea/
-.ultra.cache.json
