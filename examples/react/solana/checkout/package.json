@@ -16,6 +16,7 @@
     "@solana/wallet-adapter-wallets": "^0.19.16"
   },
   "scripts": {
+    "lint": "eslint .",
     "clean": "rimraf build",
     "build": "react-app-rewired build",
     "start": "react-app-rewired start",

@@ -9,6 +9,7 @@
     "react-router-dom": "^6.9.0"
   },
   "scripts": {
+    "lint": "eslint .",
     "clean": "rimraf build",
     "build": "react-app-rewired build",
     "start": "react-app-rewired start",
