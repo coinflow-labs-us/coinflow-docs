@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  docusaurus:
+  react-near-checkout:
     uses: ./.github/workflows/frontend-build.yml
     with:
       working-directory: ./examples/react/near/checkout/
