@@ -1,13 +1,13 @@
-name: React Solana Offramp
+name: React Solana Withdraw
 
 on:
   push:
     branches: [ main ]
     paths:
-      - examples/react/solana/offramp/**
+      - examples/react/solana/withdraw/**
   pull_request:
     paths:
-      - examples/react/solana/offramp/**
+      - examples/react/solana/withdraw/**
 
   workflow_dispatch:
 
@@ -15,4 +15,4 @@ jobs:
   docusaurus:
     uses: ./.github/workflows/frontend-build.yml
     with:
-      working-directory: ./examples/react/solana/offramp/
+      working-directory: ./examples/react/solana/withdraw/

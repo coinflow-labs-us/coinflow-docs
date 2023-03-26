@@ -15,7 +15,7 @@ updates:
         time: "04:00"
         timezone: America/Chicago
   - package-ecosystem: "npm"
-      directory: "/examples/react/solana/offramp"
+      directory: "/examples/react/solana/withdraw"
       versioning-strategy: increase
       schedule:
         interval: daily

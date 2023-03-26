@@ -30,15 +30,15 @@ services:
         destination: /index.html
 
   - type: web
-      name: solana-react-offramp
+      name: solana-react-withdraw
       env: static
       branch: main
-      rootDir: examples/react/solana/offramp
+      rootDir: examples/react/solana/withdraw
       buildCommand: npm ci && npm run build
       staticPublishPath: build
       buildFilter:
         paths:
-          - examples/react/solana/offramp/**/*
+          - examples/react/solana/withdraw/**/*
       routes:
         - type: rewrite
           source: /*
