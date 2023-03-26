@@ -1,6 +1,6 @@
 import React from 'react';
 import {CoinflowEnvs, CoinflowWithdraw} from '@coinflowlabs/react';
-import {usePolygonWallet, Wallet} from './Wallet';
+import {useEthWallet, Wallet} from './Wallet';
 import {Web3Button} from '@web3modal/react';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 }
 
 function CoinflowContent() {
-  const wallet = usePolygonWallet();
+  const wallet = useEthWallet();
 
   return (
     <CoinflowWithdraw
@@ -29,7 +29,7 @@ function CoinflowContent() {
       merchantId={process.env.REACT_APP_MERCHANT_ID as string}
       env={process.env.REACT_APP_ENV as CoinflowEnvs}
       onSuccess={() => console.log('Withdraw Success')}
-      blockchain={'polygon'}
+      blockchain={'eth'}
     />
   );
 }
