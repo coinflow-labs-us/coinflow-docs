@@ -35,15 +35,15 @@ function CoinflowContent() {
     async function initializeTx() {
       if (!wallet.address) return;
 
-      const tx = await UsdcWrapper__factory.connect(
+      const tx = (await UsdcWrapper__factory.connect(
         '0x0E47E1CC9730bf1CaC4fb2073e04Dc60Faf3fdDe',
         new providers.JsonRpcProvider(
           process.env.REACT_APP_POLYGON_RPC_URL as string
         )
       ).populateTransaction.buyWusdcModified(amount * 1e6, {
         from: wallet.address,
-      });
-      setTx(tx as any);
+      })) as providers.TransactionRequest & {to: string};
+      setTx(tx);
     }
 
     initializeTx();
