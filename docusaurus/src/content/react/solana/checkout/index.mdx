@@ -1,24 +1,49 @@
- import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
-import Webpack5 from '../../webpack5-index.mdx';
+import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
+import Webpack5 from '../../webpack5.mdx';
+import Intro from '../../../intro.mdx';
+import InstallSolana from '../install-solana.mdx';
+import SolanaWallet from '../solana-wallet-setup.mdx';
+import InstallCoinflow from '../../install-coinflow-react.mdx';
 
-<ContentBlock filePath="src/App.tsx" highlight="1,4-6,11">
-
-  # Checkout Content
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, optio, velit. Ab adipisci alias distinctio ea eligendi explicabo fuga in laudantium, minus placeat qui quia repellendus sit voluptate voluptatem! Modi?
-
-</ContentBlock>
-
+<Intro />
 <Webpack5 />
+<InstallSolana />
+<SolanaWallet />
+<InstallCoinflow/>
 
-<ContentBlock filePath="src/wallet/Wallet.tsx" highlight="49-53">
+<ContentBlock filePath="src/App.tsx" highlight="4">
 
-**Content for Wallet**
+# Import the Coinflow Modules into your project
+
+This is the main Plug and Play Modal package that contains the Coinflow SDK with the UI, giving you a simple way of implementing Coinflow within your interface.
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.tsx">
+<ContentBlock filePath="src/App.tsx" highlight="83-96">
 
-**Content for App again**
+# Configure the Coinflow Purchase Component
+
+Add the `CoinflowPurchase` component into your UI and configure the props with the following information:
+
+- `wallet` - The Solana Wallet
+- `merchantId` - Your Merchant ID
+- `env` - Use `sandbox` for testing and `prod` for production
+- `connection` - The Solana Connection
+- `blockchain` - The Blockchain you are using (in this case, `solana`)
+- `onSuccess` - (optional) A callback function that is called when the purchase is successful
+- `email` - (optional) Email of the user that will be prefilled for them
+- `webhookInfo` - An object containing any information you want to send to your webhook
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.tsx" highlight="39">
+
+# Configure the Solana Transaction (Optional)
+
+Initialize a solana transaction calling your program exactly like you normally would for a user traditionally paying
+with USDC. Coinflow will take care of the rest!
+
+Pass this transaction into the `transaction` property of the `CoinflowPurchase` component. You will also be required to set the `amount` property to be
+the amount of USDC you are sending to the program.
 
 </ContentBlock>

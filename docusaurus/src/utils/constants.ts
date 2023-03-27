@@ -12,7 +12,7 @@ export const CHAIN_OPTIONS: Options<Blockchains> = [
 ];
 export const PRODUCT_OPTIONS: Options<Product> = [
   {value: 'checkout', label: 'Checkout'},
-  {value: 'offramp', label: 'Offramp'},
+  {value: 'withdraw', label: 'Withdraw'},
 ];
 
 export const GITHUB_EXAMPLES_LINK =
