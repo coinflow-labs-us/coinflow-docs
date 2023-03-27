@@ -88,11 +88,11 @@ function CoinflowContent() {
       onSuccess={() => {
         console.log('Purchase Success');
       }}
-      transaction={transaction}
-      amount={amount}
       blockchain={'solana'}
       webhookInfo={{item: 'sword'}}
       email={'user-email@email.com'}
+      transaction={transaction}
+      amount={amount}
     />
   );
 }

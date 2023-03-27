@@ -6,6 +6,10 @@ import {Web3Modal} from '@web3modal/react';
 import {sendTransaction, prepareSendTransaction} from '@wagmi/core';
 import {providers} from 'ethers';
 
+// This is a wallet context that uses wagmi and web3modal to connect to a polygon wallet.
+// This can be used to easily interface with the Coinflow Library
+// Feel free to add your own wallet functionality here.
+
 const WalletConnectProjectId = process.env
   .REACT_APP_WALLET_CONNECT_PROJECT_ID as string;
 

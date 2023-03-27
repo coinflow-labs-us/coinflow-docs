@@ -122,6 +122,8 @@ services:
         value: coinflow
       - key: REACT_APP_WALLET_CONNECT_PROJECT_ID
         value: 2383b9beda863a0b895ff5603b28bd04
+      - key: REACT_APP_POLYGON_RPC_URL
+        value: https://rpc.ankr.com/polygon_mumbai
 
   - type: web
     name: react-polygon-withdraw
