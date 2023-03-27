@@ -1,0 +1,35 @@
+import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
+import Webpack5 from '../../webpack5.mdx';
+import Intro from '../../../intro.mdx';
+import InstallCoinflow from '../../install-coinflow-react.mdx';
+
+<Intro />
+<Webpack5 />
+
+[//]: # (<InstallSolana />)
+[//]: # (<SolanaWallet />)
+
+<InstallCoinflow/>
+
+<ContentBlock filePath="src/App.tsx" highlight="1">
+
+# Import the Coinflow Modules into your project
+
+This is the main Plug and Play Modal package that contains the Coinflow SDK with the UI, giving you a simple way of implementing Coinflow within your interface.
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.tsx" highlight="31-39">
+
+# Configure the Coinflow Withdraw Component
+
+Add the `CoinflowWithdraw` component into your UI and configure the props with the following information:
+
+- `wallet` - The Near Wallet
+- `merchantId` - Your Merchant ID
+- `env` - Use `sandbox` for testing and `prod` for production
+- `blockchain` - The Blockchain you are using (in this case, `near`)
+- `onSuccess` - (optional) A callback function that is called when the withdraw is successful
+- `email` - (optional) Email of the user that will be prefilled for them
+
+</ContentBlock>

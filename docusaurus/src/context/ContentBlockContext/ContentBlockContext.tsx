@@ -5,6 +5,7 @@ import {
   LANGUAGE_OPTIONS,
   PRODUCT_OPTIONS,
 } from '@site/src/utils/constants';
+import {useQueryParam} from '@site/src/hooks/useQueryParam';
 
 type ContextType = {
   filePath: string | undefined;

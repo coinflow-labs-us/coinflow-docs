@@ -31,9 +31,6 @@ function CoinflowContent() {
 
   return (
     <CoinflowPurchase
-      // TODO fix this
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       wallet={wallet}
       merchantId={process.env.REACT_APP_MERCHANT_ID as string}
       env={process.env.REACT_APP_ENV as CoinflowEnvs}
