@@ -18,11 +18,11 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 
 const ContentBlock: FC<IProps> = props => {
   const {
-    filePath,
-    setFilePath,
+    fileValue,
+    setActiveBlockFile,
     setHighlight,
-    activeId,
-    setActiveId,
+    activeBlock,
+    setActiveBlock,
     setIsFileLoading,
     languageValue,
     chainValue,
@@ -43,21 +43,25 @@ const ContentBlock: FC<IProps> = props => {
         setHighlight(undefined);
 
         if (props.filePath) {
-          if (props.filePath !== filePath) setIsFileLoading(true);
-          setFilePath(props.filePath);
+          if (props.filePath !== fileValue) setIsFileLoading(true);
+          setActiveBlockFile(props.filePath);
 
           if (props.highlight) setHighlight(props.highlight);
         }
 
-        setActiveId(id);
+        setActiveBlock({
+          id,
+          filePath: props.filePath,
+          highlight: props.highlight,
+        });
       }}
-      isActive={activeId === id}
+      isActive={activeBlock?.id === id}
     >
       <div>{props.children}</div>
       {!!props.filePath && (
         <div className="source-link-container">
           <SourceLink
-            href={`${GITHUB_EXAMPLES_LINK}${languageValue}/${chainValue}/${productValue}/${filePath}${highlightParam}`}
+            href={`${GITHUB_EXAMPLES_LINK}${languageValue}/${chainValue}/${productValue}/${props.filePath}${highlightParam}`}
             target="_blank"
           >
             <span>Source</span>

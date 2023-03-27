@@ -51,6 +51,9 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+      },
       // Replace with your project's social card
       image: 'img/coinflow-social-card.png',
       navbar: {
