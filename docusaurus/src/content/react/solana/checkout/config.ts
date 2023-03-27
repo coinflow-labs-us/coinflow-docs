@@ -1,1 +1,6 @@
-export const files = ['src/App.tsx', 'src/wallet/Wallet.tsx', 'src/index.tsx'];
+export const files = [
+  'src/App.tsx',
+  'src/Wallet.tsx',
+  'package.json',
+  'config-overrides.js',
+];

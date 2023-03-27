@@ -54,15 +54,17 @@ const ContentBlock: FC<IProps> = props => {
       isActive={activeId === id}
     >
       <div>{props.children}</div>
-      <div className="source-link-container">
-        <SourceLink
-          href={`${GITHUB_EXAMPLES_LINK}${languageValue}/${chainValue}/${productValue}/${filePath}${highlightParam}`}
-          target="_blank"
-        >
-          <span>Source</span>
-          <GitHubIcon />
-        </SourceLink>
-      </div>
+      {!!props.filePath && (
+        <div className="source-link-container">
+          <SourceLink
+            href={`${GITHUB_EXAMPLES_LINK}${languageValue}/${chainValue}/${productValue}/${filePath}${highlightParam}`}
+            target="_blank"
+          >
+            <span>Source</span>
+            <GitHubIcon />
+          </SourceLink>
+        </div>
+      )}
     </ContentBlockContainer>
   );
 };
