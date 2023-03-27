@@ -25,21 +25,24 @@ import {
 const IntegrationBuilder = () => {
   const scrollRef = useRef(null);
 
-  const [fileValue, setFileValue] = useState<string>();
-
   const [filePaths, setFilePaths] = useState<string[]>([]);
 
   const {
-    filePath,
+    activeBlock,
+    setActiveBlock,
+    activeBlockFile,
+    setActiveBlockFile,
     highlight,
+    setHighlight,
     isFileLoading,
-    setFilePath,
     languageValue,
     setLanguageValue,
     chainValue,
     setChainValue,
     productValue,
+    fileValue,
     setProductValue,
+    setFileValue,
   } = useContext(ContentBlockContext);
 
   const loadConfig = useCallback(async () => {
@@ -49,7 +52,9 @@ const IntegrationBuilder = () => {
       );
       setFilePaths(result.files);
       setFileValue(result.files[0]);
-      setFilePath(result.files[0]);
+      setActiveBlockFile(undefined);
+      setHighlight(undefined);
+      setActiveBlock(undefined);
     } catch (error) {
       setFilePaths([]);
     }
@@ -70,8 +75,10 @@ const IntegrationBuilder = () => {
   }, [loadConfig]);
 
   useEffect(() => {
-    setFileValue(filePath);
-  }, [filePath]);
+    if (!activeBlockFile) return;
+
+    setFileValue(activeBlockFile);
+  }, [activeBlockFile]);
 
   useEffect(() => {
     if (!isFileLoading) handleScroll();
@@ -117,7 +124,15 @@ const IntegrationBuilder = () => {
             <FileList
               options={filePaths}
               value={fileValue}
-              onChange={value => setFileValue(value)}
+              onChange={value => {
+                setActiveBlockFile(undefined);
+                setFileValue(value);
+
+                if (activeBlock?.filePath === value) {
+                  setHighlight(activeBlock.highlight);
+                  setActiveBlockFile(value);
+                }
+              }}
             />
             <div ref={scrollRef} className="scrollable-code">
               <CodeFromFile

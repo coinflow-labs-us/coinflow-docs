@@ -21,11 +21,8 @@ const CodeFromFile = ({
   const [code, setCode] = useState<string>('');
   const [error, setError] = useState(false);
 
-  const {
-    filePath: activeFilePath,
-    highlight,
-    setIsFileLoading,
-  } = useContext(ContentBlockContext);
+  const {activeBlockFile, highlight, setIsFileLoading} =
+    useContext(ContentBlockContext);
 
   const filePath = useMemo(() => {
     return `code/examples/${language}/${blockchain}/${product}/${file}`;
@@ -74,7 +71,7 @@ const CodeFromFile = ({
       className="code-block"
       language={languageExt}
       showLineNumbers
-      metastring={activeFilePath === file ? `{${highlight}}` : ''}
+      metastring={activeBlockFile === file ? `{${highlight}}` : ''}
     >
       {code}
     </CodeBlock>

@@ -18,8 +18,8 @@
     "codegen": "npm run clean-codegen && copyfiles \"../examples/**/*.{tsx,js,jsx,json}\" \"./static/code/examples\" --parents --exclude \"../examples/**/build/**/*\" --exclude \"../examples/**/node_modules/**/*\" --exclude \"../examples/**/public/**/*\" --exclude \"../examples/**/package-lock.json\""
   },
   "dependencies": {
-    "@docusaurus/core": "2.3.1",
-    "@docusaurus/preset-classic": "2.4.0",
+    "@docusaurus/core": "^2.4.0",
+    "@docusaurus/preset-classic": "^2.4.0",
     "@docusaurus/react-loadable": "^5.5.2",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.2.1",
@@ -32,7 +32,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.3.1",
+    "@docusaurus/module-type-aliases": "^2.4.0",
     "@tsconfig/docusaurus": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.56.0",
