@@ -1,21 +1,23 @@
 services:
   - type: web
-      name: coinflow-docs
-      env: static
-      branch: main
-      rootDir: docusaurus
-      buildCommand: npm ci && npm run build
-      staticPublishPath: build
-      buildFilter:
-        paths:
-          - docusaurus/**/*
-      routes:
-        - type: rewrite
-          source: /*
-          destination: /index.html
+    name: coinflow-docs
+    env: static
+    branch: main
+    domains:
+      - docs.coinflow.cash
+    rootDir: docusaurus
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - docusaurus/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
 
   - type: web
-    name: solana-react-checkout
+    name: react-solana-checkout
     env: static
     branch: main
     rootDir: examples/react/solana/checkout
@@ -30,16 +32,91 @@ services:
         destination: /index.html
 
   - type: web
-      name: solana-react-withdraw
-      env: static
-      branch: main
-      rootDir: examples/react/solana/withdraw
-      buildCommand: npm ci && npm run build
-      staticPublishPath: build
-      buildFilter:
-        paths:
-          - examples/react/solana/withdraw/**/*
-      routes:
-        - type: rewrite
-          source: /*
-          destination: /index.html
+    name: react-solana-withdraw
+    env: static
+    branch: main
+    rootDir: examples/react/solana/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/solana/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: react-near-checkout
+    env: static
+    branch: main
+    rootDir: examples/react/near/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/near/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: react-near-withdraw
+    env: static
+    branch: main
+    rootDir: examples/react/near/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/near/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: react-polygon-checkout
+    env: static
+    branch: main
+    rootDir: examples/react/polygon/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/polygon/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: react-polygon-withdraw
+    env: static
+    branch: main
+    rootDir: examples/react/polygon/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/polygon/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: react-eth-withdraw
+    env: static
+    branch: main
+    rootDir: examples/react/eth/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/eth/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
