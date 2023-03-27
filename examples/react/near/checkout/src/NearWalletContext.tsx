@@ -1,11 +1,7 @@
 import type {ReactNode} from 'react';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {map, distinctUntilChanged} from 'rxjs';
-import {
-  setupWalletSelector,
-  VerifiedOwner,
-  Wallet,
-} from '@near-wallet-selector/core';
+import {setupWalletSelector, Wallet} from '@near-wallet-selector/core';
 import type {WalletSelector, AccountState} from '@near-wallet-selector/core';
 import {setupModal} from '@near-wallet-selector/modal-ui';
 import type {WalletSelectorModal} from '@near-wallet-selector/modal-ui';
@@ -143,7 +139,6 @@ export function useNearWallet() {
 
   return {
     accountId,
-    verifyOwner: wallet.verifyOwner as () => Promise<VerifiedOwner>,
     signAndSendTransaction: wallet.signAndSendTransaction,
     disconnect,
   };

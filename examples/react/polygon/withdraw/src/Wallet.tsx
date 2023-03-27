@@ -3,11 +3,7 @@ import {polygonMumbai} from 'wagmi/chains';
 import {configureChains, createClient, useAccount, WagmiConfig} from 'wagmi';
 import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum';
 import {Web3Modal} from '@web3modal/react';
-import {
-  sendTransaction,
-  prepareSendTransaction,
-  signTypedData,
-} from '@wagmi/core';
+import {sendTransaction, prepareSendTransaction} from '@wagmi/core';
 import {providers} from 'ethers';
 
 const WalletConnectProjectId = process.env
@@ -57,17 +53,8 @@ export function usePolygonWallet() {
     []
   );
 
-  const signMessageWallet = useCallback(async (message: string) => {
-    const signedTypeData = JSON.parse(message);
-    return signTypedData(signedTypeData).catch(e => {
-      console.error('signTypedData error', e);
-      throw e;
-    });
-  }, []);
-
   return {
     address,
-    signMessage: signMessageWallet,
     sendTransaction: sendTransactionWallet,
   };
 }
