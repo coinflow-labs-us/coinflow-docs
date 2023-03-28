@@ -9,6 +9,8 @@ export const LANGUAGE_OPTIONS: Options<Languages> = [
 export const CHAIN_OPTIONS: Options<Blockchains> = [
   {value: 'solana', label: 'Solana'},
   {value: 'polygon', label: 'Polygon'},
+  {value: 'near', label: 'Near'},
+  {value: 'eth', label: 'Ethereum'},
 ];
 export const PRODUCT_OPTIONS: Options<Product> = [
   {value: 'checkout', label: 'Checkout'},
