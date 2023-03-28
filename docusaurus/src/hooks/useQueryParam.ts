@@ -1,24 +1,29 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 export function useQueryParam<T>(
   name: string,
   initialValue: T
 ): [value: T, setValue: (newValue: T) => void] {
   const [searchParams, setSearchParams] = useState<URLSearchParams>(
-    new URLSearchParams(document.location.search)
+    ExecutionEnvironment.canUseDOM
+      ? new URLSearchParams(document.location.search)
+      : new URLSearchParams()
   );
 
   function doSetSearchParams(queryParams: URLSearchParams) {
-    const newUrl =
-      window.location.protocol +
-      '//' +
-      window.location.host +
-      window.location.pathname +
-      '?' +
-      queryParams.toString();
+    if (ExecutionEnvironment.canUseDOM) {
+      const newUrl =
+        window.location.protocol +
+        '//' +
+        window.location.host +
+        window.location.pathname +
+        '?' +
+        queryParams.toString();
 
-    setSearchParams(new URLSearchParams(queryParams.toString()));
-    window.history.pushState({path: newUrl}, '', newUrl);
+      setSearchParams(new URLSearchParams(queryParams.toString()));
+      window.history.pushState({path: newUrl}, '', newUrl);
+    }
   }
 
   const value = useMemo(() => {
