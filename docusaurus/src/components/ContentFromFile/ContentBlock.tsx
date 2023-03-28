@@ -18,12 +18,10 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 
 const ContentBlock: FC<IProps> = props => {
   const {
-    fileValue,
     setActiveBlockFile,
     setHighlight,
     activeBlock,
     setActiveBlock,
-    setIsFileLoading,
     languageValue,
     chainValue,
     productValue,
@@ -43,7 +41,6 @@ const ContentBlock: FC<IProps> = props => {
         setHighlight(undefined);
 
         if (props.filePath) {
-          if (props.filePath !== fileValue) setIsFileLoading(true);
           setActiveBlockFile(props.filePath);
 
           if (props.highlight) setHighlight(props.highlight);

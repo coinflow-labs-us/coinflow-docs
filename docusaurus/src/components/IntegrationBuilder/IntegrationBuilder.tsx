@@ -43,6 +43,7 @@ const IntegrationBuilder = () => {
     fileValue,
     setProductValue,
     setFileValue,
+    setIsFileLoading,
   } = useContext(ContentBlockContext);
 
   const loadConfig = useCallback(async () => {
@@ -126,6 +127,7 @@ const IntegrationBuilder = () => {
               value={fileValue}
               onChange={value => {
                 setActiveBlockFile(undefined);
+                setHighlight(undefined);
                 setFileValue(value);
 
                 if (activeBlock?.filePath === value) {
