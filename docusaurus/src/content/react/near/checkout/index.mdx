@@ -2,16 +2,16 @@ import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
 import Webpack5 from '../../webpack5.mdx';
 import Intro from '../../../intro.mdx';
 import InstallCoinflow from '../../install-coinflow-react.mdx';
+import InstallNear from '../install-near.mdx';
+import NearWalletSetup from '../near-wallet.mdx';
 
 <Intro />
 <Webpack5 />
-
-[//]: # (<InstallSolana />)
-[//]: # (<SolanaWallet />)
-
+<InstallNear/>
+<NearWalletSetup/>
 <InstallCoinflow/>
 
-<ContentBlock filePath="src/App.tsx" highlight="3">
+<ContentBlock filePath="src/App.tsx" highlight="3-7">
 
 # Import the Coinflow Modules into your project
 
@@ -19,7 +19,7 @@ This is the main Plug and Play Modal package that contains the Coinflow SDK with
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.tsx" highlight="83-96">
+<ContentBlock filePath="src/App.tsx" highlight="60-66">
 
 # Configure the Coinflow Purchase Component
 
@@ -35,11 +35,11 @@ Add the `CoinflowPurchase` component into your UI and configure the props with t
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.tsx" highlight="39">
+<ContentBlock filePath="src/App.tsx" highlight="67-68">
 
 # Configure the Near Transaction (Optional)
 
-Initialize a Near transaction calling your program exactly like you normally would for a user traditionally paying
+Initialize a Near transaction FunctionCall action calling your program exactly like you normally would for a user traditionally paying
 with USDC. Coinflow will take care of the rest!
 
 Pass this transaction into the `transaction` property of the `CoinflowPurchase` component. You will also be required to set the `amount` property to be

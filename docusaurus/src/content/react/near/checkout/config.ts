@@ -1,6 +1,6 @@
 export const files = [
   'src/App.tsx',
-  'src/Wallet.tsx',
+  'src/NearWalletContext.tsx',
   'package.json',
   'config-overrides.js',
 ];
