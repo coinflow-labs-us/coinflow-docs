@@ -89,26 +89,27 @@ const IntegrationBuilder = () => {
       <FiltersWrapper>
         <div>
           <Select
-            defaultValue={LANGUAGE_OPTIONS[0]}
+            value={LANGUAGE_OPTIONS.find(opt => opt.value === languageValue)}
             onChange={newValue => setLanguageValue(newValue.value)}
             options={LANGUAGE_OPTIONS}
           />
         </div>
         <div>
           <Select
-            defaultValue={CHAIN_OPTIONS[0]}
+            value={CHAIN_OPTIONS.find(opt => opt.value === chainValue)}
             onChange={newValue => setChainValue(newValue.value)}
             options={CHAIN_OPTIONS}
           />
         </div>
         <div>
           <Select
-            defaultValue={PRODUCT_OPTIONS[0]}
+            value={PRODUCT_OPTIONS.find(opt => opt.value === productValue)}
             onChange={newValue => setProductValue(newValue.value)}
             options={PRODUCT_OPTIONS}
           />
         </div>
       </FiltersWrapper>
+
       <SplitView>
         <div className="split-left">
           <ContentFromFile
