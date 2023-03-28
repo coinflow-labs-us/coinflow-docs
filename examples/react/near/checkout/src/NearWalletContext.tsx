@@ -137,9 +137,11 @@ export function useNearWallet() {
     return null;
   }
 
+  const signAndSendTransaction = wallet.signAndSendTransaction;
+
   return {
     accountId,
-    signAndSendTransaction: wallet.signAndSendTransaction,
+    signAndSendTransaction,
     disconnect,
   };
 }
