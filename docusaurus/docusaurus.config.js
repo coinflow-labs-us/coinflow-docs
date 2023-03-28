@@ -65,7 +65,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'checkout-webhook-documentation',
             position: 'left',
             label: 'Tutorial',
           },
