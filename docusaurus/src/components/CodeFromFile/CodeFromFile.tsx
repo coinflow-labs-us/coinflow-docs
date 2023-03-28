@@ -5,6 +5,7 @@ import {Languages, Product, Blockchains} from '@site/src/types';
 import ContentBlockContext from '@site/src/context/ContentBlockContext';
 import mime from 'mime';
 import CodeNotFound from '@site/src/components/CodeFromFile/CodeNotFound';
+import SyncLoader from '../Loading/SyncLoader';
 
 const CodeFromFile = ({
   language,
@@ -76,7 +77,7 @@ const CodeFromFile = ({
 
   return (
     <>
-      {isFileLoading && <div>Loading..................</div>}
+      {isFileLoading && <SyncLoader />}
       {error && <CodeNotFound />}
       {!isFileLoading && !error && (
         <CodeBlock
