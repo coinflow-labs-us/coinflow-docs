@@ -22,17 +22,17 @@ export const ContentBlockContainer = styled.div`
   cursor: pointer;
 
   :hover {
-    border-left-color: #233876;
+    border-left-color: var(--ifm-color-primary-darker);
   }
 
   :active {
-    border-left-color: #1c64f2;
+    border-left-color: var(--ifm-color-primary);
   }
 
   ${props =>
     props.isActive &&
     css`
-      border-left-color: #1c64f2 !important;
+      border-left-color: var(--ifm-color-primary) !important;
     `};
 
   .source-link-container {
