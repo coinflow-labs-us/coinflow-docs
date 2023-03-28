@@ -7,46 +7,57 @@ import {
 } from '@site/src/utils/constants';
 import {useQueryParam} from '@site/src/hooks/useQueryParam';
 
+type ActiveBlock = {
+  id: string;
+  filePath: string;
+  highlight?: string;
+};
+
 type ContextType = {
-  filePath: string | undefined;
+  activeBlockFile: string | undefined;
   highlight: string | undefined;
-  activeId: string | null;
+  activeBlock?: ActiveBlock;
   isFileLoading: boolean;
   languageValue: Languages;
   chainValue: Blockchains;
   productValue: Product;
-  setFilePath: Dispatch<SetStateAction<string | undefined>>;
+  fileValue: string | undefined;
+  setActiveBlockFile: Dispatch<SetStateAction<string | undefined>>;
   setHighlight: Dispatch<SetStateAction<string | undefined>>;
-  setActiveId: Dispatch<SetStateAction<string | null>>;
+  setActiveBlock: Dispatch<SetStateAction<ActiveBlock | undefined>>;
   setIsFileLoading: Dispatch<SetStateAction<boolean>>;
   setLanguageValue: Dispatch<SetStateAction<Languages>>;
   setChainValue: Dispatch<SetStateAction<Blockchains>>;
   setProductValue: Dispatch<SetStateAction<Product>>;
+  setFileValue: Dispatch<SetStateAction<string | undefined>>;
 };
 
 const defaultValue: ContextType = {
-  filePath: undefined,
+  activeBlockFile: undefined,
   highlight: undefined,
-  activeId: null,
+  activeBlock: undefined,
   isFileLoading: false,
   languageValue: undefined,
   chainValue: undefined,
   productValue: undefined,
-  setFilePath: () => undefined,
+  fileValue: undefined,
+  setActiveBlockFile: () => undefined,
   setHighlight: () => undefined,
-  setActiveId: () => undefined,
+  setActiveBlock: () => undefined,
   setIsFileLoading: () => undefined,
   setLanguageValue: () => undefined,
   setChainValue: () => undefined,
   setProductValue: () => undefined,
+  setFileValue: () => undefined,
 };
 
 const ContentBlockContext = createContext<ContextType>(defaultValue);
 
 export const ContentBlockContextProvider = ({children}) => {
-  const [filePath, setFilePath] = useState<string>();
+  const [activeBlockFile, setActiveBlockFile] = useState<string>();
   const [highlight, setHighlight] = useState<string>();
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeBlock, setActiveBlock] = useState<ActiveBlock>();
+
   const [isFileLoading, setIsFileLoading] = useState<boolean>(false);
   const [languageValue, setLanguageValue] = useState<Languages>(
     LANGUAGE_OPTIONS[0].value
@@ -57,24 +68,27 @@ export const ContentBlockContextProvider = ({children}) => {
   const [productValue, setProductValue] = useState<Product>(
     PRODUCT_OPTIONS[0].value
   );
+  const [fileValue, setFileValue] = useState<string>();
 
   return (
     <ContentBlockContext.Provider
       value={{
-        filePath,
+        activeBlockFile,
         highlight,
-        activeId,
+        activeBlock,
         isFileLoading,
         languageValue,
         chainValue,
         productValue,
-        setFilePath,
+        fileValue,
+        setActiveBlockFile,
         setHighlight,
-        setActiveId,
+        setActiveBlock,
         setIsFileLoading,
         setLanguageValue,
         setChainValue,
         setProductValue,
+        setFileValue,
       }}
     >
       {children}
