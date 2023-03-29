@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Using Custom Branding
 
-1. Login to the  Merchant Panel
+1. #### Login to the  Merchant Panel
 
  [Production](https://merchant.coinflow.cash/)
 
@@ -16,11 +16,11 @@ Sign in with your merchant ID and password (if you don’t have one yet, contact
 
 ![Login](/img/docs/custom-branding/login.png)
 
-2. Click `Theme` from the sidebar
+2. #### Click `Theme` from the sidebar
 
 ![Sidebar](/img/docs/custom-branding/sidebar.png)
 
-3.  Change the colors on the site to match your branding!
+3. #### Change the colors on the site to match your branding!
 
 ![Select Color](/img/docs/custom-branding/select_color.png)
 
