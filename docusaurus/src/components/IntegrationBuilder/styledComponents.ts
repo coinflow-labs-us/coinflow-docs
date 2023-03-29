@@ -26,6 +26,25 @@ export const SplitView = styled.div`
 
   .code-block {
     border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  .scrollable-code,
+  .split-left {
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-tint);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--ifm-color-primary-lighter);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ifm-color-primary-dark);
+    }
   }
 
   @media ${devices.xs} {
