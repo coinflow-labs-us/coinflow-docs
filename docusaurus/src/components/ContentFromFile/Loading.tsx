@@ -1,6 +1,7 @@
 import ContentNotFound from './ContentNotFound';
 import {RetryButton} from './styledComponents';
 import React from 'react';
+import MoonLoader from '../Loading/MoonLoader';
 
 const Loading = props => {
   if (props.error) {
@@ -24,7 +25,7 @@ const Loading = props => {
       </>
     );
   } else if (props.pastDelay) {
-    return <div>Loading...</div>;
+    return <MoonLoader />;
   } else {
     return null;
   }
