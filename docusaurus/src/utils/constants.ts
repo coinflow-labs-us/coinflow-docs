@@ -4,7 +4,6 @@ type Options<T> = Array<{value: T; label: string}>;
 
 export const LANGUAGE_OPTIONS: Options<Languages> = [
   {value: 'react', label: 'React'},
-  {value: 'vue', label: 'Vue'},
 ];
 export const CHAIN_OPTIONS: Options<Blockchains> = [
   {value: 'solana', label: 'Solana'},

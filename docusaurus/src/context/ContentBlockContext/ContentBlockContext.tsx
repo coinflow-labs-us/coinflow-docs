@@ -5,6 +5,7 @@ import {
   LANGUAGE_OPTIONS,
   PRODUCT_OPTIONS,
 } from '@site/src/utils/constants';
+import {useQueryParam} from '@site/src/hooks/useQueryParam';
 
 type ActiveBlock = {
   id: string;
@@ -58,13 +59,16 @@ export const ContentBlockContextProvider = ({children}) => {
   const [activeBlock, setActiveBlock] = useState<ActiveBlock>();
 
   const [isFileLoading, setIsFileLoading] = useState<boolean>(false);
-  const [languageValue, setLanguageValue] = useState<Languages>(
+  const [languageValue, setLanguageValue] = useQueryParam<Languages>(
+    'language',
     LANGUAGE_OPTIONS[0].value
   );
-  const [chainValue, setChainValue] = useState<Blockchains>(
+  const [chainValue, setChainValue] = useQueryParam<Blockchains>(
+    'chain',
     CHAIN_OPTIONS[0].value
   );
-  const [productValue, setProductValue] = useState<Product>(
+  const [productValue, setProductValue] = useQueryParam<Product>(
+    'product',
     PRODUCT_OPTIONS[0].value
   );
   const [fileValue, setFileValue] = useState<string>();

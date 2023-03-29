@@ -1,8 +1,8 @@
 import React from 'react';
-import {default as BaseSelect} from 'react-select';
+import Select from 'react-select';
 import {useColorMode} from '@docusaurus/theme-common';
 
-const Select = props => {
+const SelectCust = props => {
   const {colorMode} = useColorMode();
   const styles =
     colorMode === 'dark'
@@ -29,7 +29,7 @@ const Select = props => {
         }
       : undefined;
 
-  return <BaseSelect {...props} styles={styles} />;
+  return <Select {...props} styles={styles} />;
 };
 
-export default Select;
+export default SelectCust;
