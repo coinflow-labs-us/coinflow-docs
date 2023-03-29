@@ -6,10 +6,8 @@ import React, {
   useRef,
 } from 'react';
 import CodeFromFile from '@site/src/components/CodeFromFile';
-import {
-  FiltersWrapper,
-  SplitView,
-} from '@site/src/components/IntegrationBuilder/Select/styledComponents';
+import {FiltersWrapper} from '@site/src/components/IntegrationBuilder/Select/styledComponents';
+import {SplitView} from '@site/src/components/IntegrationBuilder/styledComponents';
 import Select from '@site/src/components/Select';
 import FileList from '@site/src/components/IntegrationBuilder/FileList/FileList';
 import ContentFromFile from '@site/src/components/ContentFromFile';
