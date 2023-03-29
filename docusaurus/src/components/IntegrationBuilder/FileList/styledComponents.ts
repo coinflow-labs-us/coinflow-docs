@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
 
 const activeMixin = css`
-  background-color: #606098;
+  background-color: var(--ifm-color-primary-darker);
   color: #ffffff;
 `;
 
@@ -18,10 +18,10 @@ export const FileItem = styled.button`
   transition: 0.1s ease;
   cursor: pointer;
   background-color: transparent;
-  color: #bfc5d3;
+  color: #ffffff;
 
   :hover {
-    background: #595991;
+    background: var(--ifm-color-primary-darkest);
     color: #ffffff;
   }
 
@@ -34,5 +34,5 @@ export const FileContainer = styled.div`
   display: flex;
   align-items: center;
   border-radius: 8px 8px 0 0;
-  background-color: #505086;
+  background-color: var(--ifm-color-primary-light);
 `;

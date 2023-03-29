@@ -5,7 +5,7 @@ import {LoadingWrapper} from '@site/src/components/Loading/styledComponents';
 const SyncLoader = () => {
   return (
     <LoadingWrapper>
-      <Loader color="#4f46e5" size={20} />
+      <Loader color="var(--ifm-color-primary)" size={20} />
     </LoadingWrapper>
   );
 };
