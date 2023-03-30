@@ -11,20 +11,49 @@ updates:
     directory: "examples/react/solana/checkout"
     versioning-strategy: increase
     schedule:
-      interval: daily
+      interval: weekly
       time: "04:00"
       timezone: America/Chicago
   - package-ecosystem: "npm"
     directory: "examples/react/solana/withdraw"
     versioning-strategy: increase
     schedule:
-      interval: daily
+      interval: weekly
       time: "04:00"
       timezone: America/Chicago
+
+  - package-ecosystem: "npm"
+    directory: "examples/react/near/checkout"
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
+      time: "04:00"
+      timezone: America/Chicago
+  - package-ecosystem: "npm"
+    directory: "examples/react/near/withdraw"
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: "npm"
+    directory: "examples/react/polygon/checkout"
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
+  - package-ecosystem: "npm"
+    directory: "examples/react/polygon/withdraw"
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: "npm"
+    directory: "examples/react/eth/withdraw"
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
+
   - package-ecosystem: "npm"
     directory: "templates/react"
     versioning-strategy: increase
     schedule:
-      interval: daily
-      time: "04:00"
-      timezone: America/Chicago
+      interval: weekly
