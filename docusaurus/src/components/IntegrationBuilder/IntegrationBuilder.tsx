@@ -19,6 +19,7 @@ import {
   LANGUAGE_OPTIONS,
   PRODUCT_OPTIONS,
 } from '@site/src/utils/constants';
+import {contentScrollEvent} from '@site/src/utils/events';
 
 const IntegrationBuilder = () => {
   const scrollRef = useRef(null);
@@ -69,6 +70,10 @@ const IntegrationBuilder = () => {
     }
   };
 
+  const contentScrollListener = () => {
+    window.dispatchEvent(contentScrollEvent);
+  };
+
   useEffect(() => {
     loadConfig();
   }, [loadConfig]);
@@ -110,7 +115,7 @@ const IntegrationBuilder = () => {
       </FiltersWrapper>
 
       <SplitView>
-        <div className="split-left">
+        <div onScroll={contentScrollListener} className="split-left">
           <ContentFromFile
             language={languageValue}
             blockchain={chainValue}

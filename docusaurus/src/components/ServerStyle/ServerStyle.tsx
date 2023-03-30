@@ -1,7 +1,7 @@
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 import {ServerStyleSheet} from 'styled-components';
-import {StaticRouter, useLocation} from 'react-router-dom';
+import {StaticRouter, useLocation} from 'react-router';
 import {HelmetProvider} from 'react-helmet-async';
 import {Context as DocusaurusContext} from '@docusaurus/core/lib/client/docusaurusContext';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
