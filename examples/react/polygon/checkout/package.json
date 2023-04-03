@@ -10,7 +10,7 @@
     "@web3modal/ethereum": "^2.2.2",
     "@web3modal/react": "^2.2.2",
     "ethers": "5.7.2",
-    "wagmi": "^0.12.6"
+    "wagmi": "^0.12.8"
   },
   "scripts": {
     "lint": "eslint .",
