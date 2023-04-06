@@ -22,3 +22,42 @@ allow your team to focus on your product instead of wasting time on compliance a
 
 ## Getting Started
 
+Head over to the [integration builder](http://localhost:3000/integration-builder?language=react&chain=solana&product=withdraw) to get started!
+
+## How it works
+
+### 1. Enter your name
+
+![NameStep](/img/docs/withdraw/1.png)
+
+### 2. Enter your address
+
+![AddressStep](/img/docs/withdraw/2.png)
+
+### 3. Enter your birthday
+
+**Important:** When testing make sure to use March 1st, 1996 as the birthdate or the KYC will fail.
+
+![BirthdayStep](/img/docs/withdraw/3.png)
+
+### 4. Enter your email and phone number
+
+**Important:** When testing make sure to use 312-453-1234 or the KYC will fail.
+
+![EmailStep](/img/docs/withdraw/4.png)
+
+### 5. Connect your bank account
+
+Click "Connect my bank account"
+![Connect](/img/docs/withdraw/5.png)
+Click "Continue"
+![Continue](/img/docs/withdraw/6.png)
+Click "Any bank account", enter user_good and pass_good, and click "Continue" if prompted for text message code enter "1234"
+![BankSelect](/img/docs/withdraw/7.png)
+![BankCredentials](/img/docs/withdraw/8.png)
+![BankLinked](/img/docs/withdraw/9.png)
+Account linking is done!
+
+### 6. Enter the amount you want to withdraw and click "Withdraw", approve the transaction in your wallet
+
+![BankLinked](/img/docs/withdraw/10.png)
