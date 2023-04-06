@@ -60,4 +60,6 @@ Account linking is done!
 
 ### 6. Enter the amount you want to withdraw and click "Withdraw", approve the transaction in your wallet
 
+[Get USDC from the Coinflow Provided Faucet!](https://staging.coinflow.cash/faucet)
+
 ![BankLinked](/img/docs/withdraw/10.png)
