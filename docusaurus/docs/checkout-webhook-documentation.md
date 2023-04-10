@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Checkout Webhook Documentation
+# Checkout Webhook
 
 **[A Webhook in web development is a method of augmenting or altering the behavior of a web page or web application with custom callbacks](https://en.wikipedia.org/wiki/Webhook)**
 
@@ -42,7 +42,7 @@ In the `CoinflowPurchase` component set any arbitrary purchase metadata that wil
 
 ## Setup Webhook Endpoint
 
-1. Setup your server is configured to listen for a POST request at the URL you provided in step 4a above.
+1. Set up your server is configured to listen for a POST request at the URL you provided in step 4a above.
 2. When listening for the webhook, make sure you confirm that the `Authorization` header is equal to the auth token you copied in step 4b. This confirms that the requests to this URL are  coming from Coinflow.
 3. The format of the body of the webhook request is as follows:
 

@@ -10,7 +10,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Pay with major credit cards',
+    title: 'Accept credit card payments on-chain',
     Svg: require('@site/static/img/logo.svg').default,
     description: (
       <>
@@ -20,7 +20,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Reduced friction',
+    title: 'Reduce onboarding friction',
     Svg: require('@site/static/img/logo.svg').default,
     description: (
       <>
