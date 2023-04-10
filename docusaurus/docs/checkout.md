@@ -32,15 +32,29 @@ component. The `transaction` object should be constructed exactly like the user 
 for all supported chains, there is no difference in the transaction you pass between a user making a purchase with 
 USDC, or them using their credit card. Coinflow takes care of all the complexities for you.
 
+## Saved Cards
+
+Cards for users are saved between purchases meaning that a user will only need to put in their credit card
+details a single time. This improves conversion on subsequent purchases and reduces friction for your users. 
+
+Coinflow is fully PCI-compliant and does not save this data directly on our servers. 
+
 ## Get Started
 
 Head over to the [integration builder](http://localhost:3000/integration-builder?language=react&chain=solana&product=checkout) to get started!
 
 ## Testing Cards
 
-**Visa**
-Card: 41111 11111 1111 111
-Exp: Any future date
-CVV: Any 3 digits
-Name on card: Any Name
-Billing Address: Any address
+### Visa
+
+**Card**: 41111 11111 1111 111
+
+**Exp**: Any future date
+
+**CVV**: Any 3 digits
+
+**Name on card**: Any Name
+
+**Billing Address**: Any address
+
+![NameStep](/img/docs/checkout/1.png)
