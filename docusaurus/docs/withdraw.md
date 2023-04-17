@@ -22,7 +22,7 @@ allow your team to focus on your product instead of wasting time on compliance a
 
 ## Getting Started
 
-Head over to the [integration builder](http://localhost:3000/integration-builder?language=react&chain=solana&product=withdraw) to get started!
+Head over to the [integration builder](https://docs.coinflow.cash/integration-builder?language=react&chain=solana&product=withdraw) to get started!
 
 ## How it works
 

@@ -41,7 +41,7 @@ Coinflow is fully PCI-compliant and does not save this data directly on our serv
 
 ## Get Started
 
-Head over to the [integration builder](http://localhost:3000/integration-builder?language=react&chain=solana&product=checkout) to get started!
+Head over to the [integration builder](https://docs.coinflow.cash/integration-builder?language=react&chain=solana&product=checkout) to get started!
 
 ## Testing Cards
 
