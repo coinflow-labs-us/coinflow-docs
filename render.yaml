@@ -22,7 +22,7 @@ services:
     branch: main
     domains:
       - blog.coinflow.cash
-    rootDir: docusaurus
+    rootDir: blog
     buildCommand: npm ci && npm run build
     staticPublishPath: build
     buildFilter:
