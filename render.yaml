@@ -15,11 +15,23 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-    envVars:
-      - key: REACT_APP_ENV
-        value: sandbox
-      - key: REACT_APP_MERCHANT_ID
-        value: coinflow
+
+  - type: web
+    name: coinflow-blog
+    env: static
+    branch: main
+    domains:
+      - blog.coinflow.cash
+    rootDir: docusaurus
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - blog/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
 
   - type: web
     name: react-solana-checkout
