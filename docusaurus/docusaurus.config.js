@@ -75,6 +75,18 @@ const config = {
             position: 'left',
           },
           {
+            href: 'https://blog.coinflow.cash',
+            label: 'Blog',
+            position: 'left',
+            target: '_blank',
+          },
+          {
+            href: 'https://coinflow.cash',
+            label: 'Home',
+            position: 'left',
+            target: '_blank',
+          },
+          {
             href: 'https://github.com/coinflow-labs-us/coinflow-docs',
             label: 'GitHub',
             position: 'right',
