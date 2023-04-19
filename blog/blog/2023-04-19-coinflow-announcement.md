@@ -1,5 +1,5 @@
 ---
-image: https://i.imgur.com/mErPwqL.png
+image: ./coinflow-social-card.png
 authors:
     name: Daniel Lev
     title: CEO and Co-Founder Coinflow
@@ -13,6 +13,7 @@ authors:
 _Pre-Seed Round Led by Jump Crypto and Reciprocal Ventures, with Participation from CMT Digital, DCG,
 and Gumi Crypto Among Others_
 
+![Fundraise Banner](./coinflow-social-card.png)
 
 **CHICAGO, IL – April 19, 2023** - Coinflow Labs (“Coinflow”), a web3 payment stack provider, today
 announced the closing of its $1.45 million pre-seed round. The round was led by Jump Crypto and
