@@ -4,7 +4,14 @@ updates:
     directory: "docusaurus"
     versioning-strategy: increase
     schedule:
-      interval: daily
+      interval: weekly
+      time: "04:00"
+      timezone: America/Chicago
+  - package-ecosystem: "npm"
+    directory: "blog"
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
       time: "04:00"
       timezone: America/Chicago
   - package-ecosystem: "npm"
