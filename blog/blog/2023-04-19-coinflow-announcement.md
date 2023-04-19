@@ -1,4 +1,5 @@
 ---
+image: https://i.imgur.com/mErPwqL.png
 authors:
     name: Daniel Lev
     title: CEO and Co-Founder Coinflow
