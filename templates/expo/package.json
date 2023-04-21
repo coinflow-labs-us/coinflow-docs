@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@coinflow/react-native": "/Users/benmeeder/projects/coinflow/external/react-native",
     "@solana/web3.js": "^1.75.0",
     "@web3auth/react-native-sdk": "^3.5.0",
     "expo": "~48.0.11",
@@ -16,7 +17,8 @@
     "expo-status-bar": "~1.4.4",
     "expo-web-browser": "~12.1.1",
     "react": "18.2.0",
-    "react-native": "0.71.6"
+    "react-native": "0.71.6",
+    "react-native-webview": "^12.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
