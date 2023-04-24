@@ -9,7 +9,7 @@
     "react-router-dom": "^6.10.0",
     "@web3modal/ethereum": "^2.3.0",
     "@web3modal/react": "^2.3.6",
-    "wagmi": "^0.12.10"
+    "wagmi": "^0.12.12"
   },
   "scripts": {
     "lint": "eslint .",
