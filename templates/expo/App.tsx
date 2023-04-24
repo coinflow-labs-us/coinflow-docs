@@ -14,7 +14,8 @@ import * as WebBrowser from "expo-web-browser";
 
 import RPC from "./solanaRPC";
 import { State } from "@web3auth/react-native-sdk/src/types/State";
-import { Transaction } from "@solana/web3.js";
+import { Connection, PublicKey, Transaction } from "@solana/web3.js";
+import { CoinflowWithdraw } from "@coinflowlabs/react-native";
 
 const resolvedRedirectUrl =
   Constants.appOwnership == AppOwnership.Expo ||
@@ -29,6 +30,7 @@ export default function App() {
   const [key, setKey] = useState<string | undefined>(undefined);
   const [userInfo, setUserInfo] = useState<State | null>(null);
   const [web3AuthConsole, setWeb3AuthConsole] = useState("");
+  const [publicKey, setPublicKey] = useState<PublicKey | null>(null);
 
   const login = async () => {
     try {
@@ -51,6 +53,10 @@ export default function App() {
       console.log({ info });
       setKey(info.ed25519PrivKey);
       uiConsole("Logged In");
+
+      if (!info.ed25519PrivKey) return;
+      const publicKey = await RPC.getAccounts(info.ed25519PrivKey);
+      setPublicKey(publicKey);
     } catch (e) {
       uiConsole(e);
     }
@@ -62,11 +68,12 @@ export default function App() {
     const address = await RPC.getAccounts(key);
     uiConsole(address);
   };
-  const sendTransaction = async () => {
+  const sendTransaction = async (transaction: Transaction) => {
     setWeb3AuthConsole("Sending transaction");
-    if (!key) return;
-    const tx = await RPC.sendTransaction(key, new Transaction());
+    if (!key) return "";
+    const tx = await RPC.sendTransaction(key, transaction);
     uiConsole(tx);
+    return tx;
   };
 
   const uiConsole = (...args: unknown[]) => {
@@ -78,11 +85,19 @@ export default function App() {
 
   const loggedInView = (
     <View style={styles.buttonArea}>
-      <Button title="Get User Info" onPress={() => uiConsole(userInfo)} />
-      <Button title="Get Accounts" onPress={() => getAccounts()} />
-      <Button title="Send Transaction" onPress={() => sendTransaction()} />
-      <Button title="Get Private Key" onPress={() => uiConsole(key)} />
-      <Button title="Log Out" onPress={() => setKey("")} />
+      <Text>Public key: ${publicKey?.toString()}</Text>
+      <CoinflowWithdraw
+        wallet={{
+          publicKey,
+          sendTransaction,
+        }}
+        merchantId={"tal"}
+        connection={
+          new Connection("https://api.devnet.solana.com", "confirmed")
+        }
+        blockchain={"solana"}
+        env={"sandbox"}
+      />
     </View>
   );
 
@@ -93,15 +108,7 @@ export default function App() {
   );
 
   return (
-    <View style={styles.container}>
-      {key ? loggedInView : unloggedInView}
-      <View style={styles.consoleArea}>
-        <Text style={styles.consoleText}>Console:</Text>
-        <ScrollView style={styles.console}>
-          <Text>{web3AuthConsole}</Text>
-        </ScrollView>
-      </View>
-    </View>
+    <View style={styles.container}>{key ? loggedInView : unloggedInView}</View>
   );
 }
 

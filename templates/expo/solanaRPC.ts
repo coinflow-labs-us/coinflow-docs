@@ -2,26 +2,27 @@ import { Buffer } from "buffer";
 import {
   Connection,
   Keypair,
+  PublicKey,
   Transaction,
   VersionedTransaction,
 } from "@solana/web3.js";
 
 global.Buffer = global.Buffer || Buffer;
 
-const getAccounts = async (key: string) => {
+const getAccounts = async (key: string): Promise<PublicKey> => {
   try {
     const wallet = getKeypair(key);
-    return await wallet.publicKey;
+    return wallet.publicKey;
   } catch (error) {
     console.error(error);
-    return error;
+    throw error;
   }
 };
 
 const sendTransaction = async (
   key: string,
   transaction: Transaction | VersionedTransaction
-) => {
+): Promise<string> => {
   try {
     const wallet = getKeypair(key);
     if (transaction instanceof Transaction) {
@@ -36,7 +37,8 @@ const sendTransaction = async (
     );
     return await connection.sendRawTransaction(transaction.serialize());
   } catch (error) {
-    return error;
+    console.error(error);
+    throw error;
   }
 };
 
