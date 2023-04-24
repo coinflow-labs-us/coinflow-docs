@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@coinflowlabs/react-native": "/Users/benmeeder/projects/coinflow/external/react-native",
+    "@coinflowlabs/react-native": "1.0.0-SNAPSHOT-1",
     "@solana/web3.js": "^1.75.0",
     "@web3auth/react-native-sdk": "^3.5.0",
     "expo": "~48.0.11",
