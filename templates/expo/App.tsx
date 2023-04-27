@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,7 @@ import Web3Auth, { OPENLOGIN_NETWORK } from "@web3auth/react-native-sdk";
 import Constants, { AppOwnership } from "expo-constants";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
+import WebView from "react-native-webview";
 
 import RPC from "./solanaRPC";
 import { State } from "@web3auth/react-native-sdk/src/types/State";
@@ -62,12 +63,6 @@ export default function App() {
     }
   };
 
-  const getAccounts = async () => {
-    setWeb3AuthConsole("Getting account");
-    if (!key) return;
-    const address = await RPC.getAccounts(key);
-    uiConsole(address);
-  };
   const sendTransaction = async (transaction: Transaction) => {
     setWeb3AuthConsole("Sending transaction");
     if (!key) return "";
@@ -83,18 +78,22 @@ export default function App() {
     );
   };
 
+  const connection = useMemo(
+    () => new Connection("https://api.devnet.solana.com", "confirmed"),
+    []
+  );
+
   const loggedInView = (
-    <View style={styles.buttonArea}>
-      <Text>Public key: ${publicKey?.toString()}</Text>
+    <View>
+      <Text>Public key: {publicKey?.toString()}</Text>
       <CoinflowWithdraw
+        style={styles.container}
         wallet={{
           publicKey,
           sendTransaction,
         }}
         merchantId={"tal"}
-        connection={
-          new Connection("https://api.devnet.solana.com", "confirmed")
-        }
+        connection={connection}
         blockchain={"solana"}
         env={"sandbox"}
       />
@@ -120,6 +119,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: 50,
     paddingBottom: 30,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   },
   consoleArea: {
     margin: 20,
