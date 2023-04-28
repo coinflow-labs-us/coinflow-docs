@@ -3,7 +3,7 @@ image: ./coinflow-social-card.png
 authors:
     name: Daniel Lev
     title: CEO and Co-Founder Coinflow
-    url: https://linkedin.com/in/daniellev
+    url: https://www.linkedin.com/in/daniel-m-lev
     image_url: https://shdw-drive.genesysgo.net/Fwa7houxcUtTKGf1egRUVowgax5zzNLFYkPvggLYexeo/dan_image.jpg
     email: dan@coinflowlabs.app
 ---
