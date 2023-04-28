@@ -1,20 +1,10 @@
-import React, { useMemo, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  ScrollView,
-  Dimensions,
-} from "react-native";
+import React, { useEffect, useMemo, useState } from "react";
+import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import Web3Auth, { OPENLOGIN_NETWORK } from "@web3auth/react-native-sdk";
 import Constants, { AppOwnership } from "expo-constants";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
-import WebView from "react-native-webview";
-
 import RPC from "./solanaRPC";
-import { State } from "@web3auth/react-native-sdk/src/types/State";
 import { Connection, PublicKey, Transaction } from "@solana/web3.js";
 import { CoinflowWithdraw } from "@coinflowlabs/react-native";
 
@@ -29,19 +19,14 @@ const clientId =
 
 export default function App() {
   const [key, setKey] = useState<string | undefined>(undefined);
-  const [userInfo, setUserInfo] = useState<State | null>(null);
-  const [web3AuthConsole, setWeb3AuthConsole] = useState("");
   const [publicKey, setPublicKey] = useState<PublicKey | null>(null);
 
   const login = async () => {
     try {
-      setWeb3AuthConsole("Logging in");
       const web3auth = new Web3Auth(WebBrowser, {
         clientId,
         network: OPENLOGIN_NETWORK.TESTNET, // MAINNET, AQUA, CELESTE, CYAN or TESTNET
       });
-
-      console.log({ resolvedRedirectUrl });
 
       const info = await web3auth.login({
         redirectUrl: resolvedRedirectUrl,
@@ -49,39 +34,32 @@ export default function App() {
         loginProvider: "google", // Pass on the login provider of your choice: google, facebook, discord, twitch, twitter, github, linkedin, apple, etc.
         curve: "ED25519", // This is the scheme for solana
       });
-
-      setUserInfo(info);
-      console.log({ info });
       setKey(info.ed25519PrivKey);
-      uiConsole("Logged In");
+      console.log("Logged In");
 
       if (!info.ed25519PrivKey) return;
       const publicKey = await RPC.getAccounts(info.ed25519PrivKey);
       setPublicKey(publicKey);
     } catch (e) {
-      uiConsole(e);
+      console.log(e);
     }
   };
 
   const sendTransaction = async (transaction: Transaction) => {
-    setWeb3AuthConsole("Sending transaction");
     if (!key) return "";
     const tx = await RPC.sendTransaction(key, transaction);
-    uiConsole(tx);
+    console.log(tx);
     return tx;
-  };
-
-  const uiConsole = (...args: unknown[]) => {
-    console.log(args);
-    setWeb3AuthConsole(
-      JSON.stringify(args || {}, null, 2) + "\n\n\n\n" + web3AuthConsole
-    );
   };
 
   const connection = useMemo(
     () => new Connection("https://api.devnet.solana.com", "confirmed"),
     []
   );
+
+  useEffect(() => {
+    console.log(publicKey?.toString());
+  }, [publicKey]);
 
   const loggedInView = (
     <View>
@@ -92,10 +70,10 @@ export default function App() {
           publicKey,
           sendTransaction,
         }}
-        merchantId={"tal"}
+        merchantId={"paysafe"}
         connection={connection}
         blockchain={"solana"}
-        env={"sandbox"}
+        env={"staging"}
       />
     </View>
   );
