@@ -9,7 +9,7 @@
     "react-router-dom": "^6.10.0",
     "@near-wallet-selector/core": "^8.0.0",
     "@near-wallet-selector/default-wallets": "^8.0.0",
-    "@near-wallet-selector/modal-ui": "^7.9.3",
+    "@near-wallet-selector/modal-ui": "^8.0.0",
     "@near-wallet-selector/my-near-wallet": "^8.0.0",
     "@near-wallet-selector/near-wallet": "^7.9.3",
     "@near-wallet-selector/sender": "^8.0.0",
