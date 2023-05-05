@@ -1,14 +1,16 @@
 ---
-image: ./coinflow-social-card.png
+image: ./google-blog-header.png
 authors:
-name: Ben Meeder
-title: CTO and Co-Founder Coinflow
-url: https://www.linkedin.com/in/benmeeder/
-image_url: https://shdw-drive.genesysgo.net/Fwa7houxcUtTKGf1egRUVowgax5zzNLFYkPvggLYexeo/MeederFace.png
-email: ben@coinflowlabs.app
+    name: Ben Meeder
+    title: CTO and Co-Founder - Coinflow Labs
+    url: https://www.linkedin.com/in/benmeeder/
+    image_url: https://shdw-drive.genesysgo.net/Fwa7houxcUtTKGf1egRUVowgax5zzNLFYkPvggLYexeo/MeederFace.png
+    email: ben@coinflowlabs.app
 ---
 
 # Coinflow Labs Announces Acceptance into Google for Startups Cloud Program
+
+![Announcement Banner](./google-blog-header.png)
 
 We're thrilled to announce that Coinflow Labs has been accepted into the Google for Startups Cloud Program, a program
 designed to provide startups with the resources they need to build confidently and quickly. As a Web3 startup, we are
