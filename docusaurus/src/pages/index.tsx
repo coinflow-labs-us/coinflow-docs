@@ -7,10 +7,7 @@ import HomepageHeader from '@site/src/components/Homepage/HomepageHeader';
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={siteConfig.title}
-      description="Description will go into a meta tag in <head />"
-    >
+    <Layout title={siteConfig.title} description="Coinflow Documentation">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
