@@ -1,4 +1,5 @@
 ---
+title: Web3 Payment Infrastructure Solutions Provider Coinflow Labs Raises $1.45M to Expand Web3 Payment Stack
 image: ./coinflow-social-card.png
 authors:
     name: Daniel Lev

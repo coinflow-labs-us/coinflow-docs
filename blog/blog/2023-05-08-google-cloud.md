@@ -1,4 +1,5 @@
 ---
+title: Coinflow Labs Announces Acceptance into Google for Startups Cloud Program
 image: ./google-blog-header.png
 authors:
     name: Ben Meeder
