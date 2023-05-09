@@ -56,7 +56,7 @@ const config = {
         defaultMode: 'dark',
       },
       // Replace with your project's social card
-      // image: 'img/coinflow-social-card.png',
+      image: 'img/social-card.png',
       navbar: {
         title: 'Coinflow Blog',
         logo: {
