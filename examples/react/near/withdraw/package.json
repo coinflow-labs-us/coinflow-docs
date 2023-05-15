@@ -7,7 +7,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
-    "@near-wallet-selector/core": "^7.9.1",
+    "@near-wallet-selector/core": "^8.1.0",
     "@near-wallet-selector/default-wallets": "^7.9.3",
     "@near-wallet-selector/modal-ui": "^7.9.1",
     "@near-wallet-selector/my-near-wallet": "^7.9.3",
