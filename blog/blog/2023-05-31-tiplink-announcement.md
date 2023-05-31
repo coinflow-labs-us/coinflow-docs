@@ -18,7 +18,7 @@ allowing users to easily send and receive cryptocurrency with a simple link.
 
 Coinflow Labs provides a seamless payment solution for Web3 companies, allowing them to accept both traditional payment 
 methods and cryptocurrency. With Coinflow, users can offramp any cryptocurrency directly from their crypto wallets 
-directly to their US bank accounts.. Coinflow's platform provides a seamless experience for both the merchant and the 
+directly to their US bank accounts. Coinflow's platform provides a seamless experience for both the merchant and the 
 customer, making it an ideal offramp solution for any Web3 company.
 
 TipLink is a platform that makes it easy for anyone to send and receive cryptocurrency by sharing a simple link. With 
