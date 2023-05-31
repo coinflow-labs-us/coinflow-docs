@@ -1,8 +1,9 @@
 ---
+title: Web3 Payment Infrastructure Solutions Provider Coinflow Labs Raises $1.45M to Expand Web3 Payment Stack
 image: ./coinflow-social-card.png
 authors:
     name: Daniel Lev
-    title: CEO and Co-Founder Coinflow
+    title: CEO and Co-Founder - Coinflow labs
     url: https://www.linkedin.com/in/daniel-m-lev
     image_url: https://shdw-drive.genesysgo.net/Fwa7houxcUtTKGf1egRUVowgax5zzNLFYkPvggLYexeo/dan_image.jpg
     email: dan@coinflowlabs.app
