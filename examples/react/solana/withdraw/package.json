@@ -6,7 +6,7 @@
     "@coinflowlabs/react": "2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0",
+    "react-router-dom": "^6.14.2",
     "@solana/spl-token": "^0.3.7",
     "@solana/web3.js": "^1.75.0",
     "@solana-mobile/wallet-adapter-mobile": "^2.0.0",
