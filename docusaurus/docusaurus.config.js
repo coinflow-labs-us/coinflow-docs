@@ -52,7 +52,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: 'light',
       },
       // Replace with your project's social card
       image: 'img/coinflow-social-card.png',
@@ -63,12 +63,6 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'checkout-webhook-documentation',
-            position: 'left',
-            label: 'Docs',
-          },
           {
             to: '/integration-builder',
             label: 'Integration Builder',
