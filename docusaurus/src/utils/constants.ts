@@ -14,6 +14,7 @@ export const CHAIN_OPTIONS: Options<Blockchains> = [
 export const PRODUCT_OPTIONS: Options<Product> = [
   {value: 'checkout', label: 'Checkout'},
   {value: 'withdraw', label: 'Withdraw'},
+  {value: 'card-form', label: 'Card Form'},
 ];
 
 export const GITHUB_EXAMPLES_LINK =
