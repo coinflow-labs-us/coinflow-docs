@@ -36,7 +36,7 @@ function CoinflowContent() {
       if (!wallet.address) return;
 
       const tx = (await UsdcWrapper__factory.connect(
-        '0x0E47E1CC9730bf1CaC4fb2073e04Dc60Faf3fdDe',
+        '0x27d72459460B925acf25451a255A517a96Cf6899',
         new providers.JsonRpcProvider(
           process.env.REACT_APP_ETH_RPC_URL as string
         )
