@@ -138,6 +138,30 @@ services:
         value: https://rpc.ankr.com/polygon_mumbai
 
   - type: web
+    name: react-eth-checkout
+    env: static
+    branch: main
+    rootDir: examples/react/eth/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/react/eth/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: REACT_APP_ENV
+        value: sandbox
+      - key: REACT_APP_MERCHANT_ID
+        value: coinflow
+      - key: REACT_APP_WALLET_CONNECT_PROJECT_ID
+        value: 2383b9beda863a0b895ff5603b28bd04
+      - key: REACT_APP_POLYGON_RPC_URL
+        value: https://rpc.ankr.com/eth_goerli
+
+  - type: web
     name: react-polygon-withdraw
     env: static
     branch: main

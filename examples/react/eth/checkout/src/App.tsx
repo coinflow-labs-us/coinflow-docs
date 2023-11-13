@@ -40,9 +40,13 @@ function CoinflowContent() {
         new providers.JsonRpcProvider(
           process.env.REACT_APP_ETH_RPC_URL as string
         )
-      ).populateTransaction.buyWusdcModified(amount * 1e6, {
-        from: wallet.address,
-      })) as providers.TransactionRequest & {to: string};
+      ).populateTransaction.buyWusdcWithWethModifiedReceiver(
+        amount * 1e6,
+        wallet.address,
+        {
+          from: wallet.address,
+        }
+      )) as providers.TransactionRequest & {to: string};
       setTx(tx);
     }
 
