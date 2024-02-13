@@ -14,10 +14,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "clean": "rimraf build && rimraf generated",
-    "codegen": "typechain --target=ethers-v5 --out-dir src/generated src/UsdcWrapper.json",
-    "build": "npm run codegen && react-app-rewired build",
-    "start": "npm run codegen && react-app-rewired start",
+    "clean": "rimraf build",
+    "build": "react-app-rewired build",
+    "start": "react-app-rewired start",
     "dev": "npm run start"
   },
   "eslintConfig": {
