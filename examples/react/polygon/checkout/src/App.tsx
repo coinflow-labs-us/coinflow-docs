@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {CoinflowEnvs, CoinflowPurchase} from '@coinflowlabs/react';
+import {
+  CoinflowEnvs,
+  CoinflowPurchase,
+  EvmTransactionData,
+} from '@coinflowlabs/react';
 import {usePolygonWallet, Wallet} from './Wallet';
 import {Web3Button} from '@web3modal/react';
+import {NftMinting__factory} from './generated';
 import {providers} from 'ethers';
-import {UsdcWrapper__factory} from './generated';
 
 function App() {
   return (
@@ -24,30 +28,32 @@ function App() {
 
 function CoinflowContent() {
   const wallet = usePolygonWallet();
+  const [tx, setTx] = useState<EvmTransactionData | undefined>(undefined);
 
-  const [tx, setTx] = useState<
-    (providers.TransactionRequest & {to: string}) | undefined
-  >(undefined);
-
-  const amount = 1;
+  const amount = 1; // $1 USDC
 
   useEffect(() => {
     async function initializeTx() {
       if (!wallet.address) return;
 
-      const tx = (await UsdcWrapper__factory.connect(
-        '0x0E47E1CC9730bf1CaC4fb2073e04Dc60Faf3fdDe',
-        new providers.JsonRpcProvider(
-          process.env.REACT_APP_POLYGON_RPC_URL as string
-        )
-      ).populateTransaction.buyWusdcWithWethModifiedReceiver(
-        amount * 1e6,
-        wallet.address,
-        {
-          from: wallet.address,
-        }
-      )) as providers.TransactionRequest & {to: string};
-      setTx(tx);
+      const provider = new providers.JsonRpcProvider(
+        process.env.REACT_APP_POLYGON_RPC_URL as string
+      );
+      const NftMintingContractAddress =
+        '0x4f74612412984b938D57be6e817AE17edEb5ef82';
+      const contract = NftMinting__factory.connect(
+        NftMintingContractAddress,
+        provider
+      );
+      const tx: {to: string; data: string} =
+        (await contract.populateTransaction.mintUsingUsdcWithSafeMint()) as {
+          to: string;
+          data: string;
+        };
+      setTx({
+        type: 'safeMint',
+        transaction: tx,
+      });
     }
 
     initializeTx();
