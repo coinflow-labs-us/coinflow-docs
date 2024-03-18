@@ -6,43 +6,54 @@ import PolygonWallet from '../polygon-wallet-setup.mdx';
 import InstallCoinflow from '../../install-coinflow-react.mdx';
 
 <Intro />
-<Webpack5 />
 <InstallPolygon />
+<Webpack5 />
 <PolygonWallet />
-<InstallCoinflow/>
 
-<ContentBlock filePath="src/App.tsx" highlight="2">
 
-# Import the Coinflow Modules into your project
+# Integrate Coinflow component
+
+<ContentBlock filePath="src/App.tsx" highlight="2-6">
+
+## Import the Coinflow Modules into your project
 
 This is the main Plug and Play Modal package that contains the Coinflow SDK with the UI, giving you a simple way of implementing Coinflow within your interface.
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.tsx" highlight="55-60">
+<ContentBlock filePath="src/App.tsx" highlight="18-45">
 
-# Configure the Coinflow Purchase Component
+## Configure the Polygon Transaction
 
-Add the `CoinflowPurchase` component into your UI and configure the props with the following information:
+Initialize a Polygon transaction calling your contract exactly like you normally would for a user traditionally paying
+with USDC. [Read about how to customize a purchase transaction here](https://docs.coinflow.cash/docs/evm).
+</ContentBlock>
+
+<ContentBlock filePath="src/App.tsx" highlight="47-57">
+
+## Configure the Coinflow Purchase component
+
+Configure the `CoinflowPurchase` component props with the following information:
 
 - `wallet` - The Polygon Wallet
 - `merchantId` - Your Merchant ID
 - `env` - Use `sandbox` for testing and `prod` for production
-- `blockchain` - The Blockchain you are using (in this case, `polygon`)
 - `onSuccess` - (optional) A callback function that is called when the purchase is successful
+- `blockchain` - The Blockchain you are using (in this case, `polygon`)
+- `transaction` - The transaction object representing the purchase being made
+- `amount` - The amount of USDC you're sending to the program
 - `email` - (optional) Email of the user that will be prefilled for them
-- `webhookInfo` - An object containing any information you want to send to your webhook
+- `webhookInfo` - (optional) An object containing any information you want to send to your webhook
+
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.tsx" highlight="61-62">
+<ContentBlock filePath="src/App.tsx" highlight="60-75">
 
-# Configure the Polygon Transaction (Optional)
+## Add the Coinflow component to your application
 
-Initialize a Polygon transaction calling your contract exactly like you normally would for a user traditionally paying
-with USDC. Coinflow will take care of the rest!
+Add the component to your application, and Coinflow will take care of the rest!
 
-Pass this transaction into the `transaction` property of the `CoinflowPurchase` component. You will also be required to set the `amount` property to be
-the amount of USDC you are sending to the program. [Click here for more information](https://docs.coinflow.cash/docs/evm)
+*Note: Remove the Wallet and Web3Button components if you're using another wallet connector.*
 
 </ContentBlock>

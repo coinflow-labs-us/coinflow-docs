@@ -9,23 +9,6 @@ import {Web3Button} from '@web3modal/react';
 import {NftMinting__factory} from './generated';
 import {providers} from 'ethers';
 
-function App() {
-  return (
-    <Wallet>
-      <div className="App">
-        <Web3Button />
-        <div
-          style={{
-            height: '100vh',
-          }}
-        >
-          <CoinflowContent />
-        </div>
-      </div>
-    </Wallet>
-  );
-}
-
 function CoinflowContent() {
   const wallet = usePolygonWallet();
   const [tx, setTx] = useState<EvmTransactionData | undefined>(undefined);
@@ -71,6 +54,23 @@ function CoinflowContent() {
       transaction={tx}
       amount={1}
     />
+  );
+}
+
+function App() {
+  return (
+    <Wallet>
+      <div className="App">
+        <Web3Button />
+        <div
+          style={{
+            height: '100vh',
+          }}
+        >
+          <CoinflowContent />
+        </div>
+      </div>
+    </Wallet>
   );
 }
 

@@ -44,8 +44,9 @@ export function Wallet({children}: {children: ReactNode}) {
 }
 
 export function usePolygonWallet() {
-  const {address} = useAccount();
+  const {address} = useAccount(); // user's wallet address
 
+  // Create and sends a Transaction to Polygon network
   const sendTransactionWallet = useCallback(
     async (request: providers.TransactionRequest & {to: string}) => {
       const config = await prepareSendTransaction({
@@ -56,7 +57,8 @@ export function usePolygonWallet() {
     },
     []
   );
-
+  
+  // Signs a message with the wallet private key
   const signMessage = useCallback(async (message: string) => {
     console.log('signMessageWallet', {message});
     const signedTypeData = JSON.parse(message);
