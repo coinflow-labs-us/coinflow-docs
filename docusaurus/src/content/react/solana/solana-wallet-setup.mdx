@@ -1,10 +1,30 @@
 import ContentBlock from '../../../components/ContentFromFile/ContentBlock';
 
-<ContentBlock filePath={'src/Wallet.tsx'} highlight={'20'}>
 
 # Solana Wallet Configuration
 
-Create a wrapper for the Solana Wallet Provider and Solana Connection Provider.
-This will allow you to use the Solana Wallet Provider and Solana Connection Provider in any component in your application.
+You're now ready to build out a Solana wallet!
+The following code snippet will allow you to set up a Solana wallet connection to the Solana network. 
+
+
+<ContentBlock filePath={'src/Wallet.tsx'} highlight={'20-45'}>
+
+## Wallet connection
+
+Utilizing a wallet connector streamlines the process of accessing your wallet, making it easier to manage your funds. 
+In this example, we demonstrate how to connect to your wallet using various Solana wallet adapters.
+
+</ContentBlock>
+
+<ContentBlock filePath={'src/Wallet.tsx'} highlight={'38-44'}>
+
+You can optionally choose to customize your wallet's functionality to fit your preferences, as long as 
+the returned wallet object matches Coinflow's expected wallet interface, as outlined below:
+```
+{  
+    publicKey: PublicKey;  
+    sendTransaction: (transaction: Transaction) => Promise<string>;  
+}
+```
 
 </ContentBlock>

@@ -9,22 +9,6 @@ import {Web3Button} from '@web3modal/react';
 import {providers} from 'ethers';
 import {NftMinting__factory} from './generated';
 
-function App() {
-  return (
-    <Wallet>
-      <div className="App">
-        <Web3Button />
-        <div
-          style={{
-            height: '100vh',
-          }}
-        >
-          <CoinflowContent />
-        </div>
-      </div>
-    </Wallet>
-  );
-}
 
 function CoinflowContent() {
   const wallet = useEthWallet();
@@ -72,6 +56,24 @@ function CoinflowContent() {
       transaction={tx}
       amount={1}
     />
+  );
+}
+
+// Adds Coinflow checkout to your component
+function App() {
+  return (
+    <Wallet>
+      <div className="App">
+        <Web3Button />
+        <div
+          style={{
+            height: '100vh',
+          }}
+        >
+          <CoinflowContent />
+        </div>
+      </div>
+    </Wallet>
   );
 }
 
