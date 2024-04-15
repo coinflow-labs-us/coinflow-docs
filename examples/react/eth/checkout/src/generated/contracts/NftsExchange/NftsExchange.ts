@@ -13,120 +13,116 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import type {
-  FunctionFragment,
-  Result,
-  EventFragment,
-} from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
+} from 'ethers';
+import type {FunctionFragment, Result, EventFragment} from '@ethersproject/abi';
+import type {Listener, Provider} from '@ethersproject/providers';
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../../common";
+} from '../../common';
 
 export interface NftsExchangeInterface extends utils.Interface {
   functions: {
-    "buyNftUsingEth(uint256)": FunctionFragment;
-    "buyNftUsingEthWithToField(address,uint256)": FunctionFragment;
-    "buyNftUsingUsdc(uint256)": FunctionFragment;
-    "buyNftUsingUsdcWithToField(address,uint256)": FunctionFragment;
-    "buyNftUsingWeth(uint256)": FunctionFragment;
-    "buyNftUsingWethWithToField(address,uint256)": FunctionFragment;
-    "changeAdmin(address)": FunctionFragment;
-    "depositNft(uint256)": FunctionFragment;
-    "ethBuyPrice()": FunctionFragment;
-    "getAdmin()": FunctionFragment;
-    "getContractVersion()": FunctionFragment;
-    "initialize(address,address,address,address)": FunctionFragment;
-    "onERC721Received(address,address,uint256,bytes)": FunctionFragment;
-    "setBuyWithEthPrice(uint256)": FunctionFragment;
-    "setBuyWithUsdcPrice(uint256)": FunctionFragment;
-    "setNftCollection(address)": FunctionFragment;
-    "setUsdcToken(address)": FunctionFragment;
-    "setWethToken(address)": FunctionFragment;
-    "usdcBuyPrice()": FunctionFragment;
-    "usdcToken()": FunctionFragment;
-    "wethBuyPrice()": FunctionFragment;
-    "wethToken()": FunctionFragment;
-    "withdrawAllEth(address)": FunctionFragment;
-    "withdrawAllUsdc(address)": FunctionFragment;
+    'buyNftUsingEth(uint256)': FunctionFragment;
+    'buyNftUsingEthWithToField(address,uint256)': FunctionFragment;
+    'buyNftUsingUsdc(uint256)': FunctionFragment;
+    'buyNftUsingUsdcWithToField(address,uint256)': FunctionFragment;
+    'buyNftUsingWeth(uint256)': FunctionFragment;
+    'buyNftUsingWethWithToField(address,uint256)': FunctionFragment;
+    'changeAdmin(address)': FunctionFragment;
+    'depositNft(uint256)': FunctionFragment;
+    'ethBuyPrice()': FunctionFragment;
+    'getAdmin()': FunctionFragment;
+    'getContractVersion()': FunctionFragment;
+    'initialize(address,address,address,address)': FunctionFragment;
+    'onERC721Received(address,address,uint256,bytes)': FunctionFragment;
+    'setBuyWithEthPrice(uint256)': FunctionFragment;
+    'setBuyWithUsdcPrice(uint256)': FunctionFragment;
+    'setNftCollection(address)': FunctionFragment;
+    'setUsdcToken(address)': FunctionFragment;
+    'setWethToken(address)': FunctionFragment;
+    'usdcBuyPrice()': FunctionFragment;
+    'usdcToken()': FunctionFragment;
+    'wethBuyPrice()': FunctionFragment;
+    'wethToken()': FunctionFragment;
+    'withdrawAllEth(address)': FunctionFragment;
+    'withdrawAllUsdc(address)': FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "buyNftUsingEth"
-      | "buyNftUsingEthWithToField"
-      | "buyNftUsingUsdc"
-      | "buyNftUsingUsdcWithToField"
-      | "buyNftUsingWeth"
-      | "buyNftUsingWethWithToField"
-      | "changeAdmin"
-      | "depositNft"
-      | "ethBuyPrice"
-      | "getAdmin"
-      | "getContractVersion"
-      | "initialize"
-      | "onERC721Received"
-      | "setBuyWithEthPrice"
-      | "setBuyWithUsdcPrice"
-      | "setNftCollection"
-      | "setUsdcToken"
-      | "setWethToken"
-      | "usdcBuyPrice"
-      | "usdcToken"
-      | "wethBuyPrice"
-      | "wethToken"
-      | "withdrawAllEth"
-      | "withdrawAllUsdc"
+      | 'buyNftUsingEth'
+      | 'buyNftUsingEthWithToField'
+      | 'buyNftUsingUsdc'
+      | 'buyNftUsingUsdcWithToField'
+      | 'buyNftUsingWeth'
+      | 'buyNftUsingWethWithToField'
+      | 'changeAdmin'
+      | 'depositNft'
+      | 'ethBuyPrice'
+      | 'getAdmin'
+      | 'getContractVersion'
+      | 'initialize'
+      | 'onERC721Received'
+      | 'setBuyWithEthPrice'
+      | 'setBuyWithUsdcPrice'
+      | 'setNftCollection'
+      | 'setUsdcToken'
+      | 'setWethToken'
+      | 'usdcBuyPrice'
+      | 'usdcToken'
+      | 'wethBuyPrice'
+      | 'wethToken'
+      | 'withdrawAllEth'
+      | 'withdrawAllUsdc'
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: "buyNftUsingEth",
+    functionFragment: 'buyNftUsingEth',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "buyNftUsingEthWithToField",
+    functionFragment: 'buyNftUsingEthWithToField',
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "buyNftUsingUsdc",
+    functionFragment: 'buyNftUsingUsdc',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "buyNftUsingUsdcWithToField",
+    functionFragment: 'buyNftUsingUsdcWithToField',
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "buyNftUsingWeth",
+    functionFragment: 'buyNftUsingWeth',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "buyNftUsingWethWithToField",
+    functionFragment: 'buyNftUsingWethWithToField',
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "changeAdmin",
+    functionFragment: 'changeAdmin',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "depositNft",
+    functionFragment: 'depositNft',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "ethBuyPrice",
+    functionFragment: 'ethBuyPrice',
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "getAdmin", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getAdmin', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "getContractVersion",
+    functionFragment: 'getContractVersion',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "initialize",
+    functionFragment: 'initialize',
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
@@ -135,7 +131,7 @@ export interface NftsExchangeInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "onERC721Received",
+    functionFragment: 'onERC721Received',
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
@@ -144,131 +140,131 @@ export interface NftsExchangeInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "setBuyWithEthPrice",
+    functionFragment: 'setBuyWithEthPrice',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setBuyWithUsdcPrice",
+    functionFragment: 'setBuyWithUsdcPrice',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setNftCollection",
+    functionFragment: 'setNftCollection',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setUsdcToken",
+    functionFragment: 'setUsdcToken',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setWethToken",
+    functionFragment: 'setWethToken',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "usdcBuyPrice",
+    functionFragment: 'usdcBuyPrice',
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "usdcToken", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'usdcToken', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "wethBuyPrice",
+    functionFragment: 'wethBuyPrice',
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "wethToken", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'wethToken', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "withdrawAllEth",
+    functionFragment: 'withdrawAllEth',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "withdrawAllUsdc",
+    functionFragment: 'withdrawAllUsdc',
     values: [PromiseOrValue<string>]
   ): string;
 
   decodeFunctionResult(
-    functionFragment: "buyNftUsingEth",
+    functionFragment: 'buyNftUsingEth',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "buyNftUsingEthWithToField",
+    functionFragment: 'buyNftUsingEthWithToField',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "buyNftUsingUsdc",
+    functionFragment: 'buyNftUsingUsdc',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "buyNftUsingUsdcWithToField",
+    functionFragment: 'buyNftUsingUsdcWithToField',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "buyNftUsingWeth",
+    functionFragment: 'buyNftUsingWeth',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "buyNftUsingWethWithToField",
+    functionFragment: 'buyNftUsingWethWithToField',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "changeAdmin",
+    functionFragment: 'changeAdmin',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "depositNft", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'depositNft', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "ethBuyPrice",
+    functionFragment: 'ethBuyPrice',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "getAdmin", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getAdmin', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getContractVersion",
+    functionFragment: 'getContractVersion',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'initialize', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "onERC721Received",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setBuyWithEthPrice",
+    functionFragment: 'onERC721Received',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setBuyWithUsdcPrice",
+    functionFragment: 'setBuyWithEthPrice',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setNftCollection",
+    functionFragment: 'setBuyWithUsdcPrice',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setUsdcToken",
+    functionFragment: 'setNftCollection',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setWethToken",
+    functionFragment: 'setUsdcToken',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "usdcBuyPrice",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "usdcToken", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "wethBuyPrice",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "wethToken", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "withdrawAllEth",
+    functionFragment: 'setWethToken',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "withdrawAllUsdc",
+    functionFragment: 'usdcBuyPrice',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'usdcToken', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'wethBuyPrice',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'wethToken', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'withdrawAllEth',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: 'withdrawAllUsdc',
     data: BytesLike
   ): Result;
 
   events: {
-    "Initialized(uint8)": EventFragment;
+    'Initialized(uint8)': EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: "Initialized"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'Initialized'): EventFragment;
 }
 
 export interface InitializedEventObject {
@@ -307,45 +303,45 @@ export interface NftsExchange extends BaseContract {
   functions: {
     buyNftUsingEth(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     buyNftUsingEthWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     buyNftUsingUsdc(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     buyNftUsingUsdcWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     buyNftUsingWeth(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     buyNftUsingWethWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     changeAdmin(
       newAdmin_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     depositNft(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     ethBuyPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -359,7 +355,7 @@ export interface NftsExchange extends BaseContract {
       owner_: PromiseOrValue<string>,
       nftToken_: PromiseOrValue<string>,
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     onERC721Received(
@@ -367,32 +363,32 @@ export interface NftsExchange extends BaseContract {
       from: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setBuyWithEthPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setBuyWithUsdcPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setNftCollection(
       nftToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setUsdcToken(
       usdcToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setWethToken(
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     usdcBuyPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -405,56 +401,56 @@ export interface NftsExchange extends BaseContract {
 
     withdrawAllEth(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     withdrawAllUsdc(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
   };
 
   buyNftUsingEth(
     tokenId_: PromiseOrValue<BigNumberish>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   buyNftUsingEthWithToField(
     to_: PromiseOrValue<string>,
     tokenId_: PromiseOrValue<BigNumberish>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   buyNftUsingUsdc(
     tokenId_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   buyNftUsingUsdcWithToField(
     to_: PromiseOrValue<string>,
     tokenId_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   buyNftUsingWeth(
     tokenId_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   buyNftUsingWethWithToField(
     to_: PromiseOrValue<string>,
     tokenId_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   changeAdmin(
     newAdmin_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   depositNft(
     tokenId_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   ethBuyPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -468,7 +464,7 @@ export interface NftsExchange extends BaseContract {
     owner_: PromiseOrValue<string>,
     nftToken_: PromiseOrValue<string>,
     wethToken_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   onERC721Received(
@@ -476,32 +472,32 @@ export interface NftsExchange extends BaseContract {
     from: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
     data: PromiseOrValue<BytesLike>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setBuyWithEthPrice(
     price_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setBuyWithUsdcPrice(
     price_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setNftCollection(
     nftToken_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setUsdcToken(
     usdcToken_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setWethToken(
     wethToken_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   usdcBuyPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -514,12 +510,12 @@ export interface NftsExchange extends BaseContract {
 
   withdrawAllEth(
     to_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   withdrawAllUsdc(
     to_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -633,52 +629,52 @@ export interface NftsExchange extends BaseContract {
   };
 
   filters: {
-    "Initialized(uint8)"(version?: null): InitializedEventFilter;
+    'Initialized(uint8)'(version?: null): InitializedEventFilter;
     Initialized(version?: null): InitializedEventFilter;
   };
 
   estimateGas: {
     buyNftUsingEth(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     buyNftUsingEthWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     buyNftUsingUsdc(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     buyNftUsingUsdcWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     buyNftUsingWeth(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     buyNftUsingWethWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     changeAdmin(
       newAdmin_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     depositNft(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     ethBuyPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -692,7 +688,7 @@ export interface NftsExchange extends BaseContract {
       owner_: PromiseOrValue<string>,
       nftToken_: PromiseOrValue<string>,
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     onERC721Received(
@@ -700,32 +696,32 @@ export interface NftsExchange extends BaseContract {
       from: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setBuyWithEthPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setBuyWithUsdcPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setNftCollection(
       nftToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setUsdcToken(
       usdcToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setWethToken(
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     usdcBuyPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -738,57 +734,57 @@ export interface NftsExchange extends BaseContract {
 
     withdrawAllEth(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     withdrawAllUsdc(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     buyNftUsingEth(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     buyNftUsingEthWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     buyNftUsingUsdc(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     buyNftUsingUsdcWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     buyNftUsingWeth(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     buyNftUsingWethWithToField(
       to_: PromiseOrValue<string>,
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     changeAdmin(
       newAdmin_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     depositNft(
       tokenId_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     ethBuyPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -804,7 +800,7 @@ export interface NftsExchange extends BaseContract {
       owner_: PromiseOrValue<string>,
       nftToken_: PromiseOrValue<string>,
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     onERC721Received(
@@ -812,32 +808,32 @@ export interface NftsExchange extends BaseContract {
       from: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setBuyWithEthPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setBuyWithUsdcPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setNftCollection(
       nftToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setUsdcToken(
       usdcToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setWethToken(
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     usdcBuyPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -850,12 +846,12 @@ export interface NftsExchange extends BaseContract {
 
     withdrawAllEth(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     withdrawAllUsdc(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
   };
 }

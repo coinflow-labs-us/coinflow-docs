@@ -13,132 +13,128 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import type {
-  FunctionFragment,
-  Result,
-  EventFragment,
-} from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
+} from 'ethers';
+import type {FunctionFragment, Result, EventFragment} from '@ethersproject/abi';
+import type {Listener, Provider} from '@ethersproject/providers';
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../../common";
+} from '../../common';
 
 export interface NftMintingInterface extends utils.Interface {
   functions: {
-    "approve(address,uint256)": FunctionFragment;
-    "balanceOf(address)": FunctionFragment;
-    "changeAdmin(address)": FunctionFragment;
-    "ethMintPrice()": FunctionFragment;
-    "getAdmin()": FunctionFragment;
-    "getApproved(uint256)": FunctionFragment;
-    "getContractVersion()": FunctionFragment;
-    "initialize(address,address,address)": FunctionFragment;
-    "isApprovedForAll(address,address)": FunctionFragment;
-    "mintUsingEthWithReturnedTokenId()": FunctionFragment;
-    "mintUsingEthWithSafeMint()": FunctionFragment;
-    "mintUsingEthWithToField(address)": FunctionFragment;
-    "mintUsingUsdcWithReturnedTokenId()": FunctionFragment;
-    "mintUsingUsdcWithSafeMint()": FunctionFragment;
-    "mintUsingUsdcWithToField(address)": FunctionFragment;
-    "mintUsingWethWithReturnedTokenId()": FunctionFragment;
-    "mintUsingWethWithSafeMint()": FunctionFragment;
-    "mintUsingWethWithToField(address)": FunctionFragment;
-    "name()": FunctionFragment;
-    "ownerOf(uint256)": FunctionFragment;
-    "safeTransferFrom(address,address,uint256)": FunctionFragment;
-    "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
-    "setApprovalForAll(address,bool)": FunctionFragment;
-    "setMintEthPrice(uint256)": FunctionFragment;
-    "setMintUsdcPrice(uint256)": FunctionFragment;
-    "setUsdcToken(address)": FunctionFragment;
-    "setWethToken(address)": FunctionFragment;
-    "supportsInterface(bytes4)": FunctionFragment;
-    "symbol()": FunctionFragment;
-    "tokenURI(uint256)": FunctionFragment;
-    "totalSupply()": FunctionFragment;
-    "transferFrom(address,address,uint256)": FunctionFragment;
-    "usdcMintPrice()": FunctionFragment;
-    "usdcToken()": FunctionFragment;
-    "wethMintPrice()": FunctionFragment;
-    "wethToken()": FunctionFragment;
-    "withdrawAllEth(address)": FunctionFragment;
-    "withdrawAllUsdc(address)": FunctionFragment;
+    'approve(address,uint256)': FunctionFragment;
+    'balanceOf(address)': FunctionFragment;
+    'changeAdmin(address)': FunctionFragment;
+    'ethMintPrice()': FunctionFragment;
+    'getAdmin()': FunctionFragment;
+    'getApproved(uint256)': FunctionFragment;
+    'getContractVersion()': FunctionFragment;
+    'initialize(address,address,address)': FunctionFragment;
+    'isApprovedForAll(address,address)': FunctionFragment;
+    'mintUsingEthWithReturnedTokenId()': FunctionFragment;
+    'mintUsingEthWithSafeMint()': FunctionFragment;
+    'mintUsingEthWithToField(address)': FunctionFragment;
+    'mintUsingUsdcWithReturnedTokenId()': FunctionFragment;
+    'mintUsingUsdcWithSafeMint()': FunctionFragment;
+    'mintUsingUsdcWithToField(address)': FunctionFragment;
+    'mintUsingWethWithReturnedTokenId()': FunctionFragment;
+    'mintUsingWethWithSafeMint()': FunctionFragment;
+    'mintUsingWethWithToField(address)': FunctionFragment;
+    'name()': FunctionFragment;
+    'ownerOf(uint256)': FunctionFragment;
+    'safeTransferFrom(address,address,uint256)': FunctionFragment;
+    'safeTransferFrom(address,address,uint256,bytes)': FunctionFragment;
+    'setApprovalForAll(address,bool)': FunctionFragment;
+    'setMintEthPrice(uint256)': FunctionFragment;
+    'setMintUsdcPrice(uint256)': FunctionFragment;
+    'setUsdcToken(address)': FunctionFragment;
+    'setWethToken(address)': FunctionFragment;
+    'supportsInterface(bytes4)': FunctionFragment;
+    'symbol()': FunctionFragment;
+    'tokenURI(uint256)': FunctionFragment;
+    'totalSupply()': FunctionFragment;
+    'transferFrom(address,address,uint256)': FunctionFragment;
+    'usdcMintPrice()': FunctionFragment;
+    'usdcToken()': FunctionFragment;
+    'wethMintPrice()': FunctionFragment;
+    'wethToken()': FunctionFragment;
+    'withdrawAllEth(address)': FunctionFragment;
+    'withdrawAllUsdc(address)': FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "approve"
-      | "balanceOf"
-      | "changeAdmin"
-      | "ethMintPrice"
-      | "getAdmin"
-      | "getApproved"
-      | "getContractVersion"
-      | "initialize"
-      | "isApprovedForAll"
-      | "mintUsingEthWithReturnedTokenId"
-      | "mintUsingEthWithSafeMint"
-      | "mintUsingEthWithToField"
-      | "mintUsingUsdcWithReturnedTokenId"
-      | "mintUsingUsdcWithSafeMint"
-      | "mintUsingUsdcWithToField"
-      | "mintUsingWethWithReturnedTokenId"
-      | "mintUsingWethWithSafeMint"
-      | "mintUsingWethWithToField"
-      | "name"
-      | "ownerOf"
-      | "safeTransferFrom(address,address,uint256)"
-      | "safeTransferFrom(address,address,uint256,bytes)"
-      | "setApprovalForAll"
-      | "setMintEthPrice"
-      | "setMintUsdcPrice"
-      | "setUsdcToken"
-      | "setWethToken"
-      | "supportsInterface"
-      | "symbol"
-      | "tokenURI"
-      | "totalSupply"
-      | "transferFrom"
-      | "usdcMintPrice"
-      | "usdcToken"
-      | "wethMintPrice"
-      | "wethToken"
-      | "withdrawAllEth"
-      | "withdrawAllUsdc"
+      | 'approve'
+      | 'balanceOf'
+      | 'changeAdmin'
+      | 'ethMintPrice'
+      | 'getAdmin'
+      | 'getApproved'
+      | 'getContractVersion'
+      | 'initialize'
+      | 'isApprovedForAll'
+      | 'mintUsingEthWithReturnedTokenId'
+      | 'mintUsingEthWithSafeMint'
+      | 'mintUsingEthWithToField'
+      | 'mintUsingUsdcWithReturnedTokenId'
+      | 'mintUsingUsdcWithSafeMint'
+      | 'mintUsingUsdcWithToField'
+      | 'mintUsingWethWithReturnedTokenId'
+      | 'mintUsingWethWithSafeMint'
+      | 'mintUsingWethWithToField'
+      | 'name'
+      | 'ownerOf'
+      | 'safeTransferFrom(address,address,uint256)'
+      | 'safeTransferFrom(address,address,uint256,bytes)'
+      | 'setApprovalForAll'
+      | 'setMintEthPrice'
+      | 'setMintUsdcPrice'
+      | 'setUsdcToken'
+      | 'setWethToken'
+      | 'supportsInterface'
+      | 'symbol'
+      | 'tokenURI'
+      | 'totalSupply'
+      | 'transferFrom'
+      | 'usdcMintPrice'
+      | 'usdcToken'
+      | 'wethMintPrice'
+      | 'wethToken'
+      | 'withdrawAllEth'
+      | 'withdrawAllUsdc'
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: "approve",
+    functionFragment: 'approve',
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "balanceOf",
+    functionFragment: 'balanceOf',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "changeAdmin",
+    functionFragment: 'changeAdmin',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "ethMintPrice",
+    functionFragment: 'ethMintPrice',
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "getAdmin", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'getAdmin', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "getApproved",
+    functionFragment: 'getApproved',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "getContractVersion",
+    functionFragment: 'getContractVersion',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "initialize",
+    functionFragment: 'initialize',
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
@@ -146,52 +142,52 @@ export interface NftMintingInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "isApprovedForAll",
+    functionFragment: 'isApprovedForAll',
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingEthWithReturnedTokenId",
+    functionFragment: 'mintUsingEthWithReturnedTokenId',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingEthWithSafeMint",
+    functionFragment: 'mintUsingEthWithSafeMint',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingEthWithToField",
+    functionFragment: 'mintUsingEthWithToField',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingUsdcWithReturnedTokenId",
+    functionFragment: 'mintUsingUsdcWithReturnedTokenId',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingUsdcWithSafeMint",
+    functionFragment: 'mintUsingUsdcWithSafeMint',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingUsdcWithToField",
+    functionFragment: 'mintUsingUsdcWithToField',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingWethWithReturnedTokenId",
+    functionFragment: 'mintUsingWethWithReturnedTokenId',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingWethWithSafeMint",
+    functionFragment: 'mintUsingWethWithSafeMint',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "mintUsingWethWithToField",
+    functionFragment: 'mintUsingWethWithToField',
     values: [PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'name', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "ownerOf",
+    functionFragment: 'ownerOf',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "safeTransferFrom(address,address,uint256)",
+    functionFragment: 'safeTransferFrom(address,address,uint256)',
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
@@ -199,7 +195,7 @@ export interface NftMintingInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    functionFragment: 'safeTransferFrom(address,address,uint256,bytes)',
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
@@ -208,40 +204,40 @@ export interface NftMintingInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "setApprovalForAll",
+    functionFragment: 'setApprovalForAll',
     values: [PromiseOrValue<string>, PromiseOrValue<boolean>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setMintEthPrice",
+    functionFragment: 'setMintEthPrice',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setMintUsdcPrice",
+    functionFragment: 'setMintUsdcPrice',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setUsdcToken",
+    functionFragment: 'setUsdcToken',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setWethToken",
+    functionFragment: 'setWethToken',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "supportsInterface",
+    functionFragment: 'supportsInterface',
     values: [PromiseOrValue<BytesLike>]
   ): string;
-  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'symbol', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "tokenURI",
+    functionFragment: 'tokenURI',
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "totalSupply",
+    functionFragment: 'totalSupply',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "transferFrom",
+    functionFragment: 'transferFrom',
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<string>,
@@ -249,158 +245,158 @@ export interface NftMintingInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "usdcMintPrice",
+    functionFragment: 'usdcMintPrice',
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "usdcToken", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'usdcToken', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "wethMintPrice",
+    functionFragment: 'wethMintPrice',
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "wethToken", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'wethToken', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "withdrawAllEth",
+    functionFragment: 'withdrawAllEth',
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "withdrawAllUsdc",
+    functionFragment: 'withdrawAllUsdc',
     values: [PromiseOrValue<string>]
   ): string;
 
-  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "changeAdmin",
+    functionFragment: 'changeAdmin',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "ethMintPrice",
+    functionFragment: 'ethMintPrice',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "getAdmin", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getAdmin', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getApproved",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getContractVersion",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "isApprovedForAll",
+    functionFragment: 'getApproved',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingEthWithReturnedTokenId",
+    functionFragment: 'getContractVersion',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'initialize', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'isApprovedForAll',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingEthWithSafeMint",
+    functionFragment: 'mintUsingEthWithReturnedTokenId',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingEthWithToField",
+    functionFragment: 'mintUsingEthWithSafeMint',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingUsdcWithReturnedTokenId",
+    functionFragment: 'mintUsingEthWithToField',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingUsdcWithSafeMint",
+    functionFragment: 'mintUsingUsdcWithReturnedTokenId',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingUsdcWithToField",
+    functionFragment: 'mintUsingUsdcWithSafeMint',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingWethWithReturnedTokenId",
+    functionFragment: 'mintUsingUsdcWithToField',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingWethWithSafeMint",
+    functionFragment: 'mintUsingWethWithReturnedTokenId',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "mintUsingWethWithToField",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "safeTransferFrom(address,address,uint256)",
+    functionFragment: 'mintUsingWethWithSafeMint',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    functionFragment: 'mintUsingWethWithToField',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'name', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'ownerOf', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'safeTransferFrom(address,address,uint256)',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setApprovalForAll",
+    functionFragment: 'safeTransferFrom(address,address,uint256,bytes)',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setMintEthPrice",
+    functionFragment: 'setApprovalForAll',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setMintUsdcPrice",
+    functionFragment: 'setMintEthPrice',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setUsdcToken",
+    functionFragment: 'setMintUsdcPrice',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setWethToken",
+    functionFragment: 'setUsdcToken',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "supportsInterface",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "totalSupply",
+    functionFragment: 'setWethToken',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "transferFrom",
+    functionFragment: 'supportsInterface',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'symbol', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'tokenURI', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'totalSupply',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "usdcMintPrice",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "usdcToken", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "wethMintPrice",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "wethToken", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "withdrawAllEth",
+    functionFragment: 'transferFrom',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "withdrawAllUsdc",
+    functionFragment: 'usdcMintPrice',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'usdcToken', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'wethMintPrice',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'wethToken', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'withdrawAllEth',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: 'withdrawAllUsdc',
     data: BytesLike
   ): Result;
 
   events: {
-    "Approval(address,address,uint256)": EventFragment;
-    "ApprovalForAll(address,address,bool)": EventFragment;
-    "Initialized(uint8)": EventFragment;
-    "Transfer(address,address,uint256)": EventFragment;
+    'Approval(address,address,uint256)': EventFragment;
+    'ApprovalForAll(address,address,bool)': EventFragment;
+    'Initialized(uint8)': EventFragment;
+    'Transfer(address,address,uint256)': EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Initialized"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'Approval'): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'ApprovalForAll'): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'Initialized'): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'Transfer'): EventFragment;
 }
 
 export interface ApprovalEventObject {
@@ -476,7 +472,7 @@ export interface NftMinting extends BaseContract {
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     balanceOf(
@@ -486,7 +482,7 @@ export interface NftMinting extends BaseContract {
 
     changeAdmin(
       newAdmin_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     ethMintPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -504,7 +500,7 @@ export interface NftMinting extends BaseContract {
       usdcToken_: PromiseOrValue<string>,
       owner_: PromiseOrValue<string>,
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     isApprovedForAll(
@@ -514,42 +510,42 @@ export interface NftMinting extends BaseContract {
     ): Promise<[boolean]>;
 
     mintUsingEthWithReturnedTokenId(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingEthWithSafeMint(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingEthWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingUsdcWithReturnedTokenId(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingUsdcWithSafeMint(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingUsdcWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingWethWithReturnedTokenId(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingWethWithSafeMint(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     mintUsingWethWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     name(overrides?: CallOverrides): Promise<[string]>;
@@ -559,45 +555,45 @@ export interface NftMinting extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setMintEthPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setMintUsdcPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setUsdcToken(
       usdcToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     setWethToken(
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     supportsInterface(
@@ -618,7 +614,7 @@ export interface NftMinting extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     usdcMintPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -631,19 +627,19 @@ export interface NftMinting extends BaseContract {
 
     withdrawAllEth(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
 
     withdrawAllUsdc(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<ContractTransaction>;
   };
 
   approve(
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   balanceOf(
@@ -653,7 +649,7 @@ export interface NftMinting extends BaseContract {
 
   changeAdmin(
     newAdmin_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   ethMintPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -671,7 +667,7 @@ export interface NftMinting extends BaseContract {
     usdcToken_: PromiseOrValue<string>,
     owner_: PromiseOrValue<string>,
     wethToken_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   isApprovedForAll(
@@ -681,42 +677,42 @@ export interface NftMinting extends BaseContract {
   ): Promise<boolean>;
 
   mintUsingEthWithReturnedTokenId(
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingEthWithSafeMint(
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingEthWithToField(
     to_: PromiseOrValue<string>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingUsdcWithReturnedTokenId(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingUsdcWithSafeMint(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingUsdcWithToField(
     to_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingWethWithReturnedTokenId(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingWethWithSafeMint(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   mintUsingWethWithToField(
     to_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   name(overrides?: CallOverrides): Promise<string>;
@@ -726,45 +722,45 @@ export interface NftMinting extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
-  "safeTransferFrom(address,address,uint256)"(
+  'safeTransferFrom(address,address,uint256)'(
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
-  "safeTransferFrom(address,address,uint256,bytes)"(
+  'safeTransferFrom(address,address,uint256,bytes)'(
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
     data: PromiseOrValue<BytesLike>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setApprovalForAll(
     operator: PromiseOrValue<string>,
     approved: PromiseOrValue<boolean>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setMintEthPrice(
     price_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setMintUsdcPrice(
     price_: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setUsdcToken(
     usdcToken_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   setWethToken(
     wethToken_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   supportsInterface(
@@ -785,7 +781,7 @@ export interface NftMinting extends BaseContract {
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   usdcMintPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -798,12 +794,12 @@ export interface NftMinting extends BaseContract {
 
   withdrawAllEth(
     to_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   withdrawAllUsdc(
     to_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: Overrides & {from?: PromiseOrValue<string>}
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -887,14 +883,14 @@ export interface NftMinting extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -969,7 +965,7 @@ export interface NftMinting extends BaseContract {
   };
 
   filters: {
-    "Approval(address,address,uint256)"(
+    'Approval(address,address,uint256)'(
       owner?: PromiseOrValue<string> | null,
       approved?: PromiseOrValue<string> | null,
       tokenId?: PromiseOrValue<BigNumberish> | null
@@ -980,7 +976,7 @@ export interface NftMinting extends BaseContract {
       tokenId?: PromiseOrValue<BigNumberish> | null
     ): ApprovalEventFilter;
 
-    "ApprovalForAll(address,address,bool)"(
+    'ApprovalForAll(address,address,bool)'(
       owner?: PromiseOrValue<string> | null,
       operator?: PromiseOrValue<string> | null,
       approved?: null
@@ -991,10 +987,10 @@ export interface NftMinting extends BaseContract {
       approved?: null
     ): ApprovalForAllEventFilter;
 
-    "Initialized(uint8)"(version?: null): InitializedEventFilter;
+    'Initialized(uint8)'(version?: null): InitializedEventFilter;
     Initialized(version?: null): InitializedEventFilter;
 
-    "Transfer(address,address,uint256)"(
+    'Transfer(address,address,uint256)'(
       from?: PromiseOrValue<string> | null,
       to?: PromiseOrValue<string> | null,
       tokenId?: PromiseOrValue<BigNumberish> | null
@@ -1010,7 +1006,7 @@ export interface NftMinting extends BaseContract {
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     balanceOf(
@@ -1020,7 +1016,7 @@ export interface NftMinting extends BaseContract {
 
     changeAdmin(
       newAdmin_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     ethMintPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1038,7 +1034,7 @@ export interface NftMinting extends BaseContract {
       usdcToken_: PromiseOrValue<string>,
       owner_: PromiseOrValue<string>,
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     isApprovedForAll(
@@ -1048,42 +1044,42 @@ export interface NftMinting extends BaseContract {
     ): Promise<BigNumber>;
 
     mintUsingEthWithReturnedTokenId(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingEthWithSafeMint(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingEthWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingUsdcWithReturnedTokenId(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingUsdcWithSafeMint(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingUsdcWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingWethWithReturnedTokenId(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingWethWithSafeMint(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     mintUsingWethWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1093,45 +1089,45 @@ export interface NftMinting extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setMintEthPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setMintUsdcPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setUsdcToken(
       usdcToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     setWethToken(
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     supportsInterface(
@@ -1152,7 +1148,7 @@ export interface NftMinting extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     usdcMintPrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1165,12 +1161,12 @@ export interface NftMinting extends BaseContract {
 
     withdrawAllEth(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
 
     withdrawAllUsdc(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<BigNumber>;
   };
 
@@ -1178,7 +1174,7 @@ export interface NftMinting extends BaseContract {
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     balanceOf(
@@ -1188,7 +1184,7 @@ export interface NftMinting extends BaseContract {
 
     changeAdmin(
       newAdmin_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     ethMintPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1208,7 +1204,7 @@ export interface NftMinting extends BaseContract {
       usdcToken_: PromiseOrValue<string>,
       owner_: PromiseOrValue<string>,
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     isApprovedForAll(
@@ -1218,42 +1214,42 @@ export interface NftMinting extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     mintUsingEthWithReturnedTokenId(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingEthWithSafeMint(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingEthWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingUsdcWithReturnedTokenId(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingUsdcWithSafeMint(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingUsdcWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingWethWithReturnedTokenId(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingWethWithSafeMint(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     mintUsingWethWithToField(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1263,45 +1259,45 @@ export interface NftMinting extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "safeTransferFrom(address,address,uint256)"(
+    'safeTransferFrom(address,address,uint256)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
-    "safeTransferFrom(address,address,uint256,bytes)"(
+    'safeTransferFrom(address,address,uint256,bytes)'(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setMintEthPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setMintUsdcPrice(
       price_: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setUsdcToken(
       usdcToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     setWethToken(
       wethToken_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     supportsInterface(
@@ -1322,7 +1318,7 @@ export interface NftMinting extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     usdcMintPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1335,12 +1331,12 @@ export interface NftMinting extends BaseContract {
 
     withdrawAllEth(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
 
     withdrawAllUsdc(
       to_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: Overrides & {from?: PromiseOrValue<string>}
     ): Promise<PopulatedTransaction>;
   };
 }

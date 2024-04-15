@@ -1,5 +1,5 @@
-import type { Listener } from "@ethersproject/providers";
-import type { Event, EventFilter } from "ethers";
+import type {Listener} from '@ethersproject/providers';
+import type {Event, EventFilter} from 'ethers';
 
 export interface TypedEvent<
   TArgsArray extends Array<any> = any,
@@ -37,7 +37,7 @@ export type GetContractTypeFromFactory<F> = F extends MinEthersFactory<
   : never;
 
 export type GetARGsTypeFromFactory<F> = F extends MinEthersFactory<any, any>
-  ? Parameters<F["deploy"]>
+  ? Parameters<F['deploy']>
   : never;
 
 export type PromiseOrValue<T> = T | Promise<T>;

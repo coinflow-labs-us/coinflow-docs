@@ -9,7 +9,6 @@ import {Web3Button} from '@web3modal/react';
 import {providers} from 'ethers';
 import {NftMinting__factory} from './generated';
 
-
 function CoinflowContent() {
   const wallet = useEthWallet();
   const [tx, setTx] = useState<EvmTransactionData | undefined>(undefined);
