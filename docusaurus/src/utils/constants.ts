@@ -4,12 +4,14 @@ type Options<T> = Array<{value: T; label: string}>;
 
 export const LANGUAGE_OPTIONS: Options<Languages> = [
   {value: 'react', label: 'React'},
+  {value: 'angular', label: 'Angular'},
 ];
 export const CHAIN_OPTIONS: Options<Blockchains> = [
   {value: 'solana', label: 'Solana'},
   {value: 'polygon', label: 'Polygon'},
   {value: 'near', label: 'Near'},
   {value: 'eth', label: 'Ethereum'},
+  {value: 'base', label: 'Base'},
 ];
 export const PRODUCT_OPTIONS: Options<Product> = [
   {value: 'checkout', label: 'Checkout'},

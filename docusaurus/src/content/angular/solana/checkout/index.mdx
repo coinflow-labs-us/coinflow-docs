@@ -1,0 +1,42 @@
+import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
+import Intro from '../../../intro.mdx';
+import InstallSolana from '../install-solana.mdx';
+import InstallCoinflow from '../../install-coinflow.mdx';
+import Wallet from './wallet.mdx';
+
+<Intro />
+<InstallSolana />
+<InstallCoinflow />
+<Wallet />
+
+# Integrate Coinflow Component
+
+<ContentBlock filePath="checkout-app/src/app/purchase/purchase.component.tsx" highlight="35-45">
+
+## Configure the Coinflow Purchase Component
+
+Add the `CoinflowPurchase` component into your UI and configure the props with the following information:
+
+- `wallet` - The Solana Wallet
+- `merchantId` - Your Merchant ID
+- `env` - Use `sandbox` for testing and `prod` for production
+- `connection` - The Solana Connection
+- `transaction` - Represents the purchase being made 
+- `amount` - The amount of USDC you're sending to the program
+- `blockchain` - The Blockchain you are using (in this case, `solana`)
+- `onSuccess` - (optional) A callback function that is called when the purchase is successful
+- `email` - (optional) Email of the user that will be prefilled for them
+- `webhookInfo` - (optional) An object containing any information you want to send to your webhook
+
+</ContentBlock>
+
+<ContentBlock filePath="checkout-app/src/app/app.module.tsx">
+
+## Add the Coinflow component to your application
+
+Add the component to your application, and Coinflow will take care of the rest!
+```
+<app-purchase></app-purchase>
+```
+
+</ContentBlock>
