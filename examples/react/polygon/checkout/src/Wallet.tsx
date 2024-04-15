@@ -57,7 +57,7 @@ export function usePolygonWallet() {
     },
     []
   );
-  
+
   // Signs a message with the wallet private key
   const signMessage = useCallback(async (message: string) => {
     console.log('signMessageWallet', {message});
