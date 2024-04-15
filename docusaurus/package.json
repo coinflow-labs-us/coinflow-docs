@@ -7,6 +7,7 @@
     "lint": "eslint .",
     "start": "npm run codegen && docusaurus start",
     "build": "npm run codegen && docusaurus build",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clean": "docusaurus clear && npm run clean-codegen",
