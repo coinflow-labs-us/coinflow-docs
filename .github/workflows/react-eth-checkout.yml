@@ -1,4 +1,4 @@
-name: React Polygon Checkout
+name: React ETH Checkout
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  react-polygon-checkout:
+  react-eth-checkout:
     uses: ./.github/workflows/frontend-build.yml
     with:
       working-directory: ./examples/react/eth/checkout/
