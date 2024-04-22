@@ -1,19 +1,13 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { WithdrawComponent } from './withdraw/withdraw.component';
-import { CoinflowWithdrawComponent } from '@coinflowlabs/angular';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppComponent } from "./app.component";
+import { WithdrawComponent } from "./withdraw/withdraw.component";
+import { CoinflowWithdrawComponent } from "@coinflowlabs/angular";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WithdrawComponent, 
-    CoinflowWithdrawComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent, WithdrawComponent, CoinflowWithdrawComponent],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
