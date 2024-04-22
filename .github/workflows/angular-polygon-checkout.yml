@@ -15,4 +15,4 @@ jobs:
   angular-polygon-checkout:
     uses: ./.github/workflows/frontend-build.yml
     with:
-      working-directory: ./examples/polygon/checkout/checkout-app/
+      working-directory: ./examples/angular/polygon/checkout/checkout-app/

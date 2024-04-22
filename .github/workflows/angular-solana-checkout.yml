@@ -15,4 +15,4 @@ jobs:
   angular-solana-checkout:
     uses: ./.github/workflows/frontend-build.yml
     with:
-      working-directory: ./examples/solana/checkout/checkout-app/
+      working-directory: ./examples/angular/solana/checkout/checkout-app/
