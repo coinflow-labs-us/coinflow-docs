@@ -211,7 +211,7 @@ services:
     branch: main
     rootDir: examples/angular/solana/checkout/checkout-app
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/checkout-app/browser
     buildFilter:
       paths:
         - examples/angular/solana/checkout/checkout-app/**/*
@@ -226,7 +226,7 @@ services:
     branch: main
     rootDir: examples/angular/solana/withdraw/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/withdraw/browser
     buildFilter:
       paths:
         - examples/angular/solana/withdraw/withdraw/**/*
@@ -241,7 +241,7 @@ services:
     branch: main
     rootDir: examples/angular/polygon/checkout/checkout-app
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/checkout-app/browser
     buildFilter:
       paths:
         - examples/angular/polygon/checkout/checkout-app/**/*
@@ -256,7 +256,7 @@ services:
     branch: main
     rootDir: examples/angular/polygon/withdraw/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/withdraw/browser
     buildFilter:
       paths:
         - examples/angular/polygon/withdraw/withdraw/**/*
@@ -271,7 +271,7 @@ services:
     branch: main
     rootDir: examples/angular/eth/checkout/checkout-app
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/checkout-app/browser
     buildFilter:
       paths:
         - examples/angular/eth/checkout/checkout-app/**/*
@@ -286,7 +286,7 @@ services:
     branch: main
     rootDir: examples/angular/eth/withdraw/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/withdraw/browser
     buildFilter:
       paths:
         - examples/angular/eth/withdraw/withdraw/**/*
@@ -301,7 +301,7 @@ services:
     branch: main
     rootDir: examples/angular/base/checkout/checkout-app
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/checkout-app/browser
     buildFilter:
       paths:
         - examples/angular/base/checkout/checkout-app/**/*
@@ -316,7 +316,7 @@ services:
     branch: main
     rootDir: examples/angular/base/withdraw/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: build
+    staticPublishPath: dist/withdraw/browser
     buildFilter:
       paths:
         - examples/angular/base/withdraw/withdraw/**/*
