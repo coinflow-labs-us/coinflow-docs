@@ -83,6 +83,9 @@ const ContentBlock: FC<IProps> = props => {
             href={`${GITHUB_EXAMPLES_LINK}${languageValue}/${chainValue}/${productValue}/${props.filePath}${highlightParam}`}
             target="_blank"
           >
+            {console.log(
+              `${GITHUB_EXAMPLES_LINK}${languageValue}/${chainValue}/${productValue}/${props.filePath}${highlightParam}`
+            )}
             <span>Source</span>
             <GitHubIcon />
           </SourceLink>

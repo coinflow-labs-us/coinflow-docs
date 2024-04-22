@@ -204,3 +204,123 @@ services:
         value: coinflow
       - key: REACT_APP_WALLET_CONNECT_PROJECT_ID
         value: 2383b9beda863a0b895ff5603b28bd04
+  
+  - type: web
+    name: angular-solana-checkout
+    env: static
+    branch: main
+    rootDir: examples/angular/solana/checkout/checkout-app
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/solana/checkout/checkout-app/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+  
+  - type: web
+    name: angular-solana-withdraw
+    env: static
+    branch: main
+    rootDir: examples/angular/solana/withdraw/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/solana/withdraw/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+  
+  - type: web
+    name: angular-polygon-checkout
+    env: static
+    branch: main
+    rootDir: examples/angular/polygon/checkout/checkout-app
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/polygon/checkout/checkout-app/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: angular-polygon-withdraw
+    env: static
+    branch: main
+    rootDir: examples/angular/polygon/withdraw/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/polygon/withdraw/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+  
+  - type: web
+    name: angular-eth-checkout
+    env: static
+    branch: main
+    rootDir: examples/angular/eth/checkout/checkout-app
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/eth/checkout/checkout-app/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: angular-eth-withdraw
+    env: static
+    branch: main
+    rootDir: examples/angular/eth/withdraw/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/eth/withdraw/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: angular-base-checkout
+    env: static
+    branch: main
+    rootDir: examples/angular/base/checkout/checkout-app
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/base/checkout/checkout-app/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: angular-base-withdraw
+    env: static
+    branch: main
+    rootDir: examples/angular/base/withdraw/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - examples/angular/base/withdraw/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

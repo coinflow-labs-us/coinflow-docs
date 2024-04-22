@@ -9,23 +9,6 @@ import {
   getAssociatedTokenAddressSync,
 } from '@solana/spl-token';
 
-function App() {
-  return (
-    <Wallet>
-      <div className="App">
-        <WalletMultiButton />
-        <div
-          style={{
-            height: '100vh',
-          }}
-        >
-          <CoinflowContent />
-        </div>
-      </div>
-    </Wallet>
-  );
-}
-
 function CoinflowContent() {
   const {connection} = useConnection();
   const wallet = useWallet();
@@ -33,9 +16,10 @@ function CoinflowContent() {
     undefined
   );
 
-  const amount = 1;
+  const amount = 1; // 1 usdc
 
   useEffect(() => {
+    // Create a transaction that mints usdc
     async function createTx() {
       if (!wallet.publicKey) return;
 
@@ -85,15 +69,32 @@ function CoinflowContent() {
       merchantId={process.env.REACT_APP_MERCHANT_ID as string}
       env={process.env.REACT_APP_ENV as CoinflowEnvs}
       connection={connection}
+      transaction={transaction}
+      amount={amount}
+      blockchain={'solana'}
       onSuccess={() => {
         console.log('Purchase Success');
       }}
-      blockchain={'solana'}
-      webhookInfo={{item: 'sword'}}
       email={'user-email@email.com'}
-      transaction={transaction}
-      amount={amount}
+      webhookInfo={{item: 'sword'}}
     />
+  );
+}
+
+function App() {
+  return (
+    <Wallet>
+      <div className="App">
+        <WalletMultiButton />
+        <div
+          style={{
+            height: '100vh',
+          }}
+        >
+          <CoinflowContent />
+        </div>
+      </div>
+    </Wallet>
   );
 }
 

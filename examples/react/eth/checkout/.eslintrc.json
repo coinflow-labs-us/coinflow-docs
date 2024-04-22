@@ -22,7 +22,7 @@
     "eol-last": "error",
     "prefer-arrow-callback": "error",
     "no-trailing-spaces": "error",
-    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "quotes": ["warn", "single", {"avoidEscape": true}],
     "no-restricted-properties": [
       "error",
       {
@@ -39,9 +39,7 @@
     {
       "files": ["**/*.ts", "**/*.tsx"],
       "parser": "@typescript-eslint/parser",
-      "extends": [
-        "plugin:@typescript-eslint/recommended"
-      ],
+      "extends": ["plugin:@typescript-eslint/recommended"],
       "rules": {
         "camelcase": "off",
         "@typescript-eslint/no-unused-vars": "off",

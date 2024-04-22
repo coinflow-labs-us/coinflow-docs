@@ -1,10 +1,40 @@
 import ContentBlock from '../../../components/ContentFromFile/ContentBlock';
 
-<ContentBlock filePath={'src/Wallet.tsx'} highlight={'16'}>
 
 # Polygon Wallet Configuration
+You're  now ready to build out the Polygon wallet!
+The following code snippets will allow you to use the Polygon Wallet in any component in your application. 
 
-Create a wrapper for the Polygon Wallet Provider.
-This will allow you to use the Polygon Wallet in any component in your application.
+<ContentBlock filePath={'src/Wallet.tsx'} highlight={'16-44'}>
+
+## Wallet connection
+
+Utilizing a wallet connector like Wagmi streamlines the process of accessing your wallet, making it easier to manage your funds. In this example, we demonstrate how to connect to your wallet with Wagmi. 
+
+Note: If you choose to implement another wallet connector, skip to "Wallet functionality".
+</ContentBlock>
+
+<ContentBlock filePath={'src/Wallet.tsx'} highlight={'46-70'}>
+
+## Wallet functionality
+
+Here, we demonstrate how to set up functionalities related to wallet interactions.
+
+This includes creating a reference to the user wallet's address, the ability to send a Transaction, 
+and a message signature.
+
+</ContentBlock>
+
+<ContentBlock filePath={'src/Wallet.tsx'} highlight={'72-76'}>
+
+You can customize your wallet's functionality to fit your preferences, as long as 
+the return type matches Coinflow's expected wallet interface, as outlined below:
+```
+{  
+    address: string;  
+    sendTransaction: (transaction) => Promise<{hash: string}>;  
+    signMessage: (message: string) => Promise<string>;  
+}
+```
 
 </ContentBlock>
