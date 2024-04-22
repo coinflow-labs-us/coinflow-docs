@@ -23,7 +23,7 @@ import { sign } from "tweetnacl";
 })
 export class PurchaseComponent {
   purchaseHeight: string = "500";
-  keypair = new Keypair();
+    keypair = new Keypair(); // Replace wallet keypair
   wallet = {
     publicKey: this.keypair.publicKey,
     sendTransaction: (tx: Transaction | VersionedTransaction) => {

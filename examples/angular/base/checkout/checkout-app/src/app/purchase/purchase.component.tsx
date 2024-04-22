@@ -22,7 +22,7 @@ import { sign } from "tweetnacl";
 export class PurchaseComponent {
   purchaseHeight: string = "500";
   privateKey =
-    "0x78a1508cb93ad25ffdb78eebb6075fa49795fd3a1e3721416fc04ef60c88f3ae";
+    "0x78a1508cb93ad25ffdb78eebb6075fa49795fd3a1e3721416fc04ef60c88f3ae";  // Replace wallet key
   key = ethers.utils.arrayify(this.privateKey);
 
   wallet!: EthWallet;
