@@ -1,7 +1,7 @@
 import "text-encoding-polyfill";
 import "react-native-get-random-values";
 import { Buffer } from "buffer";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import {
   Connection,
@@ -10,7 +10,7 @@ import {
   Transaction,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { CoinflowPurchase } from "@coinflowlabs/react-native";
+import { CoinflowPurchase, CoinflowWithdraw } from "@coinflowlabs/react-native";
 import {
   createTransferCheckedInstruction,
   getAssociatedTokenAddressSync,
@@ -20,10 +20,24 @@ import { sign } from "tweetnacl";
 global.Buffer = Buffer;
 
 export default function App() {
-  const [keypair, setKeypair] = useState<Keypair>(Keypair.generate());
+  const [keypair, setKeypair] = useState<Keypair>(
+    Keypair.fromSecretKey(
+      Uint8Array.from([
+        135, 172, 8, 68, 115, 157, 189, 112, 178, 17, 122, 230, 130, 245, 69,
+        180, 20, 92, 216, 188, 190, 6, 163, 202, 177, 120, 104, 193, 78, 153,
+        236, 176, 193, 185, 18, 86, 88, 18, 97, 29, 212, 65, 153, 129, 197, 0,
+        179, 89, 27, 150, 198, 91, 214, 235, 151, 47, 81, 119, 37, 254, 157,
+        203, 238, 174,
+      ])
+    )
+  );
   const publicKey = useMemo(() => {
     return keypair.publicKey;
   }, [keypair]);
+
+  useEffect(() => {
+    console.log(publicKey.toString());
+  }, []);
 
   const connection = useMemo(
     () => new Connection("https://api.devnet.solana.com", "confirmed"),
@@ -97,7 +111,7 @@ export default function App() {
     <View style={styles.container}>
       <View>
         <Text>Public key: {publicKey?.toString()}</Text>
-        <CoinflowPurchase
+        <CoinflowWithdraw
           style={styles.container}
           wallet={{
             publicKey,
@@ -108,10 +122,22 @@ export default function App() {
           connection={connection}
           blockchain={"solana"}
           env={"local"}
-          amount={1}
-          disableApplePay={true}
-          transaction={transaction}
         />
+        {/*<CoinflowPurchase*/}
+        {/*  style={styles.container}*/}
+        {/*  wallet={{*/}
+        {/*    publicKey,*/}
+        {/*    sendTransaction,*/}
+        {/*    signMessage,*/}
+        {/*  }}*/}
+        {/*  merchantId={"paysafe"}*/}
+        {/*  connection={connection}*/}
+        {/*  blockchain={"solana"}*/}
+        {/*  env={"local"}*/}
+        {/*  amount={1}*/}
+        {/*  disableApplePay={true}*/}
+        {/*  transaction={transaction}*/}
+        {/*/>*/}
       </View>
     </View>
   );
