@@ -8,9 +8,10 @@ import {
   Keypair,
   PublicKey,
   Transaction,
+  TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { CoinflowPurchase, CoinflowWithdraw } from "@coinflowlabs/react-native";
+import { CoinflowPurchase } from "@coinflowlabs/react-native";
 import {
   createTransferCheckedInstruction,
   getAssociatedTokenAddressSync,
@@ -48,12 +49,18 @@ export default function App() {
     async (transaction: Transaction | VersionedTransaction) => {
       if ("instructions" in transaction) {
         console.log("Regular Transaction");
-        // transaction.feePayer = publicKey;
-        transaction.partialSign(keypair);
+        transaction.feePayer = publicKey;
+        console.log("Regular Transaction 1");
+        transaction.signatures = [];
+        transaction.sign(keypair);
+        console.log("Regular Transaction 2");
       } else {
         console.log("VersionedTransaction!!!!!");
         console.log(transaction);
         try {
+          transaction.message.staticAccountKeys[0] = keypair.publicKey;
+          transaction.signatures = [];
+          transaction.signatures[0] = Buffer.alloc(64, 0);
           transaction.sign([keypair]);
         } catch (e) {
           console.error(e);
@@ -61,7 +68,7 @@ export default function App() {
         }
       }
       console.log("done signing!!!!!");
-      console.log(transaction.serialize().toString("base64"));
+      console.log(Buffer.from(transaction.serialize()).toString("base64"));
       const sig = await connection.sendRawTransaction(transaction.serialize());
       console.log({ sig });
       return sig;
@@ -100,30 +107,19 @@ export default function App() {
       transferAmount,
       6
     );
-    return new Transaction({
-      feePayer: Keypair.generate().publicKey,
-      blockhash: Keypair.generate().publicKey.toString(),
-      lastValidBlockHeight: 1,
-    }).add(transferIx1, transferIx2);
+    const message = new TransactionMessage({
+      payerKey: Keypair.generate().publicKey,
+      recentBlockhash: Keypair.generate().publicKey.toString(),
+      instructions: [transferIx1, transferIx2],
+    }).compileToV0Message();
+    return new VersionedTransaction(message);
   }, []);
 
   return (
     <View style={styles.container}>
       <View>
         <Text>Public key: {publicKey?.toString()}</Text>
-        <CoinflowWithdraw
-          style={styles.container}
-          wallet={{
-            publicKey,
-            sendTransaction,
-            signMessage,
-          }}
-          merchantId={"paysafe"}
-          connection={connection}
-          blockchain={"solana"}
-          env={"local"}
-        />
-        {/*<CoinflowPurchase*/}
+        {/*<CoinflowWithdraw*/}
         {/*  style={styles.container}*/}
         {/*  wallet={{*/}
         {/*    publicKey,*/}
@@ -134,10 +130,22 @@ export default function App() {
         {/*  connection={connection}*/}
         {/*  blockchain={"solana"}*/}
         {/*  env={"local"}*/}
-        {/*  amount={1}*/}
-        {/*  disableApplePay={true}*/}
-        {/*  transaction={transaction}*/}
         {/*/>*/}
+        <CoinflowPurchase
+          style={styles.container}
+          wallet={{
+            publicKey,
+            sendTransaction,
+            signMessage,
+          }}
+          merchantId={"paysafe"}
+          connection={connection}
+          blockchain={"solana"}
+          env={"local"}
+          amount={1}
+          disableApplePay={true}
+          transaction={transaction}
+        />
       </View>
     </View>
   );
