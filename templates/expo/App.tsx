@@ -1,91 +1,119 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
-import Web3Auth, { OPENLOGIN_NETWORK } from "@web3auth/react-native-sdk";
-import Constants, { AppOwnership } from "expo-constants";
-import * as Linking from "expo-linking";
-import * as WebBrowser from "expo-web-browser";
-import RPC from "./solanaRPC";
-import { Connection, PublicKey, Transaction } from "@solana/web3.js";
-import { CoinflowWithdraw } from "@coinflowlabs/react-native";
+import "text-encoding-polyfill";
+import "react-native-get-random-values";
+import { Buffer } from "buffer";
+import React, { useCallback, useMemo, useState } from "react";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  Transaction,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import { CoinflowPurchase } from "@coinflowlabs/react-native";
+import {
+  createTransferCheckedInstruction,
+  getAssociatedTokenAddressSync,
+} from "@solana/spl-token";
+import { sign } from "tweetnacl";
 
-const resolvedRedirectUrl =
-  Constants.appOwnership == AppOwnership.Expo ||
-  Constants.appOwnership == AppOwnership.Guest
-    ? Linking.createURL("web3auth", {})
-    : Linking.createURL("web3auth", { scheme: "coinflow" }); // Replace Coinflow with your app's scheme
-
-const clientId =
-  "BKPNPUxXPoDfsjTw6AF1dfMJdyzYeXMskYWmObAcicEdSYS91NVb_cMeIVZIi_M55jF-i3wiNRaVblr5347Clss";
+global.Buffer = Buffer;
 
 export default function App() {
-  const [key, setKey] = useState<string | undefined>(undefined);
-  const [publicKey, setPublicKey] = useState<PublicKey | null>(null);
-
-  const login = async () => {
-    try {
-      const web3auth = new Web3Auth(WebBrowser, {
-        clientId,
-        network: OPENLOGIN_NETWORK.TESTNET, // MAINNET, AQUA, CELESTE, CYAN or TESTNET
-      });
-
-      const info = await web3auth.login({
-        redirectUrl: resolvedRedirectUrl,
-        mfaLevel: "default", // Pass on the mfa level of your choice: default, optional, mandatory, none
-        loginProvider: "google", // Pass on the login provider of your choice: google, facebook, discord, twitch, twitter, github, linkedin, apple, etc.
-        curve: "ED25519", // This is the scheme for solana
-      });
-      setKey(info.ed25519PrivKey);
-      console.log("Logged In");
-
-      if (!info.ed25519PrivKey) return;
-      const publicKey = await RPC.getAccounts(info.ed25519PrivKey);
-      setPublicKey(publicKey);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const sendTransaction = async (transaction: Transaction) => {
-    if (!key) return "";
-    const tx = await RPC.sendTransaction(key, transaction);
-    console.log(tx);
-    return tx;
-  };
+  const [keypair, setKeypair] = useState<Keypair>(Keypair.generate());
+  const publicKey = useMemo(() => {
+    return keypair.publicKey;
+  }, [keypair]);
 
   const connection = useMemo(
     () => new Connection("https://api.devnet.solana.com", "confirmed"),
     []
   );
 
-  useEffect(() => {
-    console.log(publicKey?.toString());
-  }, [publicKey]);
-
-  const loggedInView = (
-    <View>
-      <Text>Public key: {publicKey?.toString()}</Text>
-      <CoinflowWithdraw
-        style={styles.container}
-        wallet={{
-          publicKey,
-          sendTransaction,
-        }}
-        merchantId={"paysafe"}
-        connection={connection}
-        blockchain={"solana"}
-        env={"staging"}
-      />
-    </View>
+  const sendTransaction = useCallback(
+    async (transaction: Transaction | VersionedTransaction) => {
+      if ("instructions" in transaction) {
+        console.log("Regular Transaction");
+        // transaction.feePayer = publicKey;
+        transaction.partialSign(keypair);
+      } else {
+        console.log("VersionedTransaction!!!!!");
+        console.log(transaction);
+        try {
+          transaction.sign([keypair]);
+        } catch (e) {
+          console.error(e);
+          throw e;
+        }
+      }
+      console.log("done signing!!!!!");
+      console.log(transaction.serialize().toString("base64"));
+      const sig = await connection.sendRawTransaction(transaction.serialize());
+      console.log({ sig });
+      return sig;
+    },
+    []
   );
 
-  const unloggedInView = (
-    <View style={styles.buttonArea}>
-      <Button title="Login with Web3Auth" onPress={login} />
-    </View>
-  );
+  const signMessage = async (message: Uint8Array) => {
+    console.log("signMessage!!!!!!");
+    return Promise.resolve(sign.detached(message, keypair.secretKey));
+  };
+
+  const transaction = useMemo(() => {
+    const mint = new PublicKey("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
+
+    const receiver = new PublicKey(
+      "H191L17jE26R1wGWQHAx5KQhBwSwHPMgzb2A66Hr9h37"
+    );
+
+    const receiverAta = getAssociatedTokenAddressSync(mint, receiver);
+
+    const transferAmount = Number(1 / 2) * Math.pow(10, 6);
+    const transferIx1 = createTransferCheckedInstruction(
+      new PublicKey("33333333333333333333333333333333333333333333"),
+      mint,
+      receiverAta,
+      new PublicKey("22222222222222222222222222222222222222222222"),
+      transferAmount,
+      6
+    );
+    const transferIx2 = createTransferCheckedInstruction(
+      new PublicKey("33333333333333333333333333333333333333333333"),
+      mint,
+      new PublicKey("HzdseyCGneNv4SzyBgteppi1N8GawjWLSkBSTx82UTtL"),
+      new PublicKey("22222222222222222222222222222222222222222222"),
+      transferAmount,
+      6
+    );
+    return new Transaction({
+      feePayer: Keypair.generate().publicKey,
+      blockhash: Keypair.generate().publicKey.toString(),
+      lastValidBlockHeight: 1,
+    }).add(transferIx1, transferIx2);
+  }, []);
 
   return (
-    <View style={styles.container}>{key ? loggedInView : unloggedInView}</View>
+    <View style={styles.container}>
+      <View>
+        <Text>Public key: {publicKey?.toString()}</Text>
+        <CoinflowPurchase
+          style={styles.container}
+          wallet={{
+            publicKey,
+            sendTransaction,
+            signMessage,
+          }}
+          merchantId={"paysafe"}
+          connection={connection}
+          blockchain={"solana"}
+          env={"local"}
+          amount={1}
+          disableApplePay={true}
+          transaction={transaction}
+        />
+      </View>
+    </View>
   );
 }
 
