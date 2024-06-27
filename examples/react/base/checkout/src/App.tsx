@@ -20,11 +20,11 @@ function CoinflowContent() {
       if (!wallet.address) return;
 
       const provider = new providers.JsonRpcProvider(
-        process.env.REACT_APP_ETH_RPC_URL as string
+        process.env.REACT_APP_BASE_RPC_URL as string
       );
 
       const NftMintingContractAddress =
-        '0x0c723b4aD2DCc322d171A74a216f551829F7Bdb7';
+        '0x2410d953fD4Fd113C998fA2B96DD7e4B40c01edc';
       const contract = NftMinting__factory.connect(
         NftMintingContractAddress,
         provider
@@ -50,8 +50,8 @@ function CoinflowContent() {
       wallet={wallet}
       merchantId={process.env.REACT_APP_MERCHANT_ID as string}
       env={process.env.REACT_APP_ENV as CoinflowEnvs}
-      onSuccess={() => console.log('Withdraw Success')}
-      blockchain={'eth'}
+      onSuccess={() => console.log('Purchase Success')}
+      blockchain={'base'}
       transaction={tx}
       amount={1}
     />

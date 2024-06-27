@@ -1,6 +1,13 @@
 import {ReactNode, useCallback} from 'react';
 import {polygonMumbai} from 'wagmi/chains';
-import {configureChains, createClient, useAccount, WagmiConfig} from 'wagmi';
+import {
+  configureChains,
+  createClient,
+  useAccount,
+  useSignTypedData,
+  useSignMessage,
+  WagmiConfig,
+} from 'wagmi';
 import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum';
 import {Web3Modal} from '@web3modal/react';
 import {sendTransaction, prepareSendTransaction} from '@wagmi/core';
@@ -41,20 +48,52 @@ export function Wallet({children}: {children: ReactNode}) {
 
 export function useEthWallet() {
   const {address} = useAccount();
+  const {signTypedDataAsync} = useSignTypedData();
+  const {signMessageAsync} = useSignMessage();
 
   const sendTransactionWallet = useCallback(
     async (request: providers.TransactionRequest & {to: string}) => {
-      const config = await prepareSendTransaction({
-        request,
-      });
+      const config = await prepareSendTransaction({request});
       const {hash} = await sendTransaction(config);
       return {hash};
     },
     []
   );
 
+  const signMessageWallet = useCallback(
+    async (message: string) => {
+      try {
+        console.log('signMessageWallet', {message});
+        const signedTypeData = JSON.parse(message);
+        console.log('Parsed message:', {signedTypeData});
+
+        const {types, domain, message: msg} = signedTypeData;
+        if (!types || !domain || !msg) {
+          throw new Error('Incomplete EIP-712 data');
+        }
+
+        return await signTypedDataAsync({
+          domain,
+          types,
+          value: msg,
+        }).catch(e => {
+          console.error('signTypedData error', e);
+          throw e;
+        });
+      } catch (e) {
+        console.error('Error during signTypedDataAsync', e);
+        return await signMessageAsync({message}).catch(e => {
+          console.error('signMessageAsync error', e);
+          throw e;
+        });
+      }
+    },
+    [signMessageAsync, signTypedDataAsync]
+  );
+
   return {
     address,
+    signMessage: signMessageWallet,
     sendTransaction: sendTransactionWallet,
   };
 }

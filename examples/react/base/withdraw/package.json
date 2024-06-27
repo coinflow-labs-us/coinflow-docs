@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@coinflowlabs/react": "^3.1.11",
+    "@coinflowlabs/react": "^4.2.6",
     "@web3modal/ethereum": "^2.3.6",
     "@web3modal/react": "^2.3.6",
     "react": "^18.2.0",
@@ -12,6 +12,7 @@
     "wagmi": "^0.12.12"
   },
   "scripts": {
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
     "lint": "eslint .",
     "clean": "rimraf build",
     "build": "tsc --noEmit && react-app-rewired build",

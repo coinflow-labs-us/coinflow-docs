@@ -29,7 +29,7 @@ function CoinflowContent() {
       merchantId={process.env.REACT_APP_MERCHANT_ID as string}
       env={process.env.REACT_APP_ENV as CoinflowEnvs}
       onSuccess={() => console.log('Withdraw Success')}
-      blockchain={'eth'}
+      blockchain={'base'}
     />
   );
 }
