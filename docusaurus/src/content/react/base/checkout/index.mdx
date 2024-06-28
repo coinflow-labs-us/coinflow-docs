@@ -1,0 +1,59 @@
+import ContentBlock from "@site/src/components/ContentFromFile/ContentBlock";
+import Webpack5 from './webpack5.mdx';
+import Intro from '../../../intro.mdx';
+import InstallEth from '../../base/install-eth.mdx';
+import EthWallet from '../../base/eth-wallet-setup.mdx';
+import InstallCoinflow from '../../install-coinflow-react.mdx';
+
+<Intro />
+<InstallEth />
+<Webpack5 />
+<EthWallet />
+<InstallCoinflow/>
+
+# Integrate Coinflow component
+
+<ContentBlock filePath="src/App.tsx" highlight="2-6">
+
+## Import the Coinflow Modules into your project
+
+This is the main Plug and Play Modal package that contains the Coinflow SDK with the UI, giving you a simple way of implementing Coinflow within your interface.
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.tsx" highlight="19-47">
+
+## Configure the Base Transaction
+
+Initialize a Base transaction calling your contract exactly like you normally would for a user traditionally paying
+with USDC. [Read about how to customize a purchase transaction here](https://docs.coinflow.cash/docs/evm).
+</ContentBlock>
+
+<ContentBlock filePath="src/App.tsx" highlight="49-59">
+
+## Configure the Coinflow Purchase component
+
+Configure the `CoinflowPurchase` component props with the following information:
+
+- `wallet` - The EVM Wallet
+- `merchantId` - Your Merchant ID
+- `env` - Use `sandbox` for testing and `prod` for production
+- `onSuccess` - (optional) A callback function that is called when the purchase is successful
+- `blockchain` - The Blockchain you are using (in this case, `eth`)
+- `transaction` - The transaction object representing the purchase being made
+- `amount` - The amount of USDC you're sending to the program
+- `email` - (optional) Email of the user that will be prefilled for them
+- `webhookInfo` - (optional) An object containing any information you want to send to your webhook
+
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.tsx" highlight="62-77">
+
+## Add the Coinflow component to your application
+
+Add the component to your application, and Coinflow will take care of the rest!
+
+*Note: Remove the Wallet and Web3Button components if you're using another wallet connector.*
+
+</ContentBlock>
