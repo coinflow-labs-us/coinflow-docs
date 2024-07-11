@@ -14,9 +14,6 @@
   },
   "dependencies": {
     "@coinflowlabs/vue": "^0.2.2",
-    "@solana/web3.js": "^1.95.0",
-    "bs58": "^4.0.1",
-    "tweetnacl": "^1.0.3",
     "vue": "^3.4.29"
   },
   "devDependencies": {
