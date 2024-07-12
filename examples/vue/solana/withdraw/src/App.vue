@@ -8,7 +8,7 @@ const height = ref(500);
 const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight);
 };
-// HHxJEwJY7NDgrHpnBkX3DTmhG5mMnvGFsp631s1sptRQ
+const merchantId = process.env.VITE_MERCHANT_ID as string;
 const keypair = Keypair.fromSecretKey(
   Uint8Array.from([
     56, 14, 246, 208, 184, 212, 110, 37, 164, 242, 149, 110, 238, 115, 65,
@@ -41,7 +41,7 @@ const signMessage = (message: Uint8Array) => {
         },
         env: 'sandbox',
         blockchain: 'solana',
-        merchantId: 'testtest',
+        merchantId: merchantId,
         connection: new Connection('https://api.devnet.solana.com'),
         handleHeightChange,
       }"

@@ -8,7 +8,8 @@ const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight);
 };
 
-const privateKey = "0x4c0883a69102937d6231471b5dbb6204fe512961708279987bab1fbd6f5eecf8";
+const merchantId = process.env.VITE_MERCHANT_ID as string;
+const privateKey = process.env.VITE_WALLET_PRIVATE_KEY as string;
 const provider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/polygon_amoy');
 const wallet = new ethers.Wallet(privateKey, provider);
 
@@ -51,7 +52,7 @@ const signMessage = async (message: string) => {
         },
         env: 'sandbox',
         blockchain: 'polygon',
-        merchantId: 'testtest',
+        merchantId: merchantId,
         handleHeightChange,
       }"
     />

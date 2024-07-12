@@ -3,13 +3,14 @@ import { ref } from "vue";
 import { CoinflowWithdraw } from "@coinflowlabs/vue";
 import { ethers } from "ethers";
 
-const privateKey = '0xbec62fbaa8d00ac585746d1a753d5077f844581f46c9edd5a7f2500110328112';
 
 const height = ref(500);
 const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight);
 };
 
+const merchantId = process.env.VITE_MERCHANT_ID as string;
+const privateKey = process.env.VITE_WALLET_PRIVATE_KEY as string;
 const provider = new ethers.providers.JsonRpcProvider('https://base-sepolia-rpc.publicnode.com');
 const wallet = new ethers.Wallet(privateKey, provider);
 
@@ -56,7 +57,7 @@ const signMessage = async (message: string) => {
         },
         env: 'sandbox',
         blockchain: 'base',
-        merchantId: 'testtest',
+        merchantId: merchantId,
         handleHeightChange,
       }"
     />

@@ -8,7 +8,7 @@ const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight);
 };
 
-
+const merchantId = process.env.VITE_MERCHANT_ID as string;
 const wallet = ethers.Wallet.createRandom();
 const provider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth_sepolia');
 const connectedWallet = wallet.connect(provider);
@@ -33,7 +33,7 @@ const signMessage = async (message: string) => {
         },
         env: 'sandbox',
         blockchain: 'eth',
-        merchantId: 'testtest',
+        merchantId: merchantId,
         connection: provider,
         handleHeightChange,
       }"

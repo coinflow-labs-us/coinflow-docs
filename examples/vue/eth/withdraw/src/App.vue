@@ -8,12 +8,10 @@ const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight);
 };
 
-
-const privateKey = "0x4c0883a69102937d6231471b5dbb6204fe512961708279987bab1fbd6f5eecf8";
+const merchantId = process.env.VITE_MERCHANT_ID as string;
+const privateKey = process.env.VITE_WALLET_PRIVATE_KEY as string;
 const provider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth_sepolia');
 const wallet = new ethers.Wallet(privateKey, provider);
-
-console.log("Ethereum wallet address:", wallet.address);
 
 const sendTransaction = async (tx: ethers.providers.TransactionRequest) => {
   const signedTransaction = await wallet.signTransaction(tx);
@@ -21,7 +19,24 @@ const sendTransaction = async (tx: ethers.providers.TransactionRequest) => {
 };
 
 const signMessage = async (message: string) => {
-  return wallet.signMessage(message);
+  try {
+    const { domain, message: value } = JSON.parse(message);
+    const types = {
+      Permit: [
+        { name: 'owner', type: 'address' },
+        { name: 'spender', type: 'address' },
+        { name: 'value', type: 'uint256' },
+        { name: 'nonce', type: 'uint256' },
+        { name: 'deadline', type: 'uint256' },
+      ]
+    };
+
+    const signature = await wallet._signTypedData(domain, types, value);
+    return signature;
+  } catch (error) {
+    console.error("Error signing typed data:", error);
+    throw error;
+  }
 };
 </script>
 
@@ -35,7 +50,7 @@ const signMessage = async (message: string) => {
         },
         env: 'sandbox',
         blockchain: 'eth',
-        merchantId: 'testtest',
+        merchantId: merchantId,
         handleHeightChange,
       }"
     />
