@@ -1,0 +1,47 @@
+import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
+import Intro from '../../../intro.mdx';
+import InstallCoinflow from '../../install-coinflow-vue.mdx';
+
+<Intro />
+<InstallCoinflow/>
+
+<ContentBlock filePath="src/App.vue" highlight="2-6">
+
+# Import the Coinflow Modules into your project
+
+This is the main Plug and Play Modal package that contains the Coinflow SDK with the UI, giving you a simple way of implementing Coinflow within your interface.
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.vue" highlight="64-79">
+
+# Configure the Coinflow Card Form Component
+
+Add the `CoinflowCardForm` component into your UI and configure the props with the following information:
+
+- `merchantId` - Your Merchant ID
+- `walletPubkey` - The public key of your users wallet
+- `blockchain` - The Blockchain you are using
+- `env` - Use `sandbox` for testing and `prod` for production
+- `handleHeightChange` - A handler for dealing with changing height of the iframe content
+- `customCss` - Custom CSS to style the form
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.vue" highlight="82-86">
+
+# Add a CVV Input
+
+Add a CVV input which will capture the user's card's CVV
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.vue" highlight="21-55">
+
+# Create a submit handler
+
+Create a submit handler which does the following actions:
+1. Calls getToken from the CoinflowCardForm's ref
+2. Passes that token and the CVV to the Coinflow Token Checkout endpoint
+
+</ContentBlock>

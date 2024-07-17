@@ -1,0 +1,23 @@
+import ContentBlock from '../../components/ContentFromFile/ContentBlock';
+
+
+# Fixing WebPack 5 issues
+
+While using `create-react-app`, you may run into issues building. 
+This is because NodeJS polyfills are not included in the latest version of webpack 5.
+
+<ContentBlock filePath="package.json" highlight="40-69">
+
+## Dev Dependencies
+
+To resolve, Add the following in the `devDependencies` of your `package.json` file.
+
+</ContentBlock>
+
+<ContentBlock filePath="config-overrides.js">
+
+## Config Overrides
+
+Copy the file contents of `config-overrides.js` into your application.
+
+</ContentBlock>
