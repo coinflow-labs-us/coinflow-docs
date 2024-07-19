@@ -1,7 +1,11 @@
-import { createApp } from 'vue'
-import App from "./App.vue";
+// main.js or main.ts
+import { createApp } from 'vue';
+import App from './App.vue';
+import { Buffer } from 'buffer';
+import process from 'process';
+import 'crypto-browserify';
 
-const app = createApp(App)
+window.Buffer = Buffer;
+window.process = process;
 
-
-app.mount('#app')
+createApp(App).mount('#app');

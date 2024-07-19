@@ -1,10 +1,18 @@
 import ContentBlock from '../../../components/ContentFromFile/ContentBlock';
 
-<ContentBlock filePath={'src/NearWalletContext.tsx'} highlight={'30'}>
 
-# Near Wallet Configuration
+# Connect to a Wallet
+<ContentBlock filePath={'src/App.vue'} highlight={'12-23'}>
 
-Create a wrapper for the Near Wallet Provider.
-This will allow you to use the Near Wallet in any component in your application.
+In this example, we hard code a wallet and pass it along to the CoinflowPurchase component. 
+You can customize your wallet's functionality to fit your preferences, as long as 
+the return type matches Coinflow's expected wallet interface, as outlined below:
+```
+{  
+    address: string;  
+    sendTransaction: (transaction) => Promise<{hash: string}>;  
+    signMessage: (message: string) => Promise<string>;  
+}
+```
 
 </ContentBlock>
