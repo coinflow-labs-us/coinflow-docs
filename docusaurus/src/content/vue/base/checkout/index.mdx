@@ -11,7 +11,7 @@ import InstallCoinflow from '../../install-coinflow-vue.mdx';
 
 # Integrate Coinflow component
 
-<ContentBlock filePath="src/App.vue" highlight="2-6">
+<ContentBlock filePath="src/App.vue" highlight="3">
 
 ## Import the Coinflow Modules into your project
 
@@ -19,7 +19,7 @@ This is the main Plug and Play Modal package that contains the Coinflow SDK with
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.vue" highlight="19-47">
+<ContentBlock filePath="src/App.vue" highlight="27-48">
 
 ## Configure the Base Transaction
 
@@ -27,7 +27,7 @@ Initialize a Base transaction calling your contract exactly like you normally wo
 with USDC. [Read about how to customize a purchase transaction here](https://docs.coinflow.cash/docs/evm).
 </ContentBlock>
 
-<ContentBlock filePath="src/App.vue" highlight="49-59">
+<ContentBlock filePath="src/App.vue" highlight="53-68">
 
 ## Configure the Coinflow Purchase component
 
@@ -46,12 +46,5 @@ Configure the `CoinflowPurchase` component props with the following information:
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.vue" highlight="62-77">
-
 ## Add the Coinflow component to your application
-
 Add the component to your application, and Coinflow will take care of the rest!
-
-*Note: Remove the Wallet and Web3Button components if you're using another wallet connector.*
-
-</ContentBlock>

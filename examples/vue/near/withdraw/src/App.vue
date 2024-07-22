@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { CoinflowWithdraw } from "@coinflowlabs/vue";
 import { ethers } from "ethers";
 
-
 const height = ref(500);
 const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight);

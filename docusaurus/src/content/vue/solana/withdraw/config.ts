@@ -1,4 +1,1 @@
-export const files = [
-  'src/App.tsx',
-  'package.json',
-];
+export const files = ['src/App.vue', 'package.json'];

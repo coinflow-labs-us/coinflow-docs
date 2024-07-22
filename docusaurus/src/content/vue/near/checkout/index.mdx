@@ -9,7 +9,7 @@ import NearWalletSetup from '../near-wallet.mdx';
 <NearWalletSetup/>
 <InstallCoinflow/>
 
-<ContentBlock filePath="src/App.vue" highlight="3-7">
+<ContentBlock filePath="src/App.vue" highlight="3">
 
 # Import the Coinflow Modules into your project
 
@@ -17,7 +17,7 @@ This is the main Plug and Play Modal package that contains the Coinflow SDK with
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.vue" highlight="60-66">
+<ContentBlock filePath="src/App.vue" highlight="53-67">
 
 # Configure the Coinflow Purchase Component
 
@@ -33,14 +33,5 @@ Add the `CoinflowPurchase` component into your UI and configure the props with t
 
 </ContentBlock>
 
-<ContentBlock filePath="src/App.vue" highlight="67-68">
-
-# Configure the Near Transaction (Optional)
-
-Initialize a Near transaction FunctionCall action calling your program exactly like you normally would for a user traditionally paying
-with USDC. Coinflow will take care of the rest!
-
-Pass this transaction into the `transaction` property of the `CoinflowPurchase` component. You will also be required to set the `amount` property to be
-the amount of USDC you are sending to the program.
-
-</ContentBlock>
+## Add the Coinflow component to your application
+Add the component to your application, and Coinflow will take care of the rest!

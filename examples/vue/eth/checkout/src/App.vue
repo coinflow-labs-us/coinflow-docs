@@ -9,7 +9,7 @@
   };
 
   const merchantId = process.env.VITE_MERCHANT_ID as string;
-  const etgRpcUrl = process.env.VITE_ETH_RPC_CONNECTION as string;
+  const ethRpcUrl = process.env.VITE_ETH_RPC_CONNECTION as string;
 
   const wallet = ethers.Wallet.createRandom();
   const provider = new ethers.providers.JsonRpcProvider(ethRpcUrl);
