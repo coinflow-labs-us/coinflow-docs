@@ -1,0 +1,53 @@
+import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
+import Intro from '../../../intro.mdx';
+import InstallSolana from '../install-solana.mdx';
+import SolanaWallet from '../solana-wallet-setup.mdx';
+
+<Intro />
+<InstallSolana />
+<Webpack5 />
+<SolanaWallet />
+
+
+# Integrate Coinflow component
+<ContentBlock filePath="src/App.vue" highlight="4">
+
+## Import the Coinflow Modules into your project
+
+This is the main Plug and Play Modal package that contains the Coinflow SDK with the UI, 
+giving you a simple way of implementing Coinflow within your interface.
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.vue" highlight="38-68">
+
+## Configure the Solana Transaction
+
+Initialize a Solana transaction calling your program exactly like you normally would for a user traditionally paying
+with USDC. You will also be required to set the amount property to be the amount of USDC you are sending to the program.
+
+[Read more about how to customize a Solana purchase transaction here](https://docs.coinflow.cash/docs/solana).
+</ContentBlock>
+
+<ContentBlock filePath="src/App.vue" highlight="79-94">
+
+## Configure the Coinflow Purchase Component
+
+Add the `CoinflowPurchase` component into your UI and configure the props with the following information:
+
+- `wallet` - The Solana Wallet
+- `merchantId` - Your Merchant ID
+- `env` - Use `sandbox` for testing and `prod` for production
+- `connection` - The Solana Connection
+- `transaction` - Represents the purchase being made 
+- `amount` - The amount of USDC you're sending to the program
+- `blockchain` - The Blockchain you are using (in this case, `solana`)
+- `onSuccess` - (optional) A callback function that is called when the purchase is successful
+- `email` - (optional) Email of the user that will be prefilled for them
+- `webhookInfo` - (optional) An object containing any information you want to send to your webhook
+
+</ContentBlock>
+
+
+## Add the Coinflow component to your application
+Add the component to your application, and Coinflow will take care of the rest!

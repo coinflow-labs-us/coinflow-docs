@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "start": "npm run codegen && docusaurus start",
     "build": "npm run codegen && docusaurus build",
-    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\"",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clean": "docusaurus clear && npm run clean-codegen",
@@ -16,7 +16,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "clean-codegen": "rimraf static/code/examples",
-    "codegen": "npm run clean-codegen && copyfiles --follow \"../examples/**/*.{tsx,js,jsx,json}\" \"./static/code/examples\" --parents --exclude \"../examples/**/build/**/*\" --exclude \"../examples/**/node_modules/**/*\" --exclude \"../examples/**/public/**/*\" --exclude \"../examples/**/package-lock.json\""
+    "codegen": "npm run clean-codegen && copyfiles --follow \"../examples/**/*.{tsx,js,jsx,json,vue}\" \"./static/code/examples\" --parents --exclude \"../examples/**/build/**/*\" --exclude \"../examples/**/node_modules/**/*\" --exclude \"../examples/**/public/**/*\" --exclude \"../examples/**/package-lock.json\""
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.0",

@@ -1,0 +1,48 @@
+import ContentBlock from "@site/src/components/ContentFromFile/ContentBlock";
+import Intro from '../../../intro.mdx';
+import InstallEth from '../../eth/install-eth.mdx';
+import EthWallet from '../../eth/eth-wallet-setup.mdx';
+
+<Intro />
+<InstallEth />
+<EthWallet />
+
+# Integrate Coinflow component
+
+<ContentBlock filePath="src/App.vue" highlight="3">
+
+## Import the Coinflow Modules into your project
+
+This is the main Plug and Play Modal package that contains the Coinflow SDK with the UI, giving you a simple way of implementing Coinflow within your interface.
+
+</ContentBlock>
+
+<ContentBlock filePath="src/App.vue" highlight="27-48">
+
+## Configure the Ethereum Transaction
+
+Initialize an Ethereum transaction calling your contract exactly like you normally would for a user traditionally paying
+with USDC. [Read about how to customize a purchase transaction here](https://docs.coinflow.cash/docs/evm).
+</ContentBlock>
+
+<ContentBlock filePath="src/App.vue" highlight="53-67">
+
+## Configure the Coinflow Purchase component
+
+Configure the `CoinflowPurchase` component props with the following information:
+
+- `wallet` - The Ethereum Wallet
+- `merchantId` - Your Merchant ID
+- `env` - Use `sandbox` for testing and `prod` for production
+- `onSuccess` - (optional) A callback function that is called when the purchase is successful
+- `blockchain` - The Blockchain you are using (in this case, `eth`)
+- `transaction` - The transaction object representing the purchase being made
+- `amount` - The amount of USDC you're sending to the program
+- `email` - (optional) Email of the user that will be prefilled for them
+- `webhookInfo` - (optional) An object containing any information you want to send to your webhook
+
+
+</ContentBlock>
+
+## Add the Coinflow component to your application
+Add the component to your application, and Coinflow will take care of the rest!
