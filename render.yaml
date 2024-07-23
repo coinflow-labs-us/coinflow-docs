@@ -324,3 +324,123 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+  
+  - type: web
+    name: vue-base-checkout
+    env: static
+    branch: main
+    rootDir: examples/vue/base/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/checkout/browser
+    buildFilter:
+      paths:
+        - examples/vue/base/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: vue-base-withdraw
+    env: static
+    branch: main
+    rootDir: examples/vue/base/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/withdraw/browser
+    buildFilter:
+      paths:
+        - examples/vue/base/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: vue-eth-checkout
+    env: static
+    branch: main
+    rootDir: examples/vue/eth/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/checkout/browser
+    buildFilter:
+      paths:
+        - examples/vue/eth/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: vue-eth-withdraw
+    env: static
+    branch: main
+    rootDir: examples/vue/eth/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/withdraw/browser
+    buildFilter:
+      paths:
+        - examples/vue/eth/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+  
+  - type: web
+    name: vue-polygon-checkout
+    env: static
+    branch: main
+    rootDir: examples/vue/polygon/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/checkout/browser
+    buildFilter:
+      paths:
+        - examples/vue/polygon/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: vue-polygon-withdraw
+    env: static
+    branch: main
+    rootDir: examples/vue/polygon/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/withdraw/browser
+    buildFilter:
+      paths:
+        - examples/vue/polygon/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+  
+  - type: web
+    name: vue-solana-checkout
+    env: static
+    branch: main
+    rootDir: examples/vue/solana/checkout
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/checkout/browser
+    buildFilter:
+      paths:
+        - examples/vue/solana/checkout/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: vue-solana-withdraw
+    env: static
+    branch: main
+    rootDir: examples/vue/solana/withdraw
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/withdraw/browser
+    buildFilter:
+      paths:
+        - examples/vue/solana/withdraw/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
