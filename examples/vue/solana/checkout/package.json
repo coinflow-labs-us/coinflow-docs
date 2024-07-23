@@ -13,18 +13,18 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "crypto-browserify": "^3.12.0",
+    "@coinflowlabs/vue": "^0.2.2",
     "@solana/spl-token": "^0.4.6",
+    "@solana/web3.js": "^1.95.0",
     "bs58": "^4.0.1",
     "buffer": "^6.0.3",
     "crypto": "^1.0.1",
+    "crypto-browserify": "^3.12.0",
     "dotenv": "^16.4.5",
     "stream-browserify": "^3.0.0",
     "tweetnacl": "^1.0.3",
     "vite-plugin-node-polyfills": "^0.22.0",
-    "vue": "^3.4.29",
-    "@coinflowlabs/vue": "^0.2.2",
-    "@solana/web3.js": "^1.95.0"
+    "vue": "^3.4.29"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
