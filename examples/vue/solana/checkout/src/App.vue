@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Connection, Keypair, Transaction, PublicKey } from '@solana/web3.js'
+import { Connection, Keypair, Transaction, VersionedTransaction, PublicKey } from '@solana/web3.js'
 import { sign } from 'tweetnacl'
 import { ref, onMounted } from 'vue'
 import { CoinflowPurchase } from '@coinflowlabs/vue'
@@ -7,7 +7,6 @@ import { TOKEN_PROGRAM_ID, createTransferInstruction } from '@solana/spl-token'
 import * as buffer from 'buffer'
 
 window.Buffer = buffer.Buffer
-
 const height = ref(500)
 const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight)
@@ -25,8 +24,10 @@ const keypair = Keypair.fromSecretKey(
   ])
 )
 
-const sendTransaction = (tx: Transaction) => {
-  tx.partialSign(keypair)
+const sendTransaction = async (tx: Transaction | VersionedTransaction): Promise<string> => {
+  if (tx instanceof Transaction) {
+    tx.partialSign(keypair)
+  }
   return connection.sendRawTransaction(tx.serialize(), { skipPreflight: true })
 }
 
@@ -57,7 +58,11 @@ const initializeTx = async () => {
 
   const amount = 1000000 // 1 USDC (USDC has 6 decimal places)
 
-  const tx = new Transaction().add(
+  const recentBlockhash = await connection.getRecentBlockhash()
+  const tx = new Transaction({
+    recentBlockhash: recentBlockhash.blockhash,
+    feePayer: keypair.publicKey
+  }).add(
     createTransferInstruction(
       fromTokenAccountAddress,
       toTokenAccountAddress,
@@ -79,7 +84,7 @@ onMounted(initializeTx)
     <CoinflowPurchase
       :args="{
         wallet: {
-          publicKey: keypair.publicKey.toBase58(),
+          publicKey: keypair.publicKey,
           sendTransaction,
           signMessage
         },
@@ -87,7 +92,7 @@ onMounted(initializeTx)
         blockchain: 'solana',
         merchantId: merchantId,
         connection: connection,
-        transaction: transaction.value,
+        transaction: transaction,
         handleHeightChange,
         amount: 1
       }"

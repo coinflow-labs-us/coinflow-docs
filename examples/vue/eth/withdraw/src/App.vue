@@ -8,43 +8,31 @@ const handleHeightChange = (newHeight: string) => {
   height.value = Number(newHeight);
 };
 
-const merchantId = process.env.VITE_MERCHANT_ID as string;
-const privateKey = process.env.VITE_WALLET_PRIVATE_KEY as string;
-const provider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth_sepolia');
+const merchantId = import.meta.env.VITE_MERCHANT_ID as string;
+const privateKey = import.meta.env.VITE_WALLET_PRIVATE_KEY as string;
+const rpcUrl = import.meta.env.VITE_RPC_URL as string;
+const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
 const wallet = new ethers.Wallet(privateKey, provider);
 
-const sendTransaction = async (tx: ethers.providers.TransactionRequest) => {
-  const signedTransaction = await wallet.signTransaction(tx);
-  return provider.sendTransaction(signedTransaction);
+console.log("Ethereum wallet address:", wallet.address);
+
+const sendTransaction = async (transaction: ethers.providers.TransactionRequest & { to: string }): Promise<{hash: string}> => {
+  const signedTransaction = await wallet.signTransaction(transaction);
+    const txResponse = await provider.sendTransaction(signedTransaction);
+    const {hash} = txResponse;
+    return {hash};
 };
 
-const signMessage = async (message: string) => {
-  try {
-    const { domain, message: value } = JSON.parse(message);
-    const types = {
-      Permit: [
-        { name: 'owner', type: 'address' },
-        { name: 'spender', type: 'address' },
-        { name: 'value', type: 'uint256' },
-        { name: 'nonce', type: 'uint256' },
-        { name: 'deadline', type: 'uint256' },
-      ]
-    };
-
-    const signature = await wallet._signTypedData(domain, types, value);
-    return signature;
-  } catch (error) {
-    console.error("Error signing typed data:", error);
-    throw error;
-  }
-};
+ const signMessage = async (message: string): Promise<string> => {
+    return await wallet.signMessage(message);
+  };
 </script>
 
 <template>
   <div :style="{width: '100%', height: `${height}px`}">
     <CoinflowWithdraw :args="{
         wallet: {
-          publicKey: wallet.address,
+          address: wallet.address,
           sendTransaction,
           signMessage,
         },

@@ -1,47 +1,50 @@
 <script setup lang="ts">
   import { ref, onMounted } from "vue";
   import { CoinflowPurchase } from "@coinflowlabs/vue";
+  import type { NormalRedeem } from "@coinflowlabs/vue";
   import { ethers } from "ethers";
+
 
   const height = ref(500);
   const handleHeightChange = (newHeight: string) => {
     height.value = Number(newHeight);
   };
 
-  const merchantId = process.env.VITE_MERCHANT_ID as string;
-  const baseRpcUrl = process.env.VITE_BASE_RPC_CONNECTION as string;
-
+  const merchantId = import.meta.env.VITE_MERCHANT_ID as string;
+  const baseRpcUrl = import.meta.env.VITE_BASE_RPC_CONNECTION as string;
   const wallet = ethers.Wallet.createRandom();
   const provider = new ethers.providers.JsonRpcProvider(baseRpcUrl);
   const connectedWallet = wallet.connect(provider);
 
-  const sendTransaction = async (tx: ethers.providers.TransactionRequest) => {
-    const signedTransaction = await connectedWallet.signTransaction(tx);
-    return provider.sendTransaction(signedTransaction);
+  const sendTransaction = async (transactionRequest: ethers.providers.TransactionRequest & {to: string}): Promise<{hash: string}> => {
+    const signedTransaction = await connectedWallet.signTransaction(transactionRequest);
+    const txResponse = await provider.sendTransaction(signedTransaction);
+    const {hash} = txResponse;
+    return {hash};
   };
 
-  const signMessage = async (message: string) => {
-    return connectedWallet.signMessage(message);
+  const signMessage = async (message: string): Promise<string> => {
+    return await connectedWallet.signMessage(message);
   };
 
-  const usdcAbi = [
-    "function transfer(address to, uint256 amount) public returns (bool)"
-  ];
-  const usdcContractAddress = process.env.VITE_CONTRACT_ADDRESS as string;
-  const usdcContract = new ethers.Contract(usdcContractAddress, usdcAbi, connectedWallet);
-  const transaction = ref<{ to: string; data: string } | null>(null);
+  const transaction = ref<NormalRedeem | null>(null);
 
   // Replace with your own transaction logic here
   const initializeTx = async () => {
     if (!connectedWallet.address) return;
 
     const recipientAddress = "0x0000000000000000000000000000000000000001"; // Dummy address
-    const amount = ethers.utils.parseUnits("1", 6);
-    const rawTx = await usdcContract.populateTransaction.transfer(recipientAddress, amount);
+    const amount = ethers.utils.parseEther("0.01"); // Sending 0.01 ETH
+    const rawTx: ethers.providers.TransactionRequest = {
+      to: recipientAddress,
+      value: amount
+    };
 
     transaction.value = {
-      to: rawTx.to!,
-      data: rawTx.data!
+      transaction: {
+        to: rawTx.to!,
+        data: ethers.utils.hexlify(rawTx.data || "0x")
+      }
     };
   };
 
@@ -52,17 +55,16 @@
   <div v-if="transaction" :style="{width: '100%', height: `${height}px`}">
     <CoinflowPurchase :args="{
         wallet: {
-          publicKey: connectedWallet.address,
+          address: connectedWallet.address,
           sendTransaction,
           signMessage,
         },
         env: 'sandbox',
         blockchain: 'base',
         merchantId: merchantId,
-        connection: provider,
-        transaction: transaction.value,
+        transaction: transaction,
         handleHeightChange,
-        amount:1,
+        amount: 1,
       }"
     />
   </div>
