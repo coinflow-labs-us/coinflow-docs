@@ -5,20 +5,25 @@ module.exports = function override(config) {
   Object.assign(fallback, {
     crypto: require.resolve('crypto-browserify'),
     stream: require.resolve('stream-browserify'),
-    assert: require.resolve('assert'),
+    assert: require.resolve('assert/'),
     http: require.resolve('stream-http'),
     https: require.resolve('https-browserify'),
-    os: require.resolve('os-browserify'),
-    url: require.resolve('url'),
-    events: require.resolve('events'),
+    os: require.resolve('os-browserify/browser'),
+    url: require.resolve('url/'),
+    events: require.resolve('events/'),
+    zlib: require.resolve('browserify-zlib'),
+    string_decoder: require.resolve('string_decoder/'),
+    util: require.resolve('util/'),
   });
   config.resolve.fallback = fallback;
+
   config.plugins = (config.plugins || []).concat([
     new webpack.ProvidePlugin({
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer'],
     }),
   ]);
+
   config.ignoreWarnings = [/Failed to parse source map/];
   config.module.rules.push({
     test: /\.(js|mjs|jsx)$/,
@@ -28,5 +33,6 @@ module.exports = function override(config) {
       fullySpecified: false,
     },
   });
+
   return config;
 };

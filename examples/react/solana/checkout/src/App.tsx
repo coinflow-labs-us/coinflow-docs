@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Wallet} from './Wallet';
+import {Wallet, useSolanaWallet} from './Wallet';
 import {WalletMultiButton} from '@solana/wallet-adapter-react-ui';
-import {CoinflowEnvs, CoinflowPurchase} from '@coinflowlabs/react';
-import {useConnection, useWallet} from '@solana/wallet-adapter-react';
+import {CoinflowPurchase} from '@coinflowlabs/react';
+import {useConnection} from '@solana/wallet-adapter-react';
 import {PublicKey, Transaction} from '@solana/web3.js';
 import {
   createTransferCheckedInstruction,
@@ -11,17 +11,16 @@ import {
 
 function CoinflowContent() {
   const {connection} = useConnection();
-  const wallet = useWallet();
+  const wallet = useSolanaWallet();
   const [transaction, setTransaction] = useState<Transaction | undefined>(
     undefined
   );
-
-  const amount = 1; // 1 usdc
+  const amount = 1;
 
   useEffect(() => {
     // Create a transaction that mints usdc
     async function createTx() {
-      if (!wallet.publicKey) return;
+      if (!wallet || !wallet.publicKey) return;
 
       const usdcMint = new PublicKey(
         '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU'
@@ -33,7 +32,6 @@ function CoinflowContent() {
         wallet.publicKey,
         true
       );
-
       const receiver = new PublicKey(
         '63zH5fKvSubyforhkAJEWwaeEUoLe8R864bETRLMrX1t'
       );
@@ -61,13 +59,13 @@ function CoinflowContent() {
     }
 
     createTx();
-  }, [amount, wallet.publicKey]);
+  }, [amount, connection, wallet]);
 
   return (
     <CoinflowPurchase
       wallet={wallet}
-      merchantId={process.env.REACT_APP_MERCHANT_ID as string}
-      env={process.env.REACT_APP_ENV as CoinflowEnvs}
+      merchantId={'testtest'} // process.env.REACT_APP_MERCHANT_ID as string
+      env={'sandbox'} // process.env.REACT_APP_ENV as CoinflowEnvs
       connection={connection}
       transaction={transaction}
       amount={amount}
@@ -86,11 +84,7 @@ function App() {
     <Wallet>
       <div className="App">
         <WalletMultiButton />
-        <div
-          style={{
-            height: '100vh',
-          }}
-        >
+        <div style={{height: '100vh'}}>
           <CoinflowContent />
         </div>
       </div>
