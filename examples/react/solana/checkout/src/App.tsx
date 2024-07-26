@@ -16,11 +16,12 @@ function CoinflowContent() {
     undefined
   );
   const amount = 1;
+  console.log(wallet);
 
   useEffect(() => {
     // Create a transaction that mints usdc
     async function createTx() {
-      if (!wallet || !wallet.publicKey) return;
+      if (!wallet.publicKey) return;
 
       const usdcMint = new PublicKey(
         '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU'
@@ -59,7 +60,7 @@ function CoinflowContent() {
     }
 
     createTx();
-  }, [amount, connection, wallet]);
+  }, [amount, wallet.publicKey]);
 
   return (
     <CoinflowPurchase

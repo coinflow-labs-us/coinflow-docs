@@ -19,7 +19,8 @@
     "clean": "rimraf build",
     "build": "tsc --noEmit && react-app-rewired build",
     "start": "react-app-rewired start",
-    "dev": "npm run start"
+    "dev": "npm run start",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\""
   },
   "eslintConfig": {
     "extends": [
