@@ -1,9 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Wallet} from './Wallet';
 import {WalletMultiButton} from '@solana/wallet-adapter-react-ui';
 import {CoinflowEnvs, CoinflowPurchase} from '@coinflowlabs/react';
 import {useConnection, useWallet} from '@solana/wallet-adapter-react';
-import {PublicKey, Transaction} from '@solana/web3.js';
+import {
+  PublicKey,
+  Transaction,
+  type VersionedTransaction,
+} from '@solana/web3.js';
 import {
   createTransferCheckedInstruction,
   getAssociatedTokenAddressSync,
@@ -11,7 +15,23 @@ import {
 
 function CoinflowContent() {
   const {connection} = useConnection();
-  const wallet = useWallet();
+  const adapterWallet = useWallet();
+
+  const {publicKey, sendTransaction, signMessage} = adapterWallet;
+
+  const wallet = useMemo(
+    () => ({
+      publicKey,
+      sendTransaction: <T extends Transaction | VersionedTransaction>(
+        transaction: T
+      ): Promise<string> => {
+        return sendTransaction(transaction, connection);
+      },
+      signMessage,
+    }),
+    [publicKey, sendTransaction, signMessage]
+  );
+
   const [transaction, setTransaction] = useState<Transaction | undefined>(
     undefined
   );
@@ -62,6 +82,8 @@ function CoinflowContent() {
 
     createTx();
   }, [amount, wallet.publicKey]);
+
+  if (!wallet.publicKey) return null;
 
   return (
     <CoinflowPurchase
