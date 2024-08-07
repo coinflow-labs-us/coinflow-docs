@@ -1,96 +1,60 @@
 import React, {useRef, useState} from 'react';
 import {
-  CoinflowCardForm,
   CoinflowCardTokenResponse,
-  CoinflowEnvs,
+  CoinflowCardNumberInput,
+  CoinflowCvvInput,
 } from '@coinflowlabs/react';
-import axios from 'axios';
 
 function App() {
-  const [height, setHeight] = React.useState<number>(0);
-  const ref = useRef<{getToken(): Promise<CoinflowCardTokenResponse>}>();
-  const handleHeightChange = (newHeight: string) => {
-    setHeight(Number(newHeight));
-  };
-  const [cvv, setCvv] = useState<string>('');
-  const [error, setError] = useState<string>('');
-  const [paymentId, setPaymentId] = useState<string>('');
-  const walletPublicKey = '8G9Bua5KvCNtjVgMCuam1iYUhRaBfAMvX295eupRaPZ1'; // replace with the users wallet
-  const blockchain = 'solana'; // replace with your blockchain
-
-  const submit = async () => {
-    if (!ref.current) return;
-
-    setError('');
-    setPaymentId('');
-
-    const {token} = await ref.current.getToken().catch(e => {
-      setError(e.message);
-      throw e;
-    });
-    const {
-      data: {paymentId},
-    } = await axios
-      .post<{paymentId: string}>(
-        `https://api-sandbox.coinflow.cash/api/checkout/token/${
-          process.env.REACT_APP_MERCHANT_ID as string
-        }`,
-        {
-          subtotal: {cents: 100},
-          token,
-          cvv,
-        },
-        {
-          headers: {
-            'x-coinflow-auth-wallet': walletPublicKey,
-            'x-coinflow-auth-blockchain': blockchain,
-          },
-        }
-      )
-      .catch(e => {
-        setError(e.message);
-        throw e;
-      });
-    setPaymentId(paymentId);
-  };
+  const coinflowCardFormRef = useRef<{
+    getToken(): Promise<CoinflowCardTokenResponse>;
+  }>();
+  const [cardFormExp, setCardFormExp] = useState('');
+  const [token, setToken] = useState('');
 
   return (
     <div className="App">
-      <div
-        style={{
-          height: height ? height + 'px' : undefined,
-        }}
-      >
-        <CoinflowCardForm
-          ref={ref}
-          merchantId={process.env.REACT_APP_MERCHANT_ID as string}
-          walletPubkey={walletPublicKey} // replace with the users wallet
-          env={process.env.REACT_APP_ENV as CoinflowEnvs}
-          blockchain={blockchain}
-          handleHeightChange={handleHeightChange}
-          customCss={{
-            input: {
-              padding: '5px',
-            },
-            '.expMonthInput': {
-              backgroundColor: 'black',
-              color: 'white',
+      <div style={{maxHeight: '50px', border: '1px solid black'}}>
+        <CoinflowCardNumberInput
+          ref={coinflowCardFormRef}
+          env="sandbox" // Change to 'prod' for production
+          debug={true} // Change to false for production
+          css={{
+            base: 'font-family: Montserrat, sans-serif; padding: 0 8px; border: 0px; margin: 0; width: 100%; font-size: 13px; line-height: 48px; height: 48px; box-sizing: border-box; -moz-box-sizing: border-box;',
+            focus: 'outline: 0;',
+            error:
+              'box-shadow: 0 0 6px 0 rgba(224, 57, 57, 0.5); border: 1px solid rgba(224, 57, 57, 0.5);',
+            cvv: {
+              base: 'font-family: Montserrat, sans-serif; padding: 0 8px; border: 0px; margin: 0; width: 100%; font-size: 13px; line-height: 48px; height: 48px; box-sizing: border-box; -moz-box-sizing: border-box;',
+              focus: 'outline: 0;',
+              error:
+                'box-shadow: 0 0 6px 0 rgba(224, 57, 57, 0.5); border: 1px solid rgba(224, 57, 57, 0.5);',
             },
           }}
         />
       </div>
       <input
-        placeholder={'CVV'}
-        value={cvv}
-        onChange={e => setCvv(e.currentTarget.value)}
+        placeholder="Expiration"
+        value={cardFormExp}
+        onChange={e => setCardFormExp(e.target.value)}
+        style={{maxHeight: '50px', border: '1px solid black'}}
       />
-      {error && <div style={{color: 'red'}}>{error}</div>}
-      <button onClick={submit}>Get Token</button>
-      {paymentId && (
-        <div style={{color: 'green'}}>
-          Successful payment! Payment ID: {paymentId}
-        </div>
-      )}
+      <div style={{height: '50px', border: '1px solid black'}}>
+        <CoinflowCvvInput />
+      </div>
+      <button
+        id="getToken"
+        onClick={() => {
+          coinflowCardFormRef.current
+            ?.getToken()
+            .then(tokenData => setToken(tokenData.token))
+            .catch(err => console.error('GET TOKEN ERROR', {err}));
+        }}
+      >
+        Get Token
+      </button>
+      <br />
+      <span>Token: {token}</span>
     </div>
   );
 }
