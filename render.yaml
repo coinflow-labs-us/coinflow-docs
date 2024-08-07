@@ -1,7 +1,7 @@
 services:
   - type: web
     name: coinflow-docs
-    runtime: static
+    env: static
     branch: main
     domains:
       - integration-builder.coinflow.cash
@@ -11,7 +11,23 @@ services:
     buildFilter:
       paths:
         - docusaurus/**/*
-        - examples/**/*
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: coinflow-blog
+    env: static
+    branch: main
+    domains:
+      - blog.coinflow.cash
+    rootDir: blog
+    buildCommand: npm ci && npm run build
+    staticPublishPath: build
+    buildFilter:
+      paths:
+        - blog/**/*
     routes:
       - type: rewrite
         source: /*
@@ -19,7 +35,7 @@ services:
 
   - type: web
     name: react-solana-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/solana/checkout
     buildCommand: npm ci && npm run build
@@ -39,7 +55,7 @@ services:
 
   - type: web
     name: react-solana-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/solana/withdraw
     buildCommand: npm ci && npm run build
@@ -59,7 +75,7 @@ services:
 
   - type: web
     name: react-near-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/near/checkout
     buildCommand: npm ci && npm run build
@@ -79,7 +95,7 @@ services:
 
   - type: web
     name: react-near-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/near/withdraw
     buildCommand: npm ci && npm run build
@@ -99,7 +115,7 @@ services:
 
   - type: web
     name: react-polygon-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/polygon/checkout
     buildCommand: npm ci && npm run build
@@ -123,7 +139,7 @@ services:
 
   - type: web
     name: react-eth-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/eth/checkout
     buildCommand: npm ci && npm run build
@@ -147,7 +163,7 @@ services:
 
   - type: web
     name: react-polygon-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/polygon/withdraw
     buildCommand: npm ci && npm run build
@@ -169,7 +185,7 @@ services:
 
   - type: web
     name: react-eth-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/react/eth/withdraw
     buildCommand: npm ci && npm run build
@@ -188,10 +204,10 @@ services:
         value: coinflow
       - key: REACT_APP_WALLET_CONNECT_PROJECT_ID
         value: 2383b9beda863a0b895ff5603b28bd04
-
+  
   - type: web
     name: angular-solana-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/solana/checkout/checkout-app
     buildCommand: npm ci && npm run build
@@ -203,10 +219,10 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-
+  
   - type: web
     name: angular-solana-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/solana/withdraw/withdraw
     buildCommand: npm ci && npm run build
@@ -218,10 +234,10 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-
+  
   - type: web
     name: angular-polygon-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/polygon/checkout/checkout-app
     buildCommand: npm ci && npm run build
@@ -236,7 +252,7 @@ services:
 
   - type: web
     name: angular-polygon-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/polygon/withdraw/withdraw
     buildCommand: npm ci && npm run build
@@ -248,10 +264,10 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-
+  
   - type: web
     name: angular-eth-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/eth/checkout/checkout-app
     buildCommand: npm ci && npm run build
@@ -266,7 +282,7 @@ services:
 
   - type: web
     name: angular-eth-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/eth/withdraw/withdraw
     buildCommand: npm ci && npm run build
@@ -281,7 +297,7 @@ services:
 
   - type: web
     name: angular-base-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/base/checkout/checkout-app
     buildCommand: npm ci && npm run build
@@ -296,7 +312,7 @@ services:
 
   - type: web
     name: angular-base-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/angular/base/withdraw/withdraw
     buildCommand: npm ci && npm run build
@@ -308,14 +324,14 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-
+  
   - type: web
     name: vue-base-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/base/checkout
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/checkout/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/base/checkout/**/*
@@ -326,11 +342,11 @@ services:
 
   - type: web
     name: vue-base-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/base/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/withdraw/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/base/withdraw/**/*
@@ -341,11 +357,11 @@ services:
 
   - type: web
     name: vue-eth-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/eth/checkout
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/checkout/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/eth/checkout/**/*
@@ -356,11 +372,11 @@ services:
 
   - type: web
     name: vue-eth-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/eth/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/withdraw/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/eth/withdraw/**/*
@@ -368,14 +384,14 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-
+  
   - type: web
     name: vue-polygon-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/polygon/checkout
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/checkout/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/polygon/checkout/**/*
@@ -386,11 +402,11 @@ services:
 
   - type: web
     name: vue-polygon-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/polygon/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/withdraw/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/polygon/withdraw/**/*
@@ -398,14 +414,14 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-
+  
   - type: web
     name: vue-solana-checkout
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/solana/checkout
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/checkout/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/solana/checkout/**/*
@@ -416,11 +432,11 @@ services:
 
   - type: web
     name: vue-solana-withdraw
-    runtime: static
+    env: static
     branch: main
     rootDir: examples/vue/solana/withdraw
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist/withdraw/browser
+    staticPublishPath: dist
     buildFilter:
       paths:
         - examples/vue/solana/withdraw/**/*
