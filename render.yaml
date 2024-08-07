@@ -11,6 +11,7 @@ services:
     buildFilter:
       paths:
         - docusaurus/**/*
+        - examples/**/*
     routes:
       - type: rewrite
         source: /*
