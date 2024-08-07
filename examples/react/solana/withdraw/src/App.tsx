@@ -1,31 +1,48 @@
 import {CoinflowEnvs, CoinflowWithdraw} from '@coinflowlabs/react';
 import {useConnection, useWallet} from '@solana/wallet-adapter-react';
 import {WalletMultiButton} from '@solana/wallet-adapter-react-ui';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Wallet} from './Wallet';
+import {Transaction, type VersionedTransaction} from '@solana/web3.js';
 
 function App() {
   return (
     <Wallet>
-      <Wallet>
-        <div className="App">
-          <WalletMultiButton />
-          <div
-            style={{
-              height: '100vh',
-            }}
-          >
-            <CoinflowContent />
-          </div>
+      <div className="App">
+        <WalletMultiButton />
+        <div
+          style={{
+            height: '100vh',
+          }}
+        >
+          <CoinflowContent />
         </div>
-      </Wallet>
+      </div>
     </Wallet>
   );
 }
 
 function CoinflowContent() {
   const {connection} = useConnection();
-  const wallet = useWallet();
+  const adapterWallet = useWallet();
+
+  const {publicKey, sendTransaction} = adapterWallet;
+
+  const wallet = useMemo(
+    () => ({
+      publicKey,
+      sendTransaction: <T extends Transaction | VersionedTransaction>(
+        transaction: T
+      ): Promise<string> => {
+        return sendTransaction(transaction, connection);
+      },
+    }),
+    [publicKey, sendTransaction]
+  );
+
+  console.log(wallet);
+
+  if (!wallet.publicKey) return null;
 
   return (
     <CoinflowWithdraw
