@@ -4,13 +4,13 @@ import {
   configureChains,
   createClient,
   useAccount,
-  WagmiConfig,
   useSignTypedData,
   useSignMessage,
+  WagmiConfig,
 } from 'wagmi';
-import {sendTransaction, prepareSendTransaction} from '@wagmi/core';
 import {EthereumClient, w3mConnectors, w3mProvider} from '@web3modal/ethereum';
 import {Web3Modal} from '@web3modal/react';
+import {sendTransaction, prepareSendTransaction} from '@wagmi/core';
 import {providers} from 'ethers';
 
 const WalletConnectProjectId = process.env
