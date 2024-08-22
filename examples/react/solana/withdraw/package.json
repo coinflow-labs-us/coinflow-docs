@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@coinflowlabs/react": "^4.2.9",
+    "@coinflowlabs/react": "^4.2.10",
     "@solana-mobile/wallet-adapter-mobile": "^2.0.0",
     "@solana/spl-token": "^0.3.7",
     "@solana/wallet-adapter-base": "^0.9.21",

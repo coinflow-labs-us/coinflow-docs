@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@coinflowlabs/react": "^4.2.9",
+    "@coinflowlabs/react": "^4.2.10",
     "@solana/web3.js": "^1.75.0",
     "axios": "^1.5.0",
     "react": "^18.2.0",
