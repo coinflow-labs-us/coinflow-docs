@@ -12,7 +12,8 @@
     "@solana/wallet-adapter-wallets": "^0.19.16",
     "@solana/web3.js": "^1.75.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "tweetnacl": "^1.0.3"
   },
   "scripts": {
     "lint": "eslint .",
