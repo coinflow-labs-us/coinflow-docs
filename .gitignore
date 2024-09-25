@@ -72,6 +72,7 @@ web_modules/
 
 # Optional eslint cache
 .eslintcache
+.eslintrc.json
 
 # Optional stylelint cache
 .stylelintcache
@@ -132,6 +133,8 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.vscode*
+.editorconfig
 
 # yarn v2
 .yarn/cache
@@ -140,6 +143,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+.gitkeep
 _logs
 _cacache
 _update-notifier-last-checked

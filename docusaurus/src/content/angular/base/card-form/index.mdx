@@ -1,0 +1,40 @@
+import ContentBlock from '../../../../components/ContentFromFile/ContentBlock';
+import Intro from '../../../intro.mdx';
+
+<Intro />
+
+<ContentBlock filePath="card-form/package.json" highlight="21">
+
+## Install Coinflow package
+
+`npm i @coinflowlabs/angular`
+
+</ContentBlock>
+
+
+<ContentBlock filePath="card-form/src/app/app.module.tsx" highlight="1-13">
+
+## Set Up Your Angular Module
+
+Import the CardForm component into the module where you want to use it.
+
+</ContentBlock>
+
+<ContentBlock>
+
+## Use the Component in Your Template
+
+In your main template file (e.g., app.component.html), you can use your component as follows:
+
+`<card-form></card-form>`
+
+</ContentBlock>
+
+
+<ContentBlock filePath="card-form/src/app/card-form/card-form.component.tsx" highlight="6-48">
+
+## Configure The Card Form Component
+
+While testing, please use the `sandbox`. Change the env to `prod` when when ready for production.
+
+</ContentBlock>
